@@ -27,4 +27,14 @@
       <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\.gitignore" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\bower.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\jquery.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\LICENSE" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\qrcode.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\qrcode.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\README.md" />
+    </ItemGroup>
+
 </Project>
