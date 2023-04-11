@@ -10,6 +10,31 @@ builder.Services.AddDbContext<FptBookIdentityDbContext>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<FptBookIdentityDbContext>();
 
+// IdentityOptions
+builder.Services.Configure<IdentityOptions> (options => {
+    // Password configuration
+    options.Password.RequireDigit = true; // Require digits
+    options.Password.RequireLowercase = false; // Don't require lowercase
+    options.Password.RequireNonAlphanumeric = false; // Don't require special character
+    options.Password.RequireUppercase = false; // Don't require uppercase
+    options.Password.RequiredLength = 3; // Minimum character
+    options.Password.RequiredUniqueChars = 1; // Number of unique character
+
+    // Lockout configuration
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes (5); // Lockout time
+    options.Lockout.MaxFailedAccessAttempts = 5; // Login till lockout
+    options.Lockout.AllowedForNewUsers = true;
+
+    // User configuration.
+    options.User.AllowedUserNameCharacters = // Username characters
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;  // Email là duy nhất
+
+    // Login configuration.
+    options.SignIn.RequireConfirmedEmail = true;            // Require confirmed email
+    options.SignIn.RequireConfirmedPhoneNumber = false;     // Require confirmed phone number
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -27,8 +52,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
 
+app.UseAuthentication();;
 app.UseAuthorization();
 
 app.MapControllerRoute(
