@@ -86,15 +86,28 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// app.UseSession();   
+
 app.UseRouting();
+
 
 app.UseAuthentication();;
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints (endpoints => {
+    
+    // Url sẽ là /Area/Controller/Action 
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
 
 app.MapRazorPages();
 
 app.Run();
+
+app.Run (async (HttpContext context) => {
+    context.Response.StatusCode = StatusCodes.Status404NotFound;
+    await context.Response.WriteAsync ("Page not found!");
+});
