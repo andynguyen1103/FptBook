@@ -3,47 +3,140 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FptBook</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"]FPTBook Store</title>
+    
+    <!-- Icon -->
+    <link href="@Url.Content("~/image/book-shop.png")" rel="icon" type="image/x-icon">
+
+    <!-- Custom file CSS Link -->
+    <link href="@Url.Content("~/css/layout.css")" rel="stylesheet" type="text/css" />y
+
+    <!-- Font awesome cdn Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FptBook</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-                @* @await Html.PartialAsync("_CartPartial") *@
-                @await Html.PartialAsync("_LoginPartial")
 
+        <!-- header section start -->
+    
+        <header class="header">
+    
+            <!-- header 1 start -->
+            <div class="header-1">
+    
+                <a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-book"></i> FPTBook</a>
+    
+                <form action="" class="search-form">
+                    <input type="search" name="" placeholder="Search here" id="search-box">
+                    <label for="search-box" class="fas fa-search"></label>
+                </form>
+    
+                <div class="icons">
+                    @* @await Html.PartialAsync("_CartPartial") *@
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+    
             </div>
-        </nav>
-    </header>
-    <div class="container">
+            <!-- header 1 end -->
+
+            <!-- header 2 start -->
+            <div class="header-2">
+                <nav class="navbar">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <a href="#Featured">Featured</a>
+                    <a href="#Arrivals">Arrivals</a>
+                    <a href="#Review">Review</a>
+                    <a href="#Blog">Blog</a>
+                </nav>
+            </div>
+            <!-- header 2 end -->
+        </header>
+        <!-- header section end -->
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - mvcblog - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+     <!-- footer section start -->
+        <section class="footer">
+            <div class="box-container">
+                <div class="box">
+                    <h3>Our Locations</h3>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Viet Nam </a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Japan </a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Korea </a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> U.S.A</a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> India </a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> France </a>
+                </div>
+    
+                <div class="box">
+                    <h3>Quick Links</h3>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Home </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Featured </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Arrivals </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Reviews </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Blogs </a>
+                </div>
+    
+                <div class="box">
+                    <h3>Extra Links</h3>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Account Info </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Ordered Items </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Privacy Policy </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Payment Methods </a>
+                    <a href="#"><i class="fas fa-arrow-right"></i> Our Services </a>
+                </div>
+    
+                <div class="box">
+                    <h3>Contact Info</h3>
+                    <a href="#"><i class="fas fa-phone"></i> +123-456-7890 </a>
+                    <a href="#"><i class="fas fa-phone"></i> +111-222-3333 </a>
+                    <a href="#"><i class="fas fa-envelope"></i> fptbookstore@gmail.com </a>
+                    <img src="~/image/worldmap.jpg" class="map" alt="">
+                </div>
+    
+            </div>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+                <a href="#" class="fab fa-github"></a>
+            </div>
+    
+            <div class="credit"> Created by <span> FPT Corporation</span> | all rights reserved</div>
+        </section>
+        <!-- footer section end -->
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
