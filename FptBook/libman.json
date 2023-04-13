@@ -9,10 +9,6 @@
     {
       "library": "Swiper@9.2.0",
       "destination": "wwwroot\\lib\\Swiper"
-    },
-    {
-      "library": "tailwindcss@2.2.19",
-      "destination": "wwwroot\\lib\\tailwindcss"
     }
   ]
 }

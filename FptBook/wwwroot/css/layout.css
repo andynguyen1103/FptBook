@@ -193,7 +193,6 @@ section{
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, .9);
-    position: fixed;
     top: 0; right:-105%;
     z-index: 10000;
     height: 100%;
@@ -251,6 +250,12 @@ section{
     font-size: 1.5rem;
     color: var(--light-color);
     cursor: pointer;
+}
+
+.checkbox{
+    font-size: 1.5rem;
+    color: var(--light-color);
+    cursor: pointer; 
 }
 
 .login-form-container form .btn{
