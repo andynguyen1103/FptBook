@@ -17,7 +17,17 @@
         
         <span><label asp-for="Input.ConfirmPassword" class="form-label"></label>  </span>                                     
         <input asp-for="Input.ConfirmPassword" class ="box" placeholder="Confirm your password" id="" aria-required="true">
-        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span><input id="registerSubmit" type="submit" value="Sign Up" class="btn">                                             
+        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        
+        <span><label asp-for="Input.PhoneNumber" class="form-label"></label>  </span>                                     
+        <input asp-for="Input.PhoneNumber" class ="box" placeholder="Enter your phone number" id="" aria-required="true">
+        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> 
+        
+        <span><label asp-for="Input.Address" class="form-label"></label>  </span>                                     
+        <input asp-for="Input.Address" class ="box" placeholder="Enter your address" id="" aria-required="true">
+        <span asp-validation-for="Input.Address" class="text-danger"></span> 
+        
+        <input id="registerSubmit" type="submit" value="Sign Up" class="btn">                                             
         
     </form>                                                                                                            
     </div>                                                                                                             

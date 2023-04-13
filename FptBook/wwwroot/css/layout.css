@@ -26,6 +26,11 @@ html{
     overflow-x: hidden;
     scroll-padding-top: 5rem;
     scroll-behavior: smooth;
+    
+}
+
+body{
+    width: 100vw;
 }
 
 a{
@@ -141,6 +146,20 @@ section{
     color: var(--green);
 }
 
+.navbar{
+    width: 100%;
+    padding-bottom: unset;
+    padding-top: unset;
+}
+
+.navbar-nav{
+    flex-direction: unset;
+}
+
+.navbar-nav > .nav-link:hover{
+    color: var(--green);
+}
+
 .header .header-1 .icons div,
 .header .header-1 .icons a{
     font-size: 1.8rem;
@@ -165,6 +184,8 @@ section{
 
 .header .header-2 .navbar{
     text-align: center;
+    justify-content: center;
+
 }
 
 .header .header-2 .navbar a{
@@ -286,12 +307,22 @@ section{
 }
 /* Login Form End*/
 
+.container{
+    margin-left: 0;
+    margin-right: 0;
+    width: fit-content;
+}
+
+main{
+    display: unset;
+}
 
 /* Home section start */
 .home{
     background: url(../image/smooth-white-brick-wall.jpg);
     background-size: cover;
     background-position: center;
+    width: fit-content;
 }
 
 .home .row{
