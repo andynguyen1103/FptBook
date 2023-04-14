@@ -1,4 +1,7 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<FptBookUser> SignInManager
+@inject UserManager<FptBookUser> UserManager
+
 <!-- home section start -->
 <section class="home" id="home">
         
@@ -9,7 +12,14 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum mollitia distinctio debitis cumque aperiam eos,
                 libero voluptates reiciendis ratione quod impedit eveniet, natus veniam eum autem asperiores itaque commodi
                 accusamus.</p>
-            <a href="#" class="btn">Shop now</a>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a href="#" class="btn">Shop Now</a>
+            }
+            else
+            {
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn">Shop now</a>
+            }
         </div>
 
         <div class="books-slider">
@@ -78,7 +88,15 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae similique aperiam repellendus, inventore maiores modi
             iste nesciunt distinctio dolore possimus ab animi obcaecati 
             aliquid amet laudantium ipsam placeat? Debitis, aut!</p>
-        <a href="#" class="btn">Shop now</a>
+        
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a href="#" class="btn">Shop Now</a>
+        }
+        else
+        {
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn">Shop now</a>
+        }
     </div>
 
     <div class="image">

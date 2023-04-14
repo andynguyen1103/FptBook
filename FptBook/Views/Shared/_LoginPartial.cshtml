@@ -3,17 +3,21 @@
 @inject UserManager<FptBookUser> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     
         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
         </form>
     
-}
-else
-{
-    <a class="nav-link fw-bold" asp-area="Identity" asp-page="/Account/Login">Login</a>
-}
+    }
+    else
+    {
+        <div id="search-btn" class="fas fa-search"></div>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-shopping-cart"></a>
+        <a href="#" id="hover-unset" class="fas fa-grip-lines-vertical" style="cursor: unset; "></a>
+        <a id="login-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    }
 </ul>
