@@ -2,6 +2,8 @@
 @inject SignInManager<FptBookUser> SignInManager
 @inject UserManager<FptBookUser> UserManager
 
+
+<body>
 <!-- home section start -->
 <section class="home" id="home">
         
@@ -288,29 +290,24 @@
     <!-- blog sections end -->
 
 
-@section Scripts
-{
-    <script>
-        var swiper = new Swiper(".reviews-slider", {
-            spaceBetween: 10,
-            grabCursor:true,
-            loop:true,
-            centeredSlides:true,
-            autoplay: {
-                delay: 9500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                0:{
-                    slidesPerView: 1,
-                },
-                768:{
-                    slidesPerView: 2,
-                },
-                1024:{
-                    slidesPerView: 3,
-                },
-            }
-        });
-    </script>
-}
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+                <!-- loader start-->
+                    <div class="un-loader-container"></div>
+                <!-- loader end -->
+    }
+    else
+    {
+        <!-- loader start-->
+            <div class="loader-container">
+                <img src="image/loader-img.gif" alt="">
+            </div>
+        <!-- loader end -->
+    }
+
+<script src="~/js/loader.js"></script>
+</body>
+
+
+    

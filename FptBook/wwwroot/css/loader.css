@@ -1,0 +1,21 @@
+﻿/* Loader start */
+.loader-container{
+    position: fixed;
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10000;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-container.active{
+    display: none;
+}
+.loader-container img{
+    height: 30rem;
+}
+
+/* Loader end */
