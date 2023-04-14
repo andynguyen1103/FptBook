@@ -4,7 +4,7 @@
     ViewData["Title"] = "Resend email confirmation";
 }
 
-<h1>@ViewData["Title"]</h1>
+@*<h1>@ViewData["Title"]</h1>
 <h2>Enter your email.</h2>
 <hr />
 <div class="row">
@@ -19,6 +19,20 @@
             <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
         </form>
     </div>
+</div>*@
+
+<div class="login-form-container">
+    
+    <form id="account" method="post">
+        <h3>Resend email confirmation</h3>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>     
+            
+        <span><label asp-for="Input.Email" class="form-label"></label></span>
+        <input asp-for="Input.Email" class="box"  placeholder="Enter your email" id="" aria-required="true">
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+        <input id="login-submit" type="submit" value="Resend" class="btn">
+
+    </form>
 </div>
 
 @section Scripts {
