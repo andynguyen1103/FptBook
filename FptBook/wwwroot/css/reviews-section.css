@@ -1,0 +1,39 @@
+﻿/* Reviews section start */
+.reviews .reviews-slider .box{
+    width: 30rem;
+    border: var(--border);
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.reviews .reviews-slider .box:hover{
+    border: var(--border-hover);
+}
+
+.reviews .reviews-slider .box img{
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.reviews .reviews-slider .box h3{
+    color: var(--black);
+    font-size: 2.2rem;
+    padding: .5rem 0;
+}
+
+.reviews .reviews-slider .box p{
+    color: var(--light-color);
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    line-height: 2;
+}
+
+.reviews .reviews-slider .box .stars i{
+    font-size: 1.7rem;
+    color: var(--green);
+
+}
+/* Reviews section end */
