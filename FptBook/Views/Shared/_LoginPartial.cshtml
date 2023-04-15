@@ -14,10 +14,21 @@
     }
     else
     {
+        @* <div id="search-btn" class="fas fa-search"></div> *@
+        @* <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-heart"></a> *@
+        @* <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-shopping-cart"></a> *@
+        @* <a id="hover-unset" class="fas fa-grip-lines-vertical " style="cursor: unset; "></a> *@
+        @* <a id="login-btn" asp-area="Identity" asp-page="/Account/Login">Login</a> *@
+        
         <div id="search-btn" class="fas fa-search"></div>
         <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-heart"></a>
         <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-shopping-cart"></a>
-        <a id="hover-unset" class="fas fa-grip-lines-vertical " style="cursor: unset; "></a>
-        <a id="login-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <div class="dropdown">
+            <div id="login-btn" class="fas fa-user dropbtn"></div>
+            <div class="dropdown-content">
+                <a class="drop-content" id="login-btn" asp-area="Identity" asp-page="/Account/Login">Sign In</a>
+                <a class="drop-content" id="login-btn" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
+            </div>
+        </div>
     }
 </ul>

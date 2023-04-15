@@ -54,39 +54,33 @@
             <!-- header 1 end -->
 
             <!-- header 2 start -->
-            <div class="header-2">
-                <nav class="navbar">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    <a href="#Featured">Featured</a>
-                    <a href="#Arrivals">Arrivals</a>
-                    <a href="#Review">Review</a>
-                    <a href="#Blog">Blog</a>
-                </nav>
-            </div>
+           <div class="header-2">
+                       <nav class="navbar">
+                           <a class="dropbtn" href="#Home">Home</a>
+                           <a class="dropbtn" href="#Featured">Featured</a>
+                           <div class="dropdown">
+                               <a class="dropbtn" href="#Arrivals">Arrivals</a>
+                               <div class="dropdown-content">
+                                 <a class="drop-content" href="#">New Arrivals</a>
+                                 <a class="drop-content" href="#">Best Sellers</a>
+                               </div>
+                           </div>
+                           <div class="dropdown">
+                               <a class="dropbtn" href="#Category">Category</a>
+                               <div class="dropdown-content">
+                                 <a class="drop-content" href="#">Thriller</a>
+                                 <a class="drop-content" href="#">Romantic</a>
+                                 <a class="drop-content" href="#">Adult</a>
+                               </div>
+                           </div>
+                           <a class="dropbtn" href="#Review">Review</a>
+                           <a class="dropbtn" href="#Blog">Blog</a>
+                       </nav>
+                   </div>
             <!-- header 2 end -->
         </header>
         <!-- header section end -->
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
