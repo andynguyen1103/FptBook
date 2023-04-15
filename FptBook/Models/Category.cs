@@ -1,6 +1,17 @@
-﻿namespace FptBook.Models;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class Category
-{
+namespace FptBook.Models;
+
+[Table("Categories")]
+public class Category {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int CategoryId { get; set; }
     
+    [StringLength(50)]
+    [Required]
+    [Display(Name = "Category")]
+    public string Name { get; set; }
 }
