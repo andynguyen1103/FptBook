@@ -8,8 +8,8 @@
     <!-- Icon -->
     <link href="@Url.Content("~/image/book-shop.png")" rel="icon" type="image/x-icon">
 
-    <!-- Boostrap file CSS Link -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<!-- Boostrap file CSS Link -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
     
     <!-- Custom file CSS Link -->
     <link href="@Url.Content("~/css/main-layout.css")" rel="stylesheet" type="text/css" />
@@ -145,9 +145,8 @@
         </section>
         <!-- footer section end -->
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src= @Url.Content("~/js/layout.js") asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+@RenderSection("Scripts", required: false)
 </body>
 </html>
