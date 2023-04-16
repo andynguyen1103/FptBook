@@ -55,31 +55,41 @@
 
             <!-- header 2 start -->
            <div class="header-2">
-                       <nav class="navbar">
-                           <a class="dropbtn" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                           <a class="dropbtn" href="#Featured">Featured</a>
-                           <div class="dropdown">
-                               <a class="dropbtn" href="#Arrivals">Arrivals</a>
-                               <div class="dropdown-content">
-                                 <a class="drop-content" href="#">New Arrivals</a>
-                                 <a class="drop-content" href="#">Best Sellers</a>
-                               </div>
-                           </div>
-                           <div class="dropdown">
-                               <a class="dropbtn" href="#Category">Category</a>
-                               <div class="dropdown-content">
-                                 <a class="drop-content" href="#">Thriller</a>
-                                 <a class="drop-content" href="#">Romantic</a>
-                                 <a class="drop-content" href="#">Adult</a>
-                               </div>
-                           </div>
-                           <a class="dropbtn" href="#Review">Review</a>
-                           <a class="dropbtn" href="#Blog">Blog</a>
-                       </nav>
+               <nav class="navbar">
+                   <a class="dropbtn" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                   <a class="dropbtn" href="#Featured">Featured</a>
+                   <div class="dropdown">
+                       <a class="dropbtn" href="#Arrivals">Arrivals</a>
+                       <div class="dropdown-content">
+                           <a class="drop-content" href="#">New Arrivals</a>
+                           <a class="drop-content" href="#">Best Sellers</a>
+                       </div>
                    </div>
+                   <div class="dropdown">
+                       <a class="dropbtn" href="#Category">Category</a>
+                       <div class="dropdown-content">
+                           <a class="drop-content" href="#">Thriller</a>
+                           <a class="drop-content" href="#">Romantic</a>
+                           <a class="drop-content" href="#">Adult</a>
+                       </div>
+                   </div>
+                   <a class="dropbtn" href="#reviews">Review</a>
+                   <a class="dropbtn" href="#blogs">Blog</a>
+               </nav>
+           </div>
             <!-- header 2 end -->
         </header>
-        <!-- header section end -->
+    <!-- header section end -->
+
+    <!-- bottom navbar start-->
+    <nav class="bottom-navbar">
+        <a href="#Home" class="fas fa-home"></a>
+        <a href="#Featured" class="fas fa-list"></a>
+        <a href="#Arrivals" class="fas fa-tags"></a>
+        <a href="#Review" class="fas fa-comments"></a>
+        <a href="#Blog" class="fas fa-blog"></a>
+    </nav>
+    <!-- bottom navbar start-->
 
 <div class="container-fluid">
         <main role="main" class="pb-3">
@@ -141,6 +151,9 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/swiper/swiper-bundle.js"></script>
+    <script src="~/js/site.js"></script>
+
 @RenderSection("Scripts", required: false)
 </body>
 </html>
