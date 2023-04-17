@@ -85,9 +85,21 @@ h1 {
     outline: none;
 }
 
-span{
+/*span{
     font-size: .7em;
     color: #777;
+}*/
+
+.new_password{
+    font-size: 15px;
+    color: red;
+}
+.new_email{
+    font-size: 15px;
+    color: red;
+    list-style: none;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .btn-confirm{
@@ -97,10 +109,10 @@ span{
     border: 0;
     color: #fff;
     background: #7ed386;
-    padding: 18px 25px;
+    padding: 10px 19px;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
     cursor: pointer;
-    margin-top: 25px;
+    margin-top: 10px;
     border-radius: 15px;
 }
 

@@ -31,7 +31,7 @@
 
         <h2 class="user-info" style="padding-bottom: 15px">Username</h2>
         <div asp-validation-summary="ModelOnly" style="color: red;"></div>
-        <input asp-for="Username" class="user-setting-input" style="font-size: 1.9rem;" disabled/>
+        <input asp-for="Username" class="user-setting-input" style="font-size: 1.9rem; padding-right: 5px" disabled/>
         @*<label asp-for="Username" class="form-label"></label>*@
         @*<input type="text" class="input">*@
 
@@ -42,7 +42,7 @@
         <span asp-validation-for="Input.PhoneNumber" style="color: red;"></span>
         @*<input type="text" class="input">*@
 
-        <button id="update-profile-button" type="submit" class="btn-confirm">Update</button>
+        <button id="update-profile-button" type="submit" class="btn">Update</button>
     </div>
     
 </form>
