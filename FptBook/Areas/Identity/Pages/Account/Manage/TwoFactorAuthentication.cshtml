@@ -7,7 +7,7 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h1 style="font-size: 2.5rem; margin-top: 50px; margin-bottom: 40px;">Two-factor authentication (2FA)</h1>
+<h1 style="font-size: 2.5rem; margin-top: 50px; margin-bottom: 40px; text-align: left">Two-factor authentication (2FA)</h1>
 @{
     var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
     @if (consentFeature?.CanTrack ?? true)
@@ -54,8 +54,8 @@
         else
         {
             <div style="text-align: center">
-                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn" style="justify-content: center">Set up authenticator app</a>
-                <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn">Reset authenticator app</a>
+                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn">Set up authenticator app</a>
+                <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn" style="padding: 0.9rem 3.4rem;">Reset authenticator app</a>
             </div>
         }
     }
