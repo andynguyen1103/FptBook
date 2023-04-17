@@ -16,27 +16,21 @@
     $1$<li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>#1#
 </ul>*@
 
+    <nav>
+        <a onclick="tabs(0)" class="@ManageNavPages.IndexNavClass(ViewContext) nav_item tab active" id="profile" asp-page="./Index" >
+            <i class="fas fa-user"></i>
+        </a>    
+        <a onclick="tabs(1)" class="@ManageNavPages.EmailNavClass(ViewContext) nav_item tab" id="email" asp-page="./Email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a onclick="tabs(2)" class="@ManageNavPages.ChangePasswordNavClass(ViewContext) nav_item tab" id="change-password" asp-page="./ChangePassword">
+            <i class="fas fa-key"></i>
+        </a>
+        <a onclick="tabs(3)" class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) nav_item tab" id="two-factor" asp-page="./TwoFactorAuthentication">
+            <i class="fas fa-tv"></i>
+        </a>
+        <a onclick="tabs(4)" class="@ManageNavPages.PersonalDataNavClass(ViewContext) nav_item tab" id="personal-data" asp-page="./PersonalData">
+            <i class="fas fa-database"></i>
+        </a>
+    </nav>
 
-                            <nav>
-                                <a onclick="tabs(0)" class="@ManageNavPages.IndexNavClass(ViewContext) tab active" id="profile" asp-page="./Index" >
-                                    <i class="fas fa-user"></i>
-                                </a>    
-                                <a onclick="tabs(1)" class="@ManageNavPages.EmailNavClass(ViewContext) tab" id="email" asp-page="./Email">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                                <a onclick="tabs(2)" class="@ManageNavPages.ChangePasswordNavClass(ViewContext) tab" id="change-password" asp-page="./ChangePassword">
-                                    <i class="fas fa-key"></i>
-                                </a>
-                                @if (hasExternalLogins)
-                                {
-                                    <a onclick="tabs(3)" class="@ManageNavPages.ExternalLoginsNavClass(ViewContext) tab" id="external-logins" asp-page="./ExternalLogins">
-                                        <i class="fas fa-envelope"></i>
-                                    </a>
-                                }
-                                <a onclick="tabs(4)" class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) tab" id="two-factor" asp-page="./TwoFactorAuthentication">
-                                    <i class="fas fa-tv"></i>
-                                </a>
-                                <a onclick="tabs(5)" class="@ManageNavPages.PersonalDataNavClass(ViewContext) tab" id="personal-data" asp-page="./PersonalData">
-                                    <i class="fas fa-database"></i>
-                                </a>
-                            </nav>

@@ -16,13 +16,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+
 namespace FptBook.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
         private readonly SignInManager<FptBookUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-
+        
         public LoginModel(SignInManager<FptBookUser> signInManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
@@ -117,6 +118,7 @@ namespace FptBook.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
+
                 }
                 if (result.RequiresTwoFactor)
                 {
