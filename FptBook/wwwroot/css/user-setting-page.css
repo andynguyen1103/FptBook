@@ -6,7 +6,6 @@
     position: relative;
     box-shadow: 2px 5px 20px rgba(119, 119, 119, .5);
     margin-top: 0px;
-
 }
 
 .leftbox{
@@ -36,8 +35,6 @@ nav .nav_item{
     cursor: pointer;
     transform: scale(1.2);
 }
-
-
 
 nav a.active{
     color: #10ac84;
@@ -83,15 +80,6 @@ h1 {
     color: #070707;
     outline: none;
 }
-
-/*span{
-    font-size: .7em;
-    color: #777;
-}*/
-
-
-
-
 
 .btn-confirm{
     font-family: "Roboto" , sans-serif;
@@ -159,6 +147,52 @@ h1 {
     list-style: none;
 }
 
+
+@media only screen and (max-width: 768px) {
+    .user-setting-container{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .leftbox{
+        width: 30%;
+        height: auto;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-right: 5%;
+        float: left;
+        margin-bottom: 20px;
+    }
+
+    nav .nav_item{
+        padding: 20px;
+        font-size: 1.5rem;
+    }
+
+    .rightbox{
+        width: 60%;
+        margin: 0;
+        padding-top: 0;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .leftbox{
+        width: 100%;
+        margin-right: 0;
+    }
+
+    nav .nav_item{
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .rightbox{
+        width: 100%;
+    }
+}
 
 
 
