@@ -41,6 +41,10 @@ public static class Initialize
             }
         }
 
+        if (!userManager.GetUsersInRoleAsync(RoleNames.Administrator).Result.IsNullOrEmpty())
+        {
+            return;
+        }
         //Here you could create a super user who will maintain the web app
         var adminUser = new FptBookUser()
         {

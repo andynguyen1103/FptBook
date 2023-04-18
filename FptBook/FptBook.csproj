@@ -37,4 +37,9 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\README.md" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Areas\Admin\Data" />
+      <Folder Include="Areas\Admin\Models" />
+    </ItemGroup>
+
 </Project>
