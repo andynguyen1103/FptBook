@@ -59,6 +59,7 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
             /// </summary>
             [Phone]
             [Display(Name = "Phone number")]
+            
             public string PhoneNumber { get; set; }
             
             public string Address { get; set; }
