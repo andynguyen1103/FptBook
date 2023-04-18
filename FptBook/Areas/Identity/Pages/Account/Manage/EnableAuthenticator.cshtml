@@ -5,8 +5,9 @@
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
-<partial name="_StatusMessage" for="StatusMessage" />
-<h1 style="margin-top: 6px; margin-bottom: 6px; font-size: 1.6rem; text-align: center; text-transform: capitalize; ">Configure authenticator app</h1>
+<div style="margin-top: 10px;"><partial name="_StatusMessage" for="StatusMessage" /></div>
+
+<h1 style="margin-top: 20px; margin-bottom: 6px; font-size: 2rem; text-align: center; text-transform: capitalize; ">Configure authenticator app</h1>
 <div>
     <p style="font-size: 1.3rem; text-align: center; color: #777; font-weight: bolder">To use an authenticator app go through the following steps:</p>
     <ol style="padding-left: 15px; ">
@@ -28,30 +29,26 @@
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri" ></div>
         </li>
         
-        <li style="font-size: 1.3em; margin-top: 5px; text-align: justify">
+        <li style="font-size: 1.3em; margin-top: 5px; text-align: justify;">
             <p>
                 Once you have scanned the QR code or input the key above, your two factor authentication app will provide you
                 with a unique code. Enter the code in the confirmation box below.
             </p>
-            <div class="row">
-                <div class="col-md-6">
-                    <form id="send-code" method="post">
-                        <div class="form-group">
-                            <input asp-for="Input.Code" class="form-control" autocomplete="off"/>
-                            <label asp-for="Input.Code" class="control-label form-label">Verification Code</label>
-                            <span asp-validation-for="Input.Code" class="text-danger"></span>
-                        </div>
-                        <div style="text-align: center">
-                        <button type="submit" class="btn">Verify</button>
-                            
-                        </div>
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    </form>
-                </div>
-            </div>
         </li>
+        <form id="send-code" method="post">
+            <div class="form-group">
+                <input asp-for="Input.Code" class="form-control" autocomplete="off"/>
+                <label asp-for="Input.Code" class="control-label form-label">Verification Code</label>
+                <span asp-validation-for="Input.Code" class="text-danger"></span>
+            </div>
+            <div style="text-align: center; margin-top: -13px">
+                <button type="submit" class="btn">Verify</button>
+            </div>
+        </form>'
+        <div asp-validation-summary="ModelOnly"></div>
         
     </ol>
+                         
 </div>
 
 

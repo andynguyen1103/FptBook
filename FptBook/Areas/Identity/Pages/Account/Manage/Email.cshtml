@@ -45,8 +45,10 @@
 
 <form id="email-form" method="post">
     <h1 style="font-size: 2.8rem; margin-top: 20px; margin-bottom: 20px; ">Manage Email </h1>
+
+    <div asp-validation-summary="All"></div>
     <partial name="_StatusMessage" for="StatusMessage"/>
-    <div asp-validation-summary="All" class="new_email"></div>
+
     @if (Model.IsEmailConfirmed)
     {
         <h2 class="user-info" style="padding-bottom: 15px">Current Email</h2>
@@ -72,7 +74,8 @@
     }
     <h2 class="user-info" style="padding-bottom: 15px; padding-top: 30px;">New Email</h2>
     <input asp-for="Input.NewEmail" class="user-setting-input" autocomplete="email" aria-required="true" style="font-size: 1.9rem;"/>
-    <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn">Change email</button>
+    <div style="text-align: center"><button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn">Change email</button></div>
+    
     @*<div class="form-floating">
         <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" />
         <label asp-for="Input.NewEmail" class="form-label"></label>

@@ -1,7 +1,7 @@
 ﻿.user-setting-container{
     background: #fff;
     width: 540px;
-    height: 450px;
+    height: 780px;
     margin: 50px auto;
     position: relative;
     box-shadow: 2px 5px 20px rgba(119, 119, 119, .5);
@@ -22,9 +22,9 @@
 
 nav .nav_item{
     list-style: none;
-    padding: 35px;
+    padding: 55px;
     color: #fff;
-    font-size: 2rem;
+    font-size: 2.5rem;
     display: block;
     transition: all .3s ease-in-out;
     padding-left: 30px;
@@ -90,17 +90,9 @@ h1 {
     color: #777;
 }*/
 
-.new_password{
-    font-size: 15px;
-    color: red;
-}
-.new_email{
-    font-size: 15px;
-    color: red;
-    list-style: none;
-    margin-bottom: 10px;
-    display: block;
-}
+
+
+
 
 .btn-confirm{
     font-family: "Roboto" , sans-serif;
@@ -127,7 +119,7 @@ h1 {
 }
 
 .form-control {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     margin: 5px 0;
     font-size: 16px;
@@ -137,10 +129,43 @@ h1 {
 }
 
 .form-label {
-    margin-top: 10px;
+    display: inline-block;
+    width: 18%;
+    margin: 5px 0;
     font-size: 16px;
     color: #444;
 }
+
+
+.field-validation-error {
+    border: 1px solid #f00;
+    padding: 10px;
+    background-color: #ffe7e7;
+    color: #f00;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* Style for validation summary */
+.validation-summary-errors {
+    border: 1px solid #f00;
+    padding: 10px;
+    background-color: #ffe7e7;
+    color: #f00;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.validation-summary-errors li{
+    list-style: none;
+}
+
+
+
+
+
+
 
 
 

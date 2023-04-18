@@ -25,11 +25,11 @@
 <form id="profile-form" method="post">
     
     <div class="profile tabShow">
-        <h1 style="font-size: 2.8rem; margin-top: 40px; margin-bottom: 40px">Profile Information </h1>
+        <h1 style="font-size: 2.8rem; margin-top: 40px; margin-bottom: 20px">Profile Information </h1>
         <partial name="_StatusMessage" for="StatusMessage"/>
 
 
-        <h2 class="user-info" style="padding-bottom: 15px">Username</h2>
+        <h2 class="user-info" style="padding-bottom: 15px; margin-top: 10px">Username</h2>
         <div asp-validation-summary="ModelOnly" style="color: red;"></div>
         <input asp-for="Username" class="user-setting-input" style="font-size: 1.9rem; padding-right: 5px" disabled/>
         @*<label asp-for="Username" class="form-label"></label>*@
@@ -37,12 +37,14 @@
 
 
         <h2 class="user-info" style="padding-bottom: 15px; padding-top: 30px;">Phone Number</h2>
-        <input asp-for="Input.PhoneNumber" class="user-setting-input" style="font-size: 1.9rem;"/>
+        <input asp-for="Input.PhoneNumber" class="user-setting-input" style="font-size: 1.9rem;"/> <br>
         @*<label asp-for="Input.PhoneNumber" class="form-label"></label>*@
-        <span asp-validation-for="Input.PhoneNumber" style="color: red;"></span>
+        <span asp-validation-for="Input.PhoneNumber" style="color: red;"></span> <br>
         @*<input type="text" class="input">*@
-
-        <button id="update-profile-button" type="submit" class="btn">Update</button>
+        <div style="text-align: center">
+            <button id="update-profile-button" type="submit" class="btn">Update</button>
+        </div>
+        
     </div>
     
 </form>
