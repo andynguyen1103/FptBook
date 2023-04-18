@@ -1,30 +1,33 @@
 ﻿@page
 @model LoginModel
 
-
-<div class="login-form-container">
+<div class="background-lr">
     
-    <form id="account" method="post">
-        <h3>Sign In</h3>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>     
+    <div class="login-form-container">
+    
+        <form id="account" method="post">
+            <h3>Sign In</h3>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>     
             
-        <span><label asp-for="Input.Email" class="form-label"></label></span>
-        <input asp-for="Input.Email" class="box"  placeholder="Enter your email" id="" aria-required="true">
-        <span asp-validation-for="Input.Email" class="text-danger"></span>
+            <span><label asp-for="Input.Email" class="form-label"></label></span>
+            <input asp-for="Input.Email" class="box"  placeholder="Enter your email" id="" aria-required="true">
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
                                                             
-        <span><label asp-for="Input.Password" class="form-label"></label>  </span>
-        <input asp-for="Input.Password" class ="box" placeholder="Enter your password" id="" aria-required="true">
-        <span asp-validation-for="Input.Password" class="text-danger"></span>
-        <div class="checkbox">
-            <label for="remember-me"><input asp-for="Input.RememberMe" type="checkbox" id="remember-me"></label>
-            @Html.DisplayNameFor(m => m.Input.RememberMe)
-        </div>
-        <input id="login-submit" type="submit" value="log in" class="btn">
-        <p><a id="forgot-password" asp-page="./ForgotPassword" >Forgot your password?</a></p>
-        <p><a asp-page="./Register">Don't have an account?</a></p>
-        <p><a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend Email Confirmation</a></p>
-        <p><a asp-controller = "NoPasswordLogin" asp-action="Index">Login Via Email</a></p>
-    </form>
+            <span><label asp-for="Input.Password" class="form-label"></label>  </span>
+            <input asp-for="Input.Password" class ="box" placeholder="Enter your password" id="" aria-required="true">
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+            <div class="checkbox">
+                <label for="remember-me"><input asp-for="Input.RememberMe" type="checkbox" id="remember-me"></label>
+                @Html.DisplayNameFor(m => m.Input.RememberMe)
+            </div>
+            <input id="login-submit" type="submit" value="log in" class="btn">
+            <p><a id="forgot-password" asp-page="./ForgotPassword" >Forgot your password?</a></p>
+            <p><a asp-page="./Register">Don't have an account?</a></p>
+            <p><a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend Email Confirmation</a></p>
+            <p><a asp-controller = "NoPasswordLogin" asp-action="Index">Login Via Email</a></p>
+        </form>
+    </div>
+    
 </div>
 
 @section Scripts {

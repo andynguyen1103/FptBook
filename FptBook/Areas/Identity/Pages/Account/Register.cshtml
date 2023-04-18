@@ -41,36 +41,40 @@
     </div>
 </div>*@
 
-<div class="login-form-container">                                                                                     
-                                                                                                                       
-    <form id="account" method="post">                                                                                  
-        <h3>Sign Up</h3>                                                                                               
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>                                             
-                                                                                                                       
-        <span><label asp-for="Input.Email" class="form-label"></label></span>                                          
-        <input asp-for="Input.Email" class="box"  placeholder="Enter your email" id="" aria-required="true">           
-        <span asp-validation-for="Input.Email" class="text-danger"></span>                                             
-                                                                                                                       
-        <span><label asp-for="Input.Password" class="form-label"></label>  </span>                                     
-        <input asp-for="Input.Password" class ="box" placeholder="Enter your password" id="" aria-required="true">     
-        <span asp-validation-for="Input.Password" class="text-danger"></span> 
-        
-        <span><label asp-for="Input.ConfirmPassword" class="form-label"></label>  </span>                                     
-        <input asp-for="Input.ConfirmPassword" class ="box" placeholder="Confirm your password" id="" aria-required="true">
-        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-        
-        <span><label asp-for="Input.PhoneNumber" class="form-label"></label>  </span>                                     
-        <input asp-for="Input.PhoneNumber" class ="box" placeholder="Enter your phone number" id="" aria-required="true">
-        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> 
-        
-        <span><label asp-for="Input.Address" class="form-label"></label>  </span>                                     
-        <input asp-for="Input.Address" class ="box" placeholder="Enter your address" id="" aria-required="true">
-        <span asp-validation-for="Input.Address" class="text-danger"></span> 
-        
-        <input id="registerSubmit" type="submit" value="Sign Up" class="btn">                                             
-        
-    </form>                                                                                                            
-    </div>                                                                                                             
+<div class="background-lr">
+    
+    <div class="login-form-container">                                                                                     
+                                                                                                                           
+        <form id="account" method="post">                                                                                  
+            <h3>Sign Up</h3>                                                                                               
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>                                             
+                                                                                                                           
+            <span><label asp-for="Input.Email" class="form-label"></label></span>                                          
+            <input asp-for="Input.Email" class="box"  placeholder="Enter your email" id="" aria-required="true">           
+            <span asp-validation-for="Input.Email" class="text-danger"></span>                                             
+                                                                                                                           
+            <span><label asp-for="Input.Password" class="form-label"></label>  </span>                                     
+            <input asp-for="Input.Password" class ="box" placeholder="Enter your password" id="" aria-required="true">     
+            <span asp-validation-for="Input.Password" class="text-danger"></span> 
+            
+            <span><label asp-for="Input.ConfirmPassword" class="form-label"></label>  </span>                                     
+            <input asp-for="Input.ConfirmPassword" class ="box" placeholder="Confirm your password" id="" aria-required="true">
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            
+            <span><label asp-for="Input.PhoneNumber" class="form-label"></label>  </span>                                     
+            <input asp-for="Input.PhoneNumber" class ="box" placeholder="Enter your phone number" id="" aria-required="true">
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span> 
+            
+            <span><label asp-for="Input.Address" class="form-label"></label>  </span>                                     
+            <input asp-for="Input.Address" class ="box" placeholder="Enter your address" id="" aria-required="true">
+            <span asp-validation-for="Input.Address" class="text-danger"></span> 
+            
+            <input id="registerSubmit" type="submit" value="Sign Up" class="btn">                                             
+            
+        </form>                                                                                                            
+    </div>   
+    
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -1,13 +1,25 @@
 ﻿/* Login Form Start*/
+.background-lr {
+    background: url(../image/lovely-asian-young-lady-portriat-happy-woman-lifestyle-concept.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100%; /* add height to the container */
+}
+
 .login-form-container{
+    position: relative; /* add position relative to the form container */
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, .9);
-    top: 0; right:-105%;
     z-index: 10000;
     height: 100%;
     width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .login-form-container.active{
@@ -96,3 +108,6 @@
     cursor: pointer;
 }
 /* Login Form End*/
+
+
+
