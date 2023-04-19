@@ -1,8 +1,565 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<FptBookUser> SignInManager
+@inject UserManager<FptBookUser> UserManager
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<body>
+<!-- home section start -->
+<section class="home" id="home">
+        
+    <div class="row">
+
+        <div class="content">
+            <h3>Up to 75% off</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum mollitia distinctio debitis cumque aperiam eos,
+                libero voluptates reiciendis ratione quod impedit eveniet, natus veniam eum autem asperiores itaque commodi
+                accusamus.</p>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a href="#" class="btn">Shop Now</a>
+            }
+            else
+            {
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn">Shop now</a>
+            }
+        </div>
+
+        <div class="books-slider">
+            <img src="~/image/table.png" class="stand" alt="">
+        </div>
+    </div>
+</section>
+<!-- home section end -->
+
+<!-- service section start -->
+<section class="icons-container">
+        
+    <div class="icons">
+        <i class="fas fa-plane"></i>
+        <div class="content">
+            <h3>Free Shipping</h3>
+            <p>Order Over $100</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-lock"></i>
+        <div class="content">
+            <h3>Secure Payment</h3>
+            <p>100% Secure Payment</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-redo-alt"></i>
+        <div class="content">
+            <h3>Easy Return</h3>
+            <p>10 days returns</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-headset"></i>
+        <div class="content">
+            <h3>24/7 Support</h3>
+            <p>Call Us Anytime</p>
+        </div>
+    </div>
+    
+</section> 
+<!-- service section end -->
+
+ <!-- arrivals section start -->
+    <section class="arrivals" id="arrivals">
+
+        <h1 class="heading"> <span>New Arrivals</span> </h1>
+
+        <div class="swiper arrivals-slider">
+            <div class="swiper-wrapper">
+
+                <a href="#" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_11.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_4.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_13.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_2.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_7.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="swiper arrivals-slider">
+            <div class="swiper-wrapper">
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_1.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_12.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_8.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_15.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="" class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/book_14.png" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>New Arrivals</h3>
+                        <div class="price">$15.99 <span>%20.99</span></div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+    <!-- arrivals section end -->
+
+<!-- newsletter section starts -->
+<section class="newsletter">
+
+    <form action="">
+        <h3>Subscribe for lastest updates</h3>
+        <input type="email" name="" placeholder="Enter your email" id="" class="box">
+        <input type="submit" value="Subscribe" class="btn">
+    </form>
+</section>
+<!-- newsletter section end -->
+
+<!-- deal section start -->
+
+<section class="deal">
+    <div class="content">
+        <h3>Deal of the day</h3>
+        <h1>Up to 50% off</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae similique aperiam repellendus, inventore maiores modi
+            iste nesciunt distinctio dolore possimus ab animi obcaecati 
+            aliquid amet laudantium ipsam placeat? Debitis, aut!</p>
+        
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a href="#" class="btn">Shop Now</a>
+        }
+        else
+        {
+            <a asp-area="Identity" asp-page="/Account/Login" class="btn">Shop now</a>
+        }
+    </div>
+
+    <div class="image">
+        <img src="image/about.png" alt="">
+    </div>
+</section>
+
+<!-- deal section end -->
+
+<!-- review section end -->
+    <section class="reviews" id="reviews">
+        <h1 class="heading"> <span>Reviews</span> </h1>
+
+        <div class="swiper reviews-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="image/young-adult-girl.jpg" alt="">
+                    <h3>Isabella</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/smiley-woman-walking-park.jpg" alt="">
+                    <h3>Aurora</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/young-asian-woman-with-bare-shoulders-posing-studio-holding-lollipop-cheek.jpg" alt="">
+                    <h3>Seraphina</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/cheerful-asian-tourist-blogger-woman-using-smartphone-direction-looking-location-map-while-traveling-street-downtown-city.jpg" alt="">
+                    <h3>Adriana</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/smart-attractive-female-asian-hand-gesture-point-copy-sapce-with-happiness-joyful-hand-present-template-card-with-smile-business-ideas-concept.jpg" alt="">
+                    <h3>Natalia</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/beautiful-girl-with-pink-leaves-nami-island-south-korea.jpg" alt="">
+                    <h3>Valentina</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide box">
+                    <img src="image/woman-using-finger-touch-chin.jpg" alt="">
+                    <h3>Giselle</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide box">
+                    <img src="image/attractive-elegant-asian-woman-long-hair-beautiful-dress-smile-with-happiness-cheerful-studio-photo-shoot-white-background.jpg" alt="">
+                    <h3>Emilia</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                        eius soluta harum, corporis modi voluptate 
+                        illum voluptas non porro atque! Quo!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+<!-- review section end -->
+
+<!-- blog sections start -->
+    <section class="blogs" id="blogs">
+        <h1 class="heading"> <span>Our Blogs</span> </h1>
+
+        <div class="swiper blogs-slider">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/girl-reading-book-drinking-coffee-bed-morning.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt 
+                            voluptate debitis quia vero, asperiores 
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/young-beautiful-woman-using-laptop-computer-home.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt
+                            voluptate debitis quia vero, asperiores
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/beautiful-asian-young-woman-creative-freelancer-working-laptop-computer-working-from-home-concept.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt
+                            voluptate debitis quia vero, asperiores
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/girl-wear-glasses-read-book-garden.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt
+                            voluptate debitis quia vero, asperiores
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/young-attrative-asian-female-working-home-hand-use-tablet-checking-businesss-data-chart-planning-report-with-leisure-relax-sofa-living-room-home-isolate-concept.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt
+                            voluptate debitis quia vero, asperiores
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/beautiful-young-smiling-asian-woman-working-laptop-desk-living-room-home.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt
+                            voluptate debitis quia vero, asperiores
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/beauty-asian-female-white-dress-long-hair-read-book-white-bed-with-clam-cheerful-white-bedroom-interior-background.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt
+                            voluptate debitis quia vero, asperiores
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide box">
+                    <div class="image">
+                        <img src="image/beautiful-asian-woman-long-hair-enjoy-weekend-moment-with-book-white-room-background.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Bloger</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi esse, eos earum omnis at tempora iure, culpa corporis animi deserunt
+                            voluptate debitis quia vero, asperiores
+                            voluptates rerum quos quis quaerat.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+
+            </div>
+
+        </div>
+    </section>
+<!-- blog sections end -->
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+                <!-- loader start-->
+                    <div class="un-loader-container"></div>
+                <!-- loader end -->
+    }
+    else
+    {
+        <!-- loader start-->
+            <div class="loader-container">
+                <img src="image/loader-img.gif" alt="">
+            </div>
+        <!-- loader end -->
+    }
+
+</body>

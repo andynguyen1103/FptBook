@@ -25,6 +25,7 @@
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
       <PackageReference Include="MimeKit" Version="3.6.1" />
       <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+        
     </ItemGroup>
 
     <ItemGroup>

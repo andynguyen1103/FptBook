@@ -5,10 +5,10 @@
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h3>@ViewData["Title"]</h3>
+<h1 style="font-size: 2.5rem; text-align: center; text-transform: capitalize; margin-bottom: 15px; margin-top: 12rem;">Delete Personal Data</h1>
 
-<div class="alert alert-warning" role="alert">
-    <p>
+<div style="color: #664d03; background-color: #fff3cd; border-color: #ffecb5; padding: 10px 10px; text-align: justify; margin-bottom: 20px" role="alert">
+    <p style="font-size: 1.5rem;">
         <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
     </p>
 </div>
@@ -18,13 +18,17 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @if (Model.RequirePassword)
         {
-            <div class="form-floating">
-                <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                <label asp-for="Input.Password" class="form-label"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
+            <h2 class="user-info" style="padding-bottom: 15px;padding-top: -50px;">Your Password</h2>
+            <input asp-for="Input.Password" class="user-setting-input" autocomplete="current-password" aria-required="true" style="font-size: 1.9rem; margin-bottom: 10px"/> <br><br>
+            <span asp-validation-for="Input.Password" class="new_password"></span><br><br>
+            @* *@
+            @* <div class="form-floating"> *@
+            @*     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" /> *@
+            @*     <label asp-for="Input.Password" class="form-label"></label> *@
+            @*     <span asp-validation-for="Input.Password" class="text-danger"></span> *@
+            @* </div> *@
         }
-        <button class="w-100 btn btn-lg btn-danger" type="submit">Delete data and close my account</button>
+        <button class="btn" type="submit">Delete data and close my account</button>
     </form>
 </div>
 
