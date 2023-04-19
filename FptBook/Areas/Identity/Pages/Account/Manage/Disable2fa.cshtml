@@ -6,20 +6,20 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h3>@ViewData["Title"]</h3>
+<h1 style="font-size: 2.5rem; text-align: center; text-transform: capitalize; margin-bottom: 15px; margin-top: 7rem;">Disable two-factor authentication (2FA)</h1>
 
-<div class="alert alert-warning" role="alert">
-    <p>
-        <strong>This action only disables 2FA.</strong>
+<div style="color: #664d03; background-color: #fff3cd; border-color: #ffecb5; padding: 10px 10px; text-align: justify" role="alert">
+    <p style="margin-bottom: 10px; font-style: italic">
+        <strong style="font-size: 1.6rem;">This action only disables 2FA.</strong>
     </p>
-    <p>
+    <p style="font-size: 1.4rem;">
         Disabling 2FA does not change the keys used in authenticator apps. If you wish to change the key
-        used in an authenticator app you should <a asp-page="./ResetAuthenticator">reset your authenticator keys.</a>
+        used in an authenticator app you should <a class="reset-authen" asp-page="./ResetAuthenticator">reset your authenticator keys.</a>
     </p>
 </div>
 
-<div>
+<div style="text-align: center; margin-top: 10px">
     <form method="post">
-        <button class="btn btn-danger" type="submit">Disable 2FA</button>
+        <button class="btn" type="submit">Disable 2FA</button>
     </form>
 </div>

@@ -42,8 +42,11 @@
                     <button type="submit" class="btn btn-primary">Forget this browser</button>
                 </form>
             }
-            <a asp-page="./Disable2fa" class="btn btn-primary">Disable 2FA</a>
-            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Reset recovery codes</a>
+            
+            <div style="text-align: center">
+                <a asp-page="./Disable2fa" class="btn" style="padding: 1rem 8.8rem">Disable 2FA</a>
+                <a asp-page="./GenerateRecoveryCodes" class="btn" style="margin-bottom: 20px; padding: 0.9rem 4.5rem">Reset recovery codes</a>
+            </div>
         }
 
         <h2 style="padding-bottom: 15px; color: #777; text-align: center; font-size: 2rem;">Authenticator App</h2>
