@@ -76,7 +76,7 @@ namespace FptBook.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "You must enter an email to register!")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -99,6 +99,18 @@ namespace FptBook.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            
+         
+            [Required(ErrorMessage = "You must enter a phone number to register!")]
+            [Display(Name = "Phone Number")]
+            [Phone] 
+            public string PhoneNumber { get; set; }
+            
+            [Required(ErrorMessage = "You must enter an address to register!")]
+            [Display(Name = "Address")]   
+            [StringLength(100,ErrorMessage = "Address too long!")]
+            public string Address { get; set; }
+            
         }
 
 

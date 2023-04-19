@@ -9,20 +9,33 @@
     }
 }
 
+@*
 <h1>Manage your account</h1>
 
 <div>
     <h2>Change your account settings</h2>
     <hr />
-    <div class="row">
+    $1$<div class="row">
         <div class="col-md-3">
             <partial name="_ManageNav" />
         </div>
         <div class="col-md-9">
             @RenderBody()
         </div>
-    </div>
+    </div>#1#
+</div>*@
+<div class="background-lr"> <br><br><br><br><br>
+    <div class="user-setting-container">
+        <div class="leftbox">
+            <partial name="_ManageNav" />
+        </div>
+        
+        <div class="rightbox">
+            @RenderBody()
+        </div>
+    </div> <br><br><br>
 </div>
+
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

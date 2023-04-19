@@ -6,6 +6,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using FptBook.Areas.Identity.Data;
 using FptBook.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,7 +59,11 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
             /// </summary>
             [Phone]
             [Display(Name = "Phone number")]
+            
             public string PhoneNumber { get; set; }
+            
+            public string Address { get; set; }
+            
         }
 
         private async Task LoadAsync(FptBookUser user)
@@ -66,11 +71,13 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
+
             Username = userName;
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                
             };
         }
 
@@ -110,6 +117,7 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

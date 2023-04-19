@@ -5,6 +5,10 @@
     {
       "library": "bootstrap@5.2.3",
       "destination": "wwwroot\\lib\\bootstrap"
+    },
+    {
+      "library": "Swiper@9.2.0",
+      "destination": "wwwroot\\lib\\Swiper"
     }
   ]
 }

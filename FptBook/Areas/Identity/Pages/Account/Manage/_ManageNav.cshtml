@@ -4,14 +4,33 @@
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
-<ul class="nav nav-pills flex-column">
-    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>
+@*<ul class="nav nav-pills flex-column">
+    $1$<li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Profile</a></li>#1#
+    $1$<li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">Email</a></li>#1#
+    $1$<li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Password</a></li>#1#
     @if (hasExternalLogins)
     {
         <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
     }
-    <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
-</ul>
+    $1$<li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>#1#
+    $1$<li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>#1#
+</ul>*@
+
+    <nav>
+        <a onclick="tabs(0)" class="@ManageNavPages.IndexNavClass(ViewContext) nav_item tab " id="profile" asp-page="./Index" >
+            <i class="fas fa-user"></i>
+        </a>    
+        <a onclick="tabs(1)" class="@ManageNavPages.EmailNavClass(ViewContext) nav_item tab" id="email" asp-page="./Email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a onclick="tabs(2)" class="@ManageNavPages.ChangePasswordNavClass(ViewContext) nav_item tab" id="change-password" asp-page="./ChangePassword">
+            <i class="fas fa-key"></i>
+        </a>
+        <a onclick="tabs(3)" class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) nav_item tab" id="two-factor" asp-page="./TwoFactorAuthentication">
+            <i class="fas fa-tv"></i>
+        </a>
+        <a onclick="tabs(4)" class="@ManageNavPages.PersonalDataNavClass(ViewContext) nav_item tab" id="personal-data" asp-page="./PersonalData">
+            <i class="fas fa-database"></i>
+        </a>
+    </nav>
+

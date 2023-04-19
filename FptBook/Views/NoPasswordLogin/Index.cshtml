@@ -1,10 +1,9 @@
 @using FptBook.Controllers
 @{
-    ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
 @model NoPasswordLoginController.LoginModel
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <section>
             <form id="account" method="post">
@@ -22,4 +21,23 @@
             </form>
         </section>
     </div>
+</div>*@
+
+<div class="background-lr">
+    
+    <div class="login-form-container">
+    
+        <form id="account" method="post">
+            <h3>Insert your email account</h3>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>     
+            
+            <span><label asp-for="@Model.Email" class="form-label"></label></span>
+            <input asp-for="@Model.Email" class="box" autocomplete="username" placeholder="Enter your email" id="" aria-required="true">
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            <input id="login-submit" type="submit" value="Log in" class="btn">
+
+        </form>
+    </div>
+    
 </div>
+

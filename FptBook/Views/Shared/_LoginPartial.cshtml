@@ -2,25 +2,43 @@
 @inject SignInManager<FptBookUser> SignInManager
 @inject UserManager<FptBookUser> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="icons">
+            <div id="search-btn" class="fas fa-search"></div>
+            <div class="user-greeting">
+                <span class="greeting">Hello, @UserManager.GetUserName(User)</span>
+               
+                <div class="divider"></div>
+            </div>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+              
+            <div class="dropdown">
+                <div id="login-btn" class="fas fa-user dropbtn"></div>
+                <div class="dropdown-content">
+                    <a class="drop-content">Profile</a>
+                    <a class="drop-content" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" >Settings</a>
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <a class="drop-content"><button class="logout-btn" id="logout" style="font-size: 1.5rem; cursor: pointer; background: #f9f9f9; color: var(--black)">Logout</button></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div id="search-btn" class="fas fa-search"></div>
+        <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-heart"></a>
+        <a asp-area="Identity" asp-page="/Account/Login" class="fas fa-shopping-cart"></a>
+        <div class="dropdown">
+            <div id="login-btn" class="fas fa-user dropbtn"></div>
+            <div class="dropdown-content">
+                <a class="drop-content" id="login-btn" asp-area="Identity" asp-page="/Account/Login">Sign In</a>
+                <a class="drop-content" id="login-btn" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
+            </div>
+        </div>
+    }
+

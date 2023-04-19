@@ -1,23 +1,26 @@
 ﻿@page
 @model ResetAuthenticatorModel
 @{
-    ViewData["Title"] = "Reset authenticator key";
+    // ViewData["Title"] = "Reset authenticator key";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h3>@ViewData["Title"]</h3>
-<div class="alert alert-warning" role="alert">
-    <p>
+<h1 style="font-size: 2.5rem; text-align: center; text-transform: capitalize; margin-bottom: 15px; margin-top: 7rem;">Reset authenticator key</h1>
+
+<div style="color: #664d03; background-color: #fff3cd; border-color: #ffecb5; padding: 10px 10px; text-align: justify" role="alert">
+    <p style="margin-bottom: 10px; font-style: italic">
         <span class="glyphicon glyphicon-warning-sign"></span>
-        <strong>If you reset your authenticator key your authenticator app will not work until you reconfigure it.</strong>
+        <strong style="font-size: 1.6rem;">If you reset your authenticator key your authenticator app will not work until you reconfigure it.</strong>
     </p>
-    <p>
+    <p style="font-size: 1.4rem;">
         This process disables 2FA until you verify your authenticator app.
         If you do not complete your authenticator app configuration you may lose access to your account.
     </p>
 </div>
-<div>
+
+
+<div style="text-align: center; margin-top: 10px">
     <form id="reset-authenticator-form" method="post">
         <button id="reset-authenticator-button" class="btn btn-danger" type="submit">Reset authenticator key</button>
     </form>
