@@ -1,3 +1,4 @@
+using FptBook.Areas.Admin.Models;
 using FptBook.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FptBook.Areas.Admin.Controllers.Role
 {
     [Area("Admin")]
+    [Route("Admin/Role/[action]")]
     // [Authorize(Roles = RoleNames.Administrator)]
     public class RoleController : Controller
     {
@@ -15,11 +17,7 @@ namespace FptBook.Areas.Admin.Controllers.Role
         [TempData] // Sử dụng Session lưu thông báo
         public string StatusMessage { get; set; }
         
-        public class RoleInput
-        {
-            public string id { get; set; }
-            public string name { get; set; }
-        }
+        
 
 
         public RoleController(FptBookIdentityDbContext context, RoleManager<IdentityRole> roleManager)
@@ -27,7 +25,7 @@ namespace FptBook.Areas.Admin.Controllers.Role
             _context = context;
             _roleManager = roleManager;
         }
-        [HttpGet("/Admin/Role", Name = "RoleManageDefault")]
+        // [HttpGet("/Admin/Role", Name = "RoleManageDefault")]
         public IActionResult Index()
         {
             var roleList = _roleManager.Roles.ToList();
@@ -35,7 +33,7 @@ namespace FptBook.Areas.Admin.Controllers.Role
         }
         
         
-        [HttpPost("/Admin/Role/Create", Name = "RoleManageCreatePost")]
+        // [HttpPost("/Admin/Role/Create", Name = "RoleManageCreatePost")]
         public async Task<ActionResult> Create([FromBody]RoleInput roleInput)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -57,7 +55,7 @@ namespace FptBook.Areas.Admin.Controllers.Role
         }
         
         
-        [HttpPost("/Admin/Role/Update")]
+        // [HttpPost("/Admin/Role/Update")]
         public async Task<ActionResult> Update([FromBody]RoleInput roleInput)
         {
             if (!ModelState.IsValid)
@@ -79,7 +77,7 @@ namespace FptBook.Areas.Admin.Controllers.Role
             return PartialView("_RoleTablePartial",_roleManager.Roles.ToList());
         }
 
-        [HttpPost("/Admin/Role/Delete", Name = "RoleManageDeletePost")]
+        // [HttpPost("/Admin/Role/Delete", Name = "RoleManageDeletePost")]
         public async Task<ActionResult> Delete([FromBody] RoleInput roleInput)
         {
             if (!ModelState.IsValid) return BadRequest();

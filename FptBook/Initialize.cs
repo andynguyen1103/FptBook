@@ -22,22 +22,20 @@ public static class Initialize
         var roleManager = (RoleManager<IdentityRole>)scope.ServiceProvider.GetService(typeof(RoleManager<IdentityRole>));
         var context = (FptBookIdentityDbContext)scope.ServiceProvider.GetService(typeof(FptBookIdentityDbContext));
 
-        if (!roleManager.Roles.IsNullOrEmpty())
+        if (roleManager.Roles.IsNullOrEmpty())
         {
-            return;
-        }
-        
-        var roleNames = typeof(RoleNames).GetFields().ToList();
-        IdentityResult roleResult;
+            var roleNames = typeof(RoleNames).GetFields().ToList();
+            IdentityResult roleResult;
 
-        foreach (var r  in roleNames)
-        {
-            var roleName = r.GetRawConstantValue().ToString();
-            var roleExist = await roleManager.RoleExistsAsync(roleName);
-            if (!roleExist)
+            foreach (var r  in roleNames)
             {
-                //create the roles and seed them to the database: Question 2
-                roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
+                var roleName = r.GetRawConstantValue().ToString();
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    //create the roles and seed them to the database: Question 2
+                    roleResult = await roleManager.CreateAsync(new IdentityRole(roleName));
+                }
             }
         }
 
@@ -48,12 +46,12 @@ public static class Initialize
         //Here you could create a super user who will maintain the web app
         var adminUser = new FptBookUser()
         {
-            UserName = "admin",
+            UserName = "admin@fptbook.com",
             Email = "admin@fptbook.com",
             EmailConfirmed = true
         };
         
-        var createAdminUser = await userManager.CreateAsync(adminUser, "admin123");
+        var createAdminUser = await userManager.CreateAsync(adminUser,"admin1234");
         if (createAdminUser.Succeeded)
         {
             //here we tie the new user to the role : Question 3
