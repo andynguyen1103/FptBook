@@ -1,0 +1,13 @@
+@model List<IdentityRole>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div id="RoleTable">
+    @await Html.PartialAsync("_RoleTablePartial",Model)
+</div>
+
+<script>
+
+</script>
+

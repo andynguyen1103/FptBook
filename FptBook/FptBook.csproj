@@ -36,6 +36,15 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\qrcode.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\qrcode.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\qrcodejs\README.md" />
+      <_ContentIncludedByDefault Remove="Views\User\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Areas\Admin\Data" />
     </ItemGroup>
 
 </Project>

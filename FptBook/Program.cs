@@ -1,4 +1,5 @@
 using System.Configuration;
+using FptBook;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using FptBook.Areas.Identity.Data;
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<FptBookIdentityDbContext>(options =>
 
 //add Identity services
 builder.Services.AddDefaultIdentity<FptBookUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<FptBookIdentityDbContext>()
     .AddDefaultTokenProviders();
 
@@ -84,6 +86,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+
 }
 
 app.UseHttpsRedirection();
@@ -93,6 +96,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+await Initialize.CreateRoles(app);
 
 app.UseAuthentication();;
 app.UseAuthorization();
@@ -114,3 +118,6 @@ app.Run (async (HttpContext context) => {
     context.Response.StatusCode = StatusCodes.Status404NotFound;
     await context.Response.WriteAsync ("Page not found!");
 });
+
+
+

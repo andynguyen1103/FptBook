@@ -26,6 +26,7 @@ namespace FptBook.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<FptBookUser> _signInManager;
         private readonly UserManager<FptBookUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserStore<FptBookUser> _userStore;
         private readonly IUserEmailStore<FptBookUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
@@ -130,6 +131,7 @@ namespace FptBook.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                await _userManager.AddToRoleAsync(user, RoleNames.Customer);
 
                 if (result.Succeeded)
                 {
