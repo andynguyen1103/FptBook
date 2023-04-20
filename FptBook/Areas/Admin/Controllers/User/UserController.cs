@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FptBook.Areas.Admin.Controllers.User
 {
     [Area("Admin")]
+    [Route("Admin/User")]
     // [Route("Admin/User/[action]/{id}")]
     public class UserController : Controller
     {
@@ -20,7 +21,7 @@ namespace FptBook.Areas.Admin.Controllers.User
         }
 
         // GET: User
-        [HttpGet("Admin/User")]
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
               return _context.Users != null ? 
@@ -29,7 +30,7 @@ namespace FptBook.Areas.Admin.Controllers.User
         }
 
         // GET: User/Details/5
-        [HttpGet("Admin/User/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.Users == null)
@@ -46,41 +47,52 @@ namespace FptBook.Areas.Admin.Controllers.User
 
             return View(fptBookUser);
         }
-
-        // GET: User/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null || _context.Users == null)
-            {
-                return NotFound();
-            }
-
-            var fptBookUser = await _context.Users
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (fptBookUser == null)
-            {
-                return NotFound();
-            }
-
-            return View(fptBookUser);
-        }
-
-        // POST: User/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        
+        [HttpGet("Disable/{id}")]
+        public async Task<IActionResult> Disable(string id)
         {
             if (_context.Users == null)
             {
                 return Problem("Entity set 'FptBookIdentityDbContext.Users'  is null.");
             }
-            var fptBookUser = await _context.Users.FindAsync(id);
-            if (fptBookUser != null)
+            Console.WriteLine("id="+id);
+            var fptBookUser = await _userManager.FindByIdAsync(id);
+            if (fptBookUser == null)
             {
-                _context.Users.Remove(fptBookUser);
+                RedirectToAction(nameof(Index));
             }
+
+            if (!await _userManager.GetLockoutEnabledAsync(fptBookUser))
+            {
+                RedirectToAction(nameof(Index));
+            }
+
+            //Lock user out
+            await _userManager.SetLockoutEnabledAsync(fptBookUser, true);
+            await _userManager.SetLockoutEndDateAsync(fptBookUser, DateTime.MaxValue);
             
-            await _context.SaveChangesAsync();
+            Console.WriteLine("Disable Successful");
+            return RedirectToAction(nameof(Index));
+        }
+        
+        [HttpGet("Activate/{id}")]
+        public async Task<IActionResult> Activate(string id)
+        {
+            var fptBookUser = await _userManager.FindByIdAsync(id);
+            Console.WriteLine(fptBookUser.Id);
+            if (fptBookUser == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (!await _userManager.GetLockoutEnabledAsync(fptBookUser))
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            await _userManager.SetLockoutEnabledAsync(fptBookUser, false);
+            
+            Console.WriteLine("Activate Successful");
+
             return RedirectToAction(nameof(Index));
         }
         
@@ -89,13 +101,13 @@ namespace FptBook.Areas.Admin.Controllers.User
           return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
         }
         
-        [HttpGet("Admin/User/PasswordReset/{id}")]
+        [HttpGet("PasswordReset/{id}")]
         public async Task<IActionResult> PasswordReset(string id)
         {
             return View();
         }
         
-        [HttpPost("Admin/User/PasswordReset/{id}")]
+        [HttpPost("PasswordReset/{id}")]
         public async Task<IActionResult> PasswordReset(string id,string password)
         {
             
@@ -105,15 +117,18 @@ namespace FptBook.Areas.Admin.Controllers.User
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction("Index");
+        
             }
+            
 
             var result = await _userManager.ResetPasswordAsync(user,code,password);
             if (result.Succeeded)
             {
-                 return RedirectToAction("Index");
+                 return RedirectToAction(nameof(Index));
             }
 
             return BadRequest();
         }
+
     }
 }
