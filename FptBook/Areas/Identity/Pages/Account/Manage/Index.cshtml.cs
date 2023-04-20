@@ -61,8 +61,11 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             
             public string PhoneNumber { get; set; }
+
             
-            public string Address { get; set; }
+
+            [Display(Name = "Address")]
+            public string HomeAddress { get; set; }
             
         }
 
@@ -70,16 +73,18 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-
+            var homeAddress = user.HomeAddress;
 
             Username = userName;
 
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
-                
+                HomeAddress = homeAddress,
             };
         }
+
+
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -117,6 +122,20 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+            
+            var homeAddress = user.HomeAddress;
+            if (Input.HomeAddress != homeAddress)
+            {
+                user.HomeAddress = Input.HomeAddress;
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to update address.";
+                    return RedirectToPage();
+                }
+            }
+
+
             
 
             await _signInManager.RefreshSignInAsync(user);

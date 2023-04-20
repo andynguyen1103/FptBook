@@ -16,4 +16,6 @@ public class FptBookUser: IdentityUser
     [PersonalData]
     [Display(Name = "Address")]
     public string? HomeAddress { get; set; }
+    
+    
 }
