@@ -17,5 +17,4 @@ public class FptBookUser: IdentityUser
     [Display(Name = "Address")]
     public string? HomeAddress { get; set; }
     
-    
 }
