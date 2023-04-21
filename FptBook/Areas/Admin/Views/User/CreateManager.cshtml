@@ -1,0 +1,37 @@
+﻿@model FptBook.Areas.Admin.Controllers.User.UserController.UserInput
+
+
+<div class="background-lr">
+    
+    <div class="login-form-container">                                                                                     
+                                                                                                                           
+        <form asp-action="CreateManager">                                                                                  
+            <h3>Make a storemanager</h3>                                                                                               
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>                                             
+                                                                                                                           
+            <span><label asp-for="Email" class="form-label"></label></span>                                          
+            <input asp-for="Email" class="box"  placeholder="Enter your email" id="" aria-required="true">           
+            <span asp-validation-for="Email" class="text-danger"></span>                                             
+                                                                                                                           
+            <span><label asp-for="FirstName" class="form-label"></label>  </span>                                     
+            <input asp-for="FirstName" class ="box" placeholder="Enter your First Name" id="" aria-required="true">     
+            <span asp-validation-for="FirstName" class="text-danger"></span> 
+            
+            <span><label asp-for="LastName" class="form-label"></label>  </span>                                     
+            <input asp-for="LastName" class ="box" placeholder="Enter Your Last Name" id="" aria-required="true">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+            
+            <span><label asp-for="PhoneNumber" class="form-label"></label>  </span>                                     
+            <input asp-for="PhoneNumber" class ="box" placeholder="Enter your phone number" id="" aria-required="true">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+            <button type="submit" class="btn">Submit</button>                                            
+            
+        </form>                                                                                                            
+    </div>   
+    
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
