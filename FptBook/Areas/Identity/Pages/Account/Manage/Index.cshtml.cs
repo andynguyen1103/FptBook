@@ -57,16 +57,23 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Phone]
+            
+            [Required(ErrorMessage = "Phone Number is required")]
+            [Phone(ErrorMessage = "Invalid Phone Number" )]
             [Display(Name = "Phone number")]
-            
             public string PhoneNumber { get; set; }
-
             
-
+            [Required(ErrorMessage = "Address is required")]
             [Display(Name = "Address")]
             public string HomeAddress { get; set; }
             
+            [Required(ErrorMessage = "First Name is required")]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+                
+            [Required(ErrorMessage = "Last Name is required")]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
         }
 
         private async Task LoadAsync(FptBookUser user)
@@ -74,6 +81,8 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var homeAddress = user.HomeAddress;
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
 
             Username = userName;
 
@@ -81,6 +90,8 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber,
                 HomeAddress = homeAddress,
+                FirstName = firstName,
+                LastName = lastName,
             };
         }
 
@@ -135,8 +146,29 @@ namespace FptBook.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-
+            var firstName = user.FirstName;
+            if (Input.FirstName != firstName)
+            {
+                user.FirstName = Input.FirstName;
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to update first name.";
+                    return RedirectToPage();
+                }
+            }
             
+            var lastName = user.LastName;
+            if (Input.LastName != lastName)
+            {
+                user.LastName = Input.LastName;
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to update last name.";
+                    return RedirectToPage();
+                }
+            }
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
