@@ -1,3 +1,4 @@
+@using FptBook.Models
 @model IEnumerable<FptBook.Models.FptBookUser>
 
 @{
@@ -5,11 +6,10 @@
     Layout = "_Layout";
 }
 
+@inject UserManager<FptBookUser> UserManager;
 <h1>Index</h1>
 
-@* <p> *@
-@*     $1$ <a asp-area="Admin" asp-controller="User" asp-action="Create">Create New</a> #1# *@
-@* </p> *@
+<a asp-area="Admin" asp-controller="User" asp-action="CreateManager">Add Manager</a>
 <table class="table">
     <thead>
         <tr>
@@ -22,12 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.HomeAddress)
             </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.UserName) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.NormalizedUserName) *@
-            @* </th> *@
+            
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
@@ -37,33 +32,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.EmailConfirmed)
             </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.PasswordHash) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.SecurityStamp) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.ConcurrencyStamp) *@
-            @* </th> *@
+           
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.PhoneNumberConfirmed) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.TwoFactorEnabled) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.LockoutEnd) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.LockoutEnabled) *@
-            @* </th> *@
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.AccessFailedCount) *@
-            @* </th> *@
+            
             <th></th>
         </tr>
     </thead>
@@ -79,53 +52,35 @@
             <td>
                 @Html.DisplayFor(modelItem => item.HomeAddress)
             </td>
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.UserName) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.NormalizedUserName) *@
-            @* </td> *@
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.NormalizedEmail) *@
-            @* </td> *@
+         
             <td>
                 @Html.DisplayFor(modelItem => item.EmailConfirmed)
             </td>
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.PasswordHash) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.SecurityStamp) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.ConcurrencyStamp) *@
-            @* </td> *@
+         
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.TwoFactorEnabled) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.LockoutEnd) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.LockoutEnabled) *@
-            @* </td> *@
-            @* <td> *@
-            @*     @Html.DisplayFor(modelItem => item.AccessFailedCount) *@
-            @* </td> *@
+        
             <td>
                 @* <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
                 <a asp-area="Admin" asp-controller="User" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                <a asp-area="Admin" asp-controller="User" asp-action="PasswordReset" asp-route-id="@item.Id">Reset Password</a>
+                @{
+                    
+                    if (!item.LockoutEnabled)
+                    {
+                        <a asp-area="Admin" asp-controller="User" asp-action="Disable" asp-route-id="@item.Id">Disable</a>
+                    }
+                        
+                    else
+                    {
+                        <a asp-area="Admin" asp-controller="User" asp-action="Activate" asp-route-id="@item.Id">Activate</a>
+                    }
+                }
+                | <a asp-area="Admin" asp-controller="User" asp-action="PasswordReset" asp-route-id="@item.Id">Reset Password</a>
             </td>
         </tr>
 }

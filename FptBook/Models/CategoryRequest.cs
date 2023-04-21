@@ -20,6 +20,10 @@ public class CategoryRequest
     [Required]
     public DateTime CreatedAt { get; set; }
     
+    public bool IsApproved { get; set; }
+    
+    public DateTime? ApprovedAt { get; set; }
+    
     [Required]
     public string UserID { set; get; }
     
@@ -29,5 +33,6 @@ public class CategoryRequest
     public CategoryRequest()
     {
         CreatedAt = DateTime.Now;
+        IsApproved = false;
     }
 }
