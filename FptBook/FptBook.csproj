@@ -45,6 +45,9 @@
 
     <ItemGroup>
       <Folder Include="Areas\Admin\Data" />
+      <Folder Include="Areas\StoreManager\Controllers" />
+      <Folder Include="Areas\StoreManager\Data" />
+      <Folder Include="Areas\StoreManager\Models" />
     </ItemGroup>
 
 </Project>
