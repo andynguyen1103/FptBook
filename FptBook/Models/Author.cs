@@ -9,7 +9,7 @@ public class Author
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int AuthorId { get; set; }
+    public string AuthorId { get; set; }
     
     [StringLength(50)]
     [Required]

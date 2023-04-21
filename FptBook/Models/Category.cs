@@ -8,7 +8,7 @@ namespace FptBook.Models;
 public class Category {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int CategoryId { get; set; }
+    public string CategoryId { get; set; }
     
     [StringLength(50)]
     [Required]

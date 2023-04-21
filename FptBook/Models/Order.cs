@@ -9,7 +9,7 @@ public class Order
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int OrderId { get; set; }
+    public string OrderId { get; set; }
     
     [Column(TypeName = "Money")]
     [Required]

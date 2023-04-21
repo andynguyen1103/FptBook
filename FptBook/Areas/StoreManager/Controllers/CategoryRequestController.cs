@@ -1,5 +1,7 @@
 using FptBook.Areas.Identity.Data;
+using FptBook.Areas.StoreManager.Models;
 using FptBook.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +13,12 @@ namespace FptBook.Areas.StoreManager.Controllers
     public class CategoryRequestController : Controller
     {
         private readonly FptBookIdentityDbContext _context;
+        private readonly UserManager<FptBookUser> _userManager;
 
-        public CategoryRequestController(FptBookIdentityDbContext context)
+        public CategoryRequestController(FptBookIdentityDbContext context, UserManager<FptBookUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: CategoryRequest
@@ -27,7 +31,7 @@ namespace FptBook.Areas.StoreManager.Controllers
 
         // GET: CategoryRequest/Details/5
         [HttpGet("Details/{id}")]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null || _context.CategoryRequests == null)
             {
@@ -49,30 +53,39 @@ namespace FptBook.Areas.StoreManager.Controllers
         [HttpGet("Create")]
         public IActionResult Create()
         {
-            ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id");
+            var user = _userManager.GetUserAsync(HttpContext.User).Result;
+            ViewData["UserID"] = user.Id;
             return View();
         }
 
         // POST: CategoryRequest/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost("Create")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RequestId,Name,CreatedAt,IsApproved,ApprovedAt,UserID")] CategoryRequest categoryRequest)
         {
-            if (ModelState.IsValid)
+            if (categoryRequest.UserID==null)
+            {
+                //anonymous
+                categoryRequest.UserID = _userManager.GetUsersInRoleAsync(RoleNames.Administrator).Result[0].Id;
+            }
+            try
             {
                 _context.Add(categoryRequest);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
-            return View(categoryRequest);
+            catch (Exception e)
+            {
+                return View(categoryRequest);
+            }
+
         }
 
         // GET: CategoryRequest/Edit/5
         [HttpGet("Edit/{id}")]
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string? id)
         {
             if (id == null || _context.CategoryRequests == null)
             {
@@ -93,7 +106,7 @@ namespace FptBook.Areas.StoreManager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost("Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RequestId,Name,CreatedAt,IsApproved,ApprovedAt,UserID")] CategoryRequest categoryRequest)
+        public async Task<IActionResult> Edit(string id, [Bind("RequestId,Name,CreatedAt,IsApproved,ApprovedAt,UserID")] CategoryRequest categoryRequest)
         {
             if (id != categoryRequest.RequestId)
             {
@@ -125,7 +138,8 @@ namespace FptBook.Areas.StoreManager.Controllers
         }
 
         // GET: CategoryRequest/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpGet("Delete/{id}")]
+        public async Task<IActionResult> Delete(string? id)
         {
             if (id == null || _context.CategoryRequests == null)
             {
@@ -144,10 +158,11 @@ namespace FptBook.Areas.StoreManager.Controllers
         }
 
         // POST: CategoryRequest/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost("Delete/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
+            Console.WriteLine("id: "+id);
             if (_context.CategoryRequests == null)
             {
                 return Problem("Entity set 'FptBookIdentityDbContext.CategoryRequests'  is null.");
@@ -162,7 +177,7 @@ namespace FptBook.Areas.StoreManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryRequestExists(int id)
+        private bool CategoryRequestExists(string id)
         {
           return (_context.CategoryRequests?.Any(e => e.RequestId == id)).GetValueOrDefault();
         }

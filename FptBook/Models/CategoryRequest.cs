@@ -9,26 +9,25 @@ public class CategoryRequest
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int RequestId { get; set; }
+    public string? RequestId { get; set; }
     
-    [StringLength(50)]
+    [StringLength(50,ErrorMessage = "Category name too long!")]
     [Required]
     [Display(Name = "Category")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [DataType (DataType.Date)]
-    [Required]
     public DateTime CreatedAt { get; set; }
     
-    public bool IsApproved { get; set; }
+    public bool? IsApproved { get; set; }
     
     public DateTime? ApprovedAt { get; set; }
     
     [Required]
-    public string UserID { set; get; }
+    public string? UserID { set; get; }
     
     [ForeignKey("UserID")]
-    public virtual FptBookUser User { get; set; }
+    public FptBookUser? User { get; set; }
 
     public CategoryRequest()
     {
