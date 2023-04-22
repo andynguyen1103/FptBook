@@ -1,0 +1,115 @@
+﻿/* Form container */
+.login-form-container {
+    width: 360px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Form header */
+.login-form-container h3 {
+    margin: 0 0 20px;
+    padding: 0;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    
+}
+
+/* Form fields */
+.login-form-container span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.login-form-container input[type="email"],
+.login-form-container input[type="text"],
+.login-form-container input[type="tel"],
+.login-form-container input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.login-form-container input[type="email"]:focus,
+.login-form-container input[type="text"]:focus,
+.login-form-container input[type="tel"]:focus,
+.login-form-container input[type="password"]:focus {
+    outline: none;
+    border-color: #7fb2f0;
+}
+
+/* Submit button */
+.login-form-container button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0 0;
+    background: #27ae60;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-form-container button[type="submit"]:hover {
+    background: #219150;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    padding-right: 100px;
+    margin: 5px 0;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #444;
+}
+
+
+.field-validation-error {
+    border: 1px solid #f00;
+    padding: 10px;
+    background-color: #ffe7e7;
+    color: #f00;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* Style for validation summary */
+.validation-summary-errors {
+    border: 1px solid #f00;
+    padding: 10px;
+    background-color: #ffe7e7;
+    color: #f00;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.validation-summary-errors li{
+    list-style: none;
+}
