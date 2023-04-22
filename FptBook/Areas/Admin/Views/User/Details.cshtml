@@ -1,3 +1,4 @@
+@*
 @model FptBook.Models.FptBookUser
 
 @{
@@ -65,6 +66,63 @@
     </dl>
 </div>
 <div>
-    @* <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> | *@
+    $1$ <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> | #1#
     <a asp-action="Index">Back to List</a>
 </div>
+*@
+
+
+@model FptBook.Models.FptBookUser
+
+@{
+    ViewData["Title"] = "Information Details";
+    Layout = "_AdminLayout";
+}
+
+<h1>Information Details</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.FirstName)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.FirstName)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.LastName)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.LastName)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.HomeAddress)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.HomeAddress)</td>
+            </tr>
+             <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.Email)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.PhoneNumber)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.TwoFactorEnabled)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.TwoFactorEnabled)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.LockoutEnabled)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.LockoutEnabled)</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="button-container">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/admin_user-info-detail.css")" rel="stylesheet" type="text/css" />
+    
+}
