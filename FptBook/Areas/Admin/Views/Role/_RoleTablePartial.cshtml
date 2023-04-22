@@ -1,31 +1,37 @@
 ﻿@model List<IdentityRole>
-<table class = "table">
-    <tr>
-        <th>Role Name</th>
-        <th>Action</th>
-    </tr>
-    @{
-        foreach (var role in Model)
-        {
-            <tr>
-               <td><input type="text" value=@role.Name disabled id="@role.Id"/></td>
-                <td>
-                    <button type="button" class="edit-button" id="@role.Id">Edit</button>
-                    <button type="button" class="delete-button" id="@role.Id">Delete</button>
-                </td>
-            </tr>
-            
-        }
-    }
-    
-    <tr>
-        <form>
-            <td>
-                <input type="text" class="create-text-box"/>
-            </td>
-            <td>
-                <button type="button" class = "create-button">Create</button>
-            </td>
-        </form>
-    </tr>
-</table>
+
+<section id="admin-content">
+	<h2>Manage Roles</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Role Name</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var role in Model)
+			{
+				<tr>
+					<td>
+						<input type="text" value="@role.Name" disabled id="@role.Id"/>
+					</td>
+					<td>
+						<button type="button" class="edit-button" id="@role.Id">Edit</button>
+						<button type="button" class="delete-button" id="@role.Id">Delete</button>
+					</td>
+				</tr>
+			}
+			<tr>
+				<td>
+					<input type="text" class="create-text-box" placeholder="Enter role name..."/>
+				</td>
+				<td>
+					<button type="button" class="create-button">Create</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+

@@ -28,7 +28,7 @@ $(document).on("click", "button.edit-button", async function () {
     let textBoxId = $(this).prop("id");
     let textBox = $("input#" + textBoxId);
     let isDisabled = textBox.prop('disabled');
-    if ($(this).text() == "update") {
+    if ($(this).text() == "Update") {
         const options = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -48,7 +48,7 @@ $(document).on("click", "button.edit-button", async function () {
         textBox.prop('disabled', !isDisabled)
 
     } else {
-        $(this).text("update");
+        $(this).text("Update");
         textBox.prop('disabled', !isDisabled)
         // if (isDisabled){
         //     alert("textbox is disabled")

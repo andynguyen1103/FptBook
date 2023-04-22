@@ -1,8 +1,9 @@
+@*
 @model FptBook.Models.FptBookUser
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "_Layout";
+    Layout = "_AdminLayout";
 }
 
 <h1>Details</h1>
@@ -39,46 +40,10 @@
             @Html.DisplayFor(model => model.UserName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NormalizedUserName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NormalizedUserName)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NormalizedEmail)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NormalizedEmail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmailConfirmed)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SecurityStamp)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ConcurrencyStamp)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ConcurrencyStamp)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -87,22 +52,10 @@
             @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TwoFactorEnabled)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TwoFactorEnabled)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LockoutEnd)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LockoutEnd)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LockoutEnabled)
@@ -110,15 +63,66 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LockoutEnabled)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccessFailedCount)
-        </dd>
     </dl>
 </div>
 <div>
-    @* <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> | *@
+    $1$ <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> | #1#
     <a asp-action="Index">Back to List</a>
 </div>
+*@
+
+
+@model FptBook.Models.FptBookUser
+
+@{
+    ViewData["Title"] = "Information Details";
+    Layout = "_AdminLayout";
+}
+
+<h1>Information Details</h1>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.FirstName)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.FirstName)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.LastName)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.LastName)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.HomeAddress)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.HomeAddress)</td>
+            </tr>
+             <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.Email)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.PhoneNumber)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.TwoFactorEnabled)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.TwoFactorEnabled)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.LockoutEnabled)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.LockoutEnabled)</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="button-container">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/admin_user-info-detail.css")" rel="stylesheet" type="text/css" />
+    
+}
