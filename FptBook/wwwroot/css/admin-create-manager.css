@@ -16,7 +16,7 @@
     font-size: 28px;
     font-weight: bold;
     color: #333;
-    
+    text-transform: capitalize;
 }
 
 /* Form fields */

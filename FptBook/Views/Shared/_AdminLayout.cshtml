@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
+    <title>Admin Site</title>
     
     <!-- Icon -->
     <link href="@Url.Content("~/image/book-shop.png")" rel="icon" type="image/x-icon">
@@ -22,11 +22,12 @@
 <body>
 	<!-- SIDEBAR -->
 	<section id="sidebar">
-		<a href="#" class="brand"><i class='bx bxs-smile icon'></i> Admin</a>
+		<a asp-controller="Home" asp-action="Index" class="brand"><i class='bx bxs-smile icon'></i> Admin</a>
 		<ul class="side-menu">
-			<li class="divider" data-text="main">Main</li>
+			<li><a asp-controller="Home" asp-action="Index" class="active"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
+			<li class="divider" data-text="Admin Option"></li>
 			<li>
-				<a href="#"><i class='bx bxs-inbox icon' ></i> Option <i class='bx bx-chevron-right icon-right' ></i></a>
+				<a href="#"><i class='bx bxs-inbox icon'></i> Option <i class='bx bx-chevron-right icon-right'></i></a>
 				<ul class="side-dropdown">
 					<li><a asp-controller="Role" asp-action="Index">Set Role</a></li>
 					<li><a asp-controller="User" asp-action="Index">Set User</a></li>
@@ -35,10 +36,14 @@
 		</ul>
 		<div class="ads">
 			<div class="wrapper">
-				<a href="#" class="btn-upgrade">Upgrade</a>
-				<p>Become a <span>PRO</span> member and enjoy <span>All Features</span></p>
+				<a href="#" class="btn-upgrade">Control Panel</a>
+				<p>Access the <span>Control Panel</span> to manage your site's settings and content.</p>
 			</div>
+
 		</div>
+		<div class="footer">
+        	<p>&copy; 2023 FPT BookStore, Inc. All rights reserved.</p>
+        </div>
 	</section>
 	<!-- SIDEBAR -->
 
@@ -80,9 +85,9 @@
 		@RenderBody()
 	</main>
 </section>
- <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="~/js/admin.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+	<script src="~/js/admin.js"></script>
 @RenderSection("Scripts", required: false)
 </body>
 </html>

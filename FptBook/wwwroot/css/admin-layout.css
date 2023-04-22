@@ -37,12 +37,6 @@ li {
     list-style: none;
 }
 
-
-
-
-
-
-
 /* SIDEBAR */
 #sidebar {
     position: fixed;
@@ -190,6 +184,18 @@ li {
 }
 #sidebar .ads .wrapper p span {
     font-weight: 700;
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--dark-grey);
+    text-align: center;
+    z-index: 200;
+    margin-top: -30px;
 }
 /* SIDEBAR */
 
@@ -348,6 +354,7 @@ nav .profile .profile-link a:hover {
 main {
     width: 100%;
     padding: 24px 20px 20px 20px;
+    height: 100%;
 }
 main .title {
     font-size: 28px;
@@ -597,6 +604,9 @@ main .btn-send:hover {
 }
 /* MAIN */
 /* CONTENT */
+
+
+
 
 
 
