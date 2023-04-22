@@ -1,11 +1,12 @@
 using System.Configuration;
 using FptBook;
+using FptBook.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using FptBook.Areas.Identity.Data;
 using FptBook.Mail;
 using FptBook.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,7 +75,6 @@ builder.Services.AddTransient<IEmailSender, SendMailService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
-
 
 
 

@@ -1,4 +1,4 @@
-using FptBook.Areas.Identity.Data;
+using FptBook.Data;
 using FptBook.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -64,7 +64,7 @@ namespace FptBook.Areas.StoreManager.Controllers
         // POST: CategoryRequest/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RequestId,Name,CreatedAt,IsApproved,ApprovedAt,UserID")] CategoryRequest categoryRequest)
         {

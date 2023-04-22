@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using FptBook.Areas.Identity.Data;
+using FptBook.Areas.Admin.Models;
+using FptBook.Data;
 using FptBook.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -29,38 +30,17 @@ namespace FptBook.Areas.Admin.Controllers.User
                           View(await _context.Users.ToListAsync()) :
                           Problem("Entity set 'FptBookIdentityDbContext.Users'  is null.");
         }
-        public class UserInput
-        {
-            [EmailAddress]
-            [Required(ErrorMessage = "Missing email address")]
-            public string Email { get; set; }
-            
-            [Required(ErrorMessage = "You must enter your first name!")]
-            [Display(Name = "First Name")]
-            [StringLength(100,ErrorMessage = "First name too long!")]
-            public string FirstName { get; set; }
-            
-            [Required(ErrorMessage = "You must enter your last name")]
-            [Display(Name = "Last Name")]
-            [StringLength(100,ErrorMessage = "Last name too long!")]
-            public string LastName { get; set; }
-            
-            [Required(ErrorMessage = "You must enter a phone number")]
-            [Display(Name = "Phone Number")]
-            [Phone(ErrorMessage = "Invalid Phone Number")] 
-            public string PhoneNumber { get; set; }
-        }
 
         [HttpGet("CreateManager")]
         public async Task<IActionResult> CreateManager()
         {
-            var userInput = new UserInput();
+            var userInput = new UserViewModel();
             return View(userInput);
         }
         
         
         [HttpPost("CreateManager")]
-        public async Task<IActionResult> CreateManager(UserInput userInput)
+        public async Task<IActionResult> CreateManager(UserViewModel userInput)
         {
             var user = new FptBookUser()
             {
