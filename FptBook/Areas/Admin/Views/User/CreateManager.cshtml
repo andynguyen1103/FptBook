@@ -1,7 +1,5 @@
 @model FptBook.Areas.Admin.Models.UserViewModel
 
-
-
     <div class="login-form-container">                                                                                     
                                                                                                                            
         <form asp-action="CreateManager">                                                                                  
@@ -28,42 +26,6 @@
             
         </form>                                                                                                            
     </div>   
-    
-
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
-*@
-
-
-@model FptBook.Areas.Admin.Controllers.User.UserController.UserInput
-
-<div class="login-form-container">
-  <form asp-action="CreateManager">
-    <h3 >Make a store manager</h3>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-      <label for="email">Email</label>
-      <input asp-for="Email" id="email" required>
-      <span asp-validation-for="Email" ></span>
-
-      <label for="firstname">First Name</label>
-      <input asp-for="FirstName" id="firstname" required>
-      <span asp-validation-for="FirstName" class="text-danger"></span> 
-
-      <label for="lastname">Last Name</label>
-      <input asp-for="LastName" id="lastname" required>
-      <span asp-validation-for="LastName" class="text-danger"></span>
-
-      <label for="phone">Phone Number</label>
-      <input asp-for="PhoneNumber" id="phone" required>
-      <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-      
-
-    <button type="submit">Submit</button>
-  </form>
-</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
@@ -73,4 +35,6 @@
 {
     <link href="@Url.Content("~/css/admin-create-manager.css")" rel="stylesheet" type="text/css" />
 }
+
+
 
