@@ -45,9 +45,9 @@ namespace FptBook.Areas.Admin.Controllers.User
             [StringLength(100,ErrorMessage = "Last name too long!")]
             public string LastName { get; set; }
             
-            [Required(ErrorMessage = "You must enter a phone number to register!")]
+            [Required(ErrorMessage = "You must enter a phone number")]
             [Display(Name = "Phone Number")]
-            [Phone] 
+            [Phone(ErrorMessage = "Invalid Phone Number")] 
             public string PhoneNumber { get; set; }
         }
 
