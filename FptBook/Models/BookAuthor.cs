@@ -9,13 +9,13 @@ public class BookAuthor
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int BookAuthorId { get; set; }
+    public string BookAuthorId { get; set; }
     
     [Required]
-    public int BookId { get; set; }
+    public string BookId { get; set; }
     
     [Required]
-    public int AuthorId { get; set; }
+    public string AuthorId { get; set; }
     
     [ForeignKey("BookId")]
     public virtual Book Book { get; set; }

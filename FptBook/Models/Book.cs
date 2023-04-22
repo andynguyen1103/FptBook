@@ -9,7 +9,7 @@ public class Book
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int BookId { get; set; }
+    public string BookId { get; set; }
     
     [StringLength(50)]
     [Required]
@@ -38,7 +38,7 @@ public class Book
     public decimal Price { get; set; }
     
     [Required]
-    public int CategoryID { get; set; }
+    public string CategoryID { get; set; }
     
     [ForeignKey("CategoryID")]
     public virtual Category? Category { get; set; }

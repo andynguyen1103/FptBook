@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FptBook.Migrations
 {
     [DbContext(typeof(FptBookIdentityDbContext))]
-    [Migration("20230415134445_addmodels")]
-    partial class addmodels
+    [Migration("20230421182544_modify-all-id-type")]
+    partial class modifyallidtype
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.Author", b =>
                 {
-                    b.Property<int>("AuthorId")
+                    b.Property<string>("AuthorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthorId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -45,17 +43,16 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.Book", b =>
                 {
-                    b.Property<int>("BookId")
+                    b.Property<string>("BookId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
+                    b.Property<string>("CategoryID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ImageLink")
                         .IsRequired()
@@ -86,17 +83,17 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.BookAuthor", b =>
                 {
-                    b.Property<int>("BookAuthorId")
+                    b.Property<string>("BookAuthorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookAuthorId"));
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
+                    b.Property<string>("BookId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("BookAuthorId");
 
@@ -109,11 +106,9 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<string>("CategoryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -127,14 +122,18 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.CategoryRequest", b =>
                 {
-                    b.Property<int>("RequestId")
+                    b.Property<string>("RequestId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RequestId"));
+                    b.Property<DateTime?>("ApprovedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsApproved")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -228,11 +227,9 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.Order", b =>
                 {
-                    b.Property<int>("OrderId")
+                    b.Property<string>("OrderId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -256,20 +253,20 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.OrderDetail", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<string>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    b.Property<string>("BookID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
+                    b.Property<string>("OrderID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("OrderID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductID")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -482,9 +479,7 @@ namespace FptBook.Migrations
 
                     b.HasOne("FptBook.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductID");
 
                     b.Navigation("Book");
 
