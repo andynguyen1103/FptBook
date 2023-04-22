@@ -13,17 +13,8 @@
     
     <!-- Custom file CSS Link -->
     <link href="@Url.Content("~/css/main-layout.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/login-register.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/home-section.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/service-section.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/newsletter-section.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/deal-section.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/reviews-section.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/blog-section.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/loader.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.Content("~/css/new_arrivals_book.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/css/user-setting-page.css")" rel="stylesheet" type="text/css" />
-    
+    @RenderSection("CSS", required: false)
 
     <!-- Font awesome cdn Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -159,10 +150,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/swiper/swiper-bundle.js"></script>
     <script src="~/js/site.js"></script>
-    <script src="~/js/role.js" asp-append-version="true"></script>
-    <script src="~/js/arrivals.js"></script>
-    <script src="~/js/reviews.js"></script>
-    <script src="~/js/blogs.js"></script>
 @RenderSection("Scripts", required: false)
 </body>
 </html>

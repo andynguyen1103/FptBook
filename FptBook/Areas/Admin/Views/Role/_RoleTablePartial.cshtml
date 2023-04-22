@@ -8,7 +8,7 @@
         foreach (var role in Model)
         {
             <tr>
-               <td><input type="text" value=@role.Name disabled id="@role.Id"/></td>
+                <td><input type="text" value=@role.Name disabled id="@role.Id"/></td>
                 <td>
                     <button type="button" class="edit-button" id="@role.Id">Edit</button>
                     <button type="button" class="delete-button" id="@role.Id">Delete</button>
@@ -29,3 +29,4 @@
         </form>
     </tr>
 </table>
+

@@ -3,11 +3,11 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
+    Layout = "_AdminLayout";
 }
 
 @inject UserManager<FptBookUser> UserManager;
-<h1>Index</h1>
+
 
 <a asp-area="Admin" asp-controller="User" asp-action="CreateManager">Add Manager</a>
 <table class="table">
