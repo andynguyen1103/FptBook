@@ -4,45 +4,45 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "_Layout";
+    Layout = "_AdminLayout";
 }
 
 @inject UserManager<FptBookUser> UserManager;
-<h1>Index</h1>
 
-<a asp-area="Admin" asp-controller="User" asp-action="CreateManager">Add Manager</a>
+<h2>Manage Users</h2>
+<a class="add-manager" asp-area="Admin" asp-controller="User" asp-action="CreateManager">Add Manager</a>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HomeAddress)
-            </th>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeAddress)
+        </th>
             
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            @* <th> *@
-            @*     @Html.DisplayNameFor(model => model.NormalizedEmail) *@
-            @* </th> *@
-            <th>
-                @Html.DisplayNameFor(model => model.EmailConfirmed)
-            </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        @* <th> *@
+        @*     @Html.DisplayNameFor(model => model.NormalizedEmail) *@
+        @* </th> *@
+        <th>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </th>
            
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
             
-            <th></th>
-        </tr>
+        <th>Action</th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -68,7 +68,7 @@
         
             <td>
                 @* <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
-                <a asp-area="Admin" asp-controller="User" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class="detail-button" asp-area="Admin" asp-controller="User" asp-action="Details" asp-route-id="@item.Id">Details</a> 
                 @{
                     if (!await UserManager.IsInRoleAsync(item,RoleNames.Administrator))
                     {
@@ -81,12 +81,18 @@
                         {
                             <a asp-area="Admin" asp-controller="User" asp-action="Activate" asp-route-id="@item.Id">Activate</a>
                         }
+
                     }
                     
                 }
-                | <a asp-area="Admin" asp-controller="User" asp-action="PasswordReset" asp-route-id="@item.Id">Reset Password</a>
+                 <a class="reset-button" asp-area="Admin" asp-controller="User" asp-action="PasswordReset" asp-route-id="@item.Id">Reset Password</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/admin-set-user.css")" rel="stylesheet" type="text/css" />
+}

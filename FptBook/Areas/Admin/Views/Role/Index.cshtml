@@ -7,7 +7,12 @@
     @await Html.PartialAsync("_RoleTablePartial",Model)
 </div>
 
-<script>
+@section Scripts
+{
+    <script src="~/js/role.js" asp-append-version="true"></script>
+}
 
-</script>
-
+@section CSS
+{
+    <link href="@Url.Content("~/css/admin-set-role.css")" rel="stylesheet" type="text/css" />
+}
