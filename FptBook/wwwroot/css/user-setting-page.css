@@ -148,6 +148,10 @@ h1 {
 }
 
 
+.reset-authen:hover{
+    text-decoration: underline;
+}
+
 @media only screen and (max-width: 768px) {
     .user-setting-container{
         width: 100%;

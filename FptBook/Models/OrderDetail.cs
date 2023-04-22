@@ -9,13 +9,13 @@ public class OrderDetail
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int ID { set; get; }
+    public string ID { set; get; }
     
     [Required]
-    public int OrderID { get; set; }
+    public string OrderID { get; set; }
     
     [Required]
-    public int BookID { get; set; }
+    public string BookID { get; set; }
 
     [Required]
     public int Quantity { get; set; }

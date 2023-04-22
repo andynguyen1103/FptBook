@@ -1,4 +1,5 @@
 @using FptBook.Models
+@using FptBook
 @model IEnumerable<FptBook.Models.FptBookUser>
 
 @{
@@ -69,16 +70,20 @@
                 @* <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
                 <a class="detail-button" asp-area="Admin" asp-controller="User" asp-action="Details" asp-route-id="@item.Id">Details</a> 
                 @{
-                    
-                    if (!item.LockoutEnabled)
+                    if (!await UserManager.IsInRoleAsync(item,RoleNames.Administrator))
                     {
-                        <a class="disable-button" asp-area="Admin" asp-controller="User" asp-action="Disable" asp-route-id="@item.Id">Disable</a>
-                    }
+                        if (!item.LockoutEnabled)
+                        {
+                            <a asp-area="Admin" asp-controller="User" asp-action="Disable" asp-route-id="@item.Id">Disable</a>
+                        }
                         
-                    else
-                    {
-                        <a class="activate-button" asp-area="Admin" asp-controller="User" asp-action="Activate" asp-route-id="@item.Id">Activate</a>
+                        else
+                        {
+                            <a asp-area="Admin" asp-controller="User" asp-action="Activate" asp-route-id="@item.Id">Activate</a>
+                        }
+
                     }
+                    
                 }
                  <a class="reset-button" asp-area="Admin" asp-controller="User" asp-action="PasswordReset" asp-route-id="@item.Id">Reset Password</a>
             </td>
