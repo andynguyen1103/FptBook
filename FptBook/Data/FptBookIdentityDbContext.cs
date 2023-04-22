@@ -1,9 +1,8 @@
 using FptBook.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace FptBook.Areas.Identity.Data;
+namespace FptBook.Data;
 
 public class FptBookIdentityDbContext : IdentityDbContext<FptBookUser>
 {

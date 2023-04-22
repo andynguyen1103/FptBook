@@ -41,6 +41,16 @@
       <_ContentIncludedByDefault Remove="Views\User\Details.cshtml" />
       <_ContentIncludedByDefault Remove="Views\User\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\User\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\CategoryControlller\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\CategoryControlller\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\CategoryControlller\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\CategoryControlller\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\CategoryControlller\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CategoryControlller\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CategoryControlller\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CategoryControlller\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CategoryControlller\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CategoryControlller\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

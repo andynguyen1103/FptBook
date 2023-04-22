@@ -1,4 +1,4 @@
-﻿using FptBook.Areas.Identity.Data;
+﻿using FptBook.Data;
 using FptBook.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

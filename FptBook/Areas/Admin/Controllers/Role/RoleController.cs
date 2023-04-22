@@ -1,5 +1,5 @@
 using FptBook.Areas.Admin.Models;
-using FptBook.Areas.Identity.Data;
+using FptBook.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +17,13 @@ namespace FptBook.Areas.Admin.Controllers.Role
         [TempData] // Sử dụng Session lưu thông báo
         public string StatusMessage { get; set; }
         
-        
-
-
         public RoleController(FptBookIdentityDbContext context, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
             _roleManager = roleManager;
         }
         // [HttpGet("/Admin/Role", Name = "RoleManageDefault")]
+        [HttpGet("/Admin/Role")]
         public IActionResult Index()
         {
             var roleList = _roleManager.Roles.ToList();
