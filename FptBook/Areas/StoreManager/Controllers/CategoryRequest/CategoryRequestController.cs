@@ -1,6 +1,6 @@
 using FptBook.Areas.Identity.Data;
-using FptBook.Areas.StoreManager.Models;
 using FptBook.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,8 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FptBook.Areas.StoreManager.Controllers
 {
+    
     [Area("StoreManager")]
     [Route("/StoreManager/CategoryRequest")]
+    [Authorize]
     public class CategoryRequestController : Controller
     {
         private readonly FptBookIdentityDbContext _context;
@@ -25,7 +27,8 @@ namespace FptBook.Areas.StoreManager.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Index()
         {
-            var fptBookIdentityDbContext = _context.CategoryRequests.Include(c => c.User);
+            var user = _userManager.GetUserAsync(HttpContext.User).Result;
+            var fptBookIdentityDbContext = _context.CategoryRequests.Where(cq=> cq.UserID == user.Id ).Include(c => c.User);
             return View(await fptBookIdentityDbContext.ToListAsync());
         }
 
@@ -97,7 +100,12 @@ namespace FptBook.Areas.StoreManager.Controllers
             {
                 return NotFound();
             }
-            ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
+            
+            if (!categoryRequest.IsApproved.GetValueOrDefault())
+            {
+                return NotFound();
+            }
+            // ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
             return View(categoryRequest);
         }
 
@@ -115,6 +123,10 @@ namespace FptBook.Areas.StoreManager.Controllers
 
             if (ModelState.IsValid)
             {
+                if (categoryRequest.IsApproved.GetValueOrDefault())
+                {
+                    return NotFound();
+                }
                 try
                 {
                     _context.Update(categoryRequest);
@@ -133,7 +145,7 @@ namespace FptBook.Areas.StoreManager.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
+            // ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
             return View(categoryRequest);
         }
 

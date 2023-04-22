@@ -1,4 +1,4 @@
-@model IEnumerable<FptBook.Models.CategoryRequest>
+﻿@model IEnumerable<FptBook.Models.CategoryRequest>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.IsApproved)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.ApprovedAt)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.User)
             </th>
             <th></th>
@@ -40,13 +43,18 @@
                 @Html.DisplayFor(modelItem => item.IsApproved)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.ApprovedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            
+            <td>
                 <a asp-action="Details" asp-route-id="@item.RequestId">Details</a> |
                 @{
-                if (item.IsApproved.GetValueOrDefault())
+                    if (!item.IsApproved.GetValueOrDefault())
                     {
-                        <a asp-action="Edit" asp-route-id="@item.RequestId">Edit</a>
-                        <span>|</span>
-                        <a asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
+                        <a asp-action="Approve" asp-route-id="@item.RequestId">Approve</a>
                     }
                 }
             </td>
