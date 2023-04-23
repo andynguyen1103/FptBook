@@ -74,12 +74,12 @@
                     {
                         if (!item.LockoutEnabled)
                         {
-                            <a asp-area="Admin" asp-controller="User" asp-action="Disable" asp-route-id="@item.Id">Disable</a>
+                            <a class="disable-button" asp-area="Admin" asp-controller="User" asp-action="Disable" asp-route-id="@item.Id">Disable</a>
                         }
                         
                         else
                         {
-                            <a asp-area="Admin" asp-controller="User" asp-action="Activate" asp-route-id="@item.Id">Activate</a>
+                            <a class="activate-button" asp-area="Admin" asp-controller="User" asp-action="Activate" asp-route-id="@item.Id">Activate</a>
                         }
 
                     }
