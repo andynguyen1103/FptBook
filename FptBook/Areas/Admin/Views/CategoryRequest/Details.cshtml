@@ -4,6 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
+@*
 <h1>Details</h1>
 
 <div>
@@ -39,7 +40,7 @@
                     </dd>
                 }
         }
-        
+
     </dl>
 </div>
 <div>
@@ -49,5 +50,54 @@
             <a asp-action="Edit" asp-route-id="@Model?.RequestId">Edit</a>
         }
     }
-    | <a asp-action="Index">Back to List</a>
+     <a asp-action="Index">Back to List</a>
 </div>
+*@
+
+
+<h1>Category Request Details</h1>
+
+<div>
+    <form class="form-control">
+        <table class="table table-bordered">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                <td>@Html.DisplayFor(model => model.CreatedAt)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.IsApproved)</th>
+                <td>@Html.DisplayFor(model => model.IsApproved)</td>
+            </tr>
+            @{
+                if (Model.IsApproved.GetValueOrDefault())
+                {
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ApprovedAt)</th>
+                        <td>@Html.DisplayFor(model => model.ApprovedAt)</td>
+                    </tr>
+                }
+            }
+        </table>
+    </form>
+</div>
+
+<div>
+    @{
+        if (!Model.IsApproved.GetValueOrDefault())
+        {
+            <a class="edit-button" asp-action="Edit" asp-route-id="@Model?.RequestId">Edit</a>
+        }
+    }
+     <a class="back-to-list" asp-action="Index">Back to List</a>
+</div>
+
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/admin-cate-req-details.css")" rel="stylesheet" type="text/css" />
+}
