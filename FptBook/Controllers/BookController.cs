@@ -13,10 +13,12 @@ namespace FptBook.Controllers
     public class BookController : Controller
     {
         private readonly FptBookIdentityDbContext _context;
+        private readonly CartService _cartService;
 
-        public BookController(FptBookIdentityDbContext context)
+        public BookController(FptBookIdentityDbContext context, CartService cartService)
         {
             _context = context;
+            _cartService = cartService;
         }
 
         // GET: Book
@@ -160,22 +162,63 @@ namespace FptBook.Controllers
         }
         
         // GET: Books/AddToCart/5
-        public async Task<IActionResult> AddToCart(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        [Route ("addcart/{productid:int}", Name = "addcart")]
+        public IActionResult AddToCart ([FromRoute] string bookid) {
 
-            var book = await _context.Books.FindAsync(id);
+            var book = _context.Books
+                .FirstOrDefault (p => p.BookId == bookid);
             if (book == null)
-            {
-                return NotFound();
+                return NotFound ("Not found");
+
+            var cart = _cartService.GetCartItems();
+            var cartitem = cart.Find(p => p.Book.BookId == bookid);
+            if (cartitem != null) {
+                cartitem.Quantity++;
+            } else {
+                cart.Add (new CartItem () { Quantity = 1, Book = book });
+            }
+            
+            return RedirectToAction (nameof (Cart));
+        }
+        
+        [Route ("/cart", Name = "cart")]
+        public IActionResult Cart () 
+        {
+            return View (_cartService.GetCartItems());
+        }
+        
+        [Route ("/removecart/{bookid:int}", Name = "removecart")]
+        public IActionResult RemoveCart ([FromRoute] string bookid) {
+            var cart = _cartService.GetCartItems ();
+            var cartitem = cart.Find (p => p.Book.BookId == bookid);
+            if (cartitem != null) {
+                cart.Remove(cartitem);
             }
 
-            // Add book to cart here
+            _cartService.SaveCartSession (cart);
+            return RedirectToAction (nameof (Cart));
+        }
+        
+        [Route ("/updatecart", Name = "updatecart")]
+        [HttpPost]
+        public IActionResult UpdateCart ([FromForm] string bookid, [FromForm] int quantity) {
+            var cart = _cartService.GetCartItems ();
+            var cartitem = cart.Find (p => p.Book.BookId == bookid);
+            if (cartitem != null) {
+                cartitem.Quantity = quantity;
+            }
+            _cartService.SaveCartSession (cart);
+            return Ok();
+        }
+        
+        [Route ("/checkout")]
+        public IActionResult Checkout()
+        {
+            var cart = _cartService.GetCartItems ();
 
-            return RedirectToAction(nameof(Index));
+            _cartService.ClearCart();
+            return Content("Succesfull");
+
         }
 
         private bool BookExists(string id)
