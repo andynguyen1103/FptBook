@@ -2,6 +2,7 @@
 @model FptBook.Areas.StoreManager.Models.CustomerListViewModel
 
 @{
+    
 }
 @section SearchBar
 {
@@ -13,7 +14,7 @@
 @{
     if (Model.Customers.IsNullOrEmpty())
     {
-        <p>@ViewData["Message"]</p>
+        <p>No Customer available</p>
     }
 
     else

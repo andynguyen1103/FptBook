@@ -8,11 +8,11 @@ namespace FptBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Category")]
-    public class CategoryControlller : Controller
+    public class CategoryController : Controller
     {
         private readonly FptBookIdentityDbContext _context;
 
-        public CategoryControlller(FptBookIdentityDbContext context)
+        public CategoryController(FptBookIdentityDbContext context)
         {
             _context = context;
         }

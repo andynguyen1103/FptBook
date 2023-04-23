@@ -28,7 +28,7 @@ namespace FptBook.Areas.StoreManager.Controllers
             var customers = await _userManager.GetUsersInRoleAsync(RoleNames.Customer);
             if (customers.IsNullOrEmpty())
             {
-                ViewData["Message"] = "No Customer available";
+                ViewBag.Message = "No customer available";
             }
             var customerViewmodel = new CustomerListViewModel()
             {
@@ -48,7 +48,7 @@ namespace FptBook.Areas.StoreManager.Controllers
                 var customers = await _userManager.GetUsersInRoleAsync(RoleNames.Customer);
                 if (customers.IsNullOrEmpty())
                 {
-                    ViewData["Message"] = "No Customer available";
+                    ViewBag.Message = "No customer available";
                 }
 
                 customerViewmodel.Customers = customers;
