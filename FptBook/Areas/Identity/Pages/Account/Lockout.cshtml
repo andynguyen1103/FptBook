@@ -1,10 +1,50 @@
 ﻿@page
 @model LockoutModel
 @{
-    ViewData["Title"] = "Locked out";
+    ViewData["Title"] = "Locked Out";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">This account has been locked out, please try again later.</p>
-</header>
+@* <header> *@
+@*     <h1 class="text-danger">@ViewData["Title"]</h1> *@
+@*     <p class="text-danger">This account has been locked out, please try again later.</p> *@
+@* </header> *@
+
+<div class="background-lr"> <br><br>
+	<div class="container">
+        <h1>@ViewData["Title"]</h1>
+        <p>
+           This account has been locked out, please try again later.
+        </p>
+    </div><br><br>
+</div> 
+
+
+
+<style>
+		.container {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+			max-width: 600px;
+			margin: 0 auto;
+		}
+		
+		h1 {
+			font-size: 28px;
+			text-align: center;
+			margin-top: 0;
+		}
+			
+		p {
+			font-size: 16px;
+			text-align: center;
+			margin-top: 20px;
+		}
+			
+</style>
+
+@section CSS
+{
+	<link href="@Url.Content("~/css/login-register.css")" rel="stylesheet" type="text/css" />
+}
