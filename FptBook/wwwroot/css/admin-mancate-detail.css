@@ -1,0 +1,72 @@
+﻿/* set border for all tables */
+h1{
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+    color: #444;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: auto;
+}
+
+/* set border for table headers */
+th {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+/* set border for table cells */
+td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+/* set border and background color for form */
+.form-control{
+    border: 1px solid black;
+    padding: 10px;
+    background-color: #f2f2f2;
+    width: 300px;
+    margin: auto;
+}
+
+/* set background color for even table rows */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.edit-button {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 10px;
+    background-color: #E91E63;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+    background-color: #AD1457;
+}
+
+.back-to-list {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.back-to-list:hover {
+    background-color: #3e8e41;
+}
+
