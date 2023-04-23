@@ -52,7 +52,9 @@
         <h2 style="padding-bottom: 15px; color: #777; text-align: center; font-size: 2rem;">Authenticator App</h2>
         @if (!Model.HasAuthenticator)
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Add authenticator app</a>
+            <div style="text-align: center">
+                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn">Add authenticator app</a>
+            </div>
         }
         else
         {
