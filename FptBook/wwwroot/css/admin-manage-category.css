@@ -1,0 +1,105 @@
+﻿h1{
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+    color: #444;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th {
+    font-weight: 700;
+    border-right: 1px solid #ddd;
+}
+
+.table td {
+    border-right: 1px solid #ddd;
+}
+
+.table tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.table a {
+    margin-right: 10px;
+}
+
+
+/* Style for the "Create New" button */
+.create-button {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background-color: #4CAF50 ;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.create-button:hover {
+    background-color: #388E3C;
+}
+
+/* Style for the "Edit" button */
+.edit-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #E91E63;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.edit-button:hover {
+    background-color: #AD1457;
+}
+
+/* Style for the "Details" button */
+.detail-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #2196F3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.detail-button:hover {
+    background-color: #1565C0;
+}
+
+/* Style for the "Delete" button */
+.delete-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #6D7173;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.delete-button:hover {
+    background-color: #494E52;
+}
