@@ -92,7 +92,7 @@
     @{
         if (!Model.IsApproved.GetValueOrDefault())
         {
-            <a class="edit-button" asp-action="Edit" asp-route-id="@Model?.RequestId">Edit</a>
+            <a class="edit-button" asp-action="Edit" asp-route-id="@Model?.RequestId">Reject</a>
         }
     }
      <a class="back-to-list" asp-action="Index">Back to List</a>

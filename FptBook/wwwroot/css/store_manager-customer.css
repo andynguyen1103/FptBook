@@ -1,0 +1,57 @@
+﻿h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+    color: #444;
+}
+
+
+/* Style for the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    color: #212529;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+}
+
+th {
+    text-align: left;
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/* Style for the links in the table */
+a.table-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Style for the "Details" button */
+a.detail-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #2196F3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+a.detail-button:hover {
+    background-color: #1565C0;
+}
+
+

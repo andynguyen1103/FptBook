@@ -41,7 +41,7 @@
                 @{
                     if (!(bool) item.IsApproved)
                     {
-                        <a class="edit-button" asp-action="Edit" asp-route-id="@item.RequestId">Edit</a>
+                        @* <a class="edit-button" asp-action="Edit" asp-route-id="@item.RequestId">Edit</a> *@
                         <a class="delete-button" asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
                     }
                 }
