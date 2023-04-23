@@ -24,6 +24,11 @@
             <td>@item.Book.Price.ToString("C")</td>
             <td>@Html.TextBoxFor(modelItem => item.Quantity, new { @class = "form-control" })</td>
             <td>@(item.Quantity * item.Book.Price).ToString("C")</td>
+             <td>
+                <form asp-action="RemoveCart" asp-route-id="@item.Book.BookId">
+                    <button class="btn btn-danger btn-sm">Remove</button>
+                </form>
+            </td>
         </tr>
     }
     </tbody>
