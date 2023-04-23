@@ -1,0 +1,68 @@
+﻿@using Microsoft.IdentityModel.Tokens
+@model FptBook.Areas.StoreManager.Models.CustomerListViewModel
+
+@{
+}
+@{
+    if (Model.Customers.IsNullOrEmpty())
+    {
+        <p>@ViewData["Message"]</p>
+    }
+
+    else
+    {
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Home Address
+                </th>
+                    
+                <th>
+                    Email
+                </th>
+                  
+                <th>
+                    Phone Number
+                </th>
+                    
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Customers) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HomeAddress)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                
+                    <td>
+                        @* <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
+                        <a class="detail-button" asp-area="StoreManager" asp-controller="Customer" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}

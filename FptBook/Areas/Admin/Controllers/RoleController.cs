@@ -1,10 +1,9 @@
 using FptBook.Areas.Admin.Models;
 using FptBook.Data;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FptBook.Areas.Admin.Controllers.Role
+namespace FptBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Role/[action]")]

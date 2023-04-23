@@ -3,7 +3,7 @@ using FptBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FptBook.Areas.Admin.Controllers.CategoryRequestApprove
+namespace FptBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/CategoryRequest")]

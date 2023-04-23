@@ -54,10 +54,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Areas\Admin\Controllers\CategoryRequestApprove" />
       <Folder Include="Areas\Admin\Data" />
+      <Folder Include="Areas\Customer\Data" />
+      <Folder Include="Areas\Customer\Models" />
       <Folder Include="Areas\StoreManager\Data" />
-      <Folder Include="Areas\StoreManager\Models" />
     </ItemGroup>
 
 </Project>

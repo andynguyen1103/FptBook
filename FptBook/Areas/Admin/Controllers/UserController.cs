@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using FptBook.Areas.Admin.Models;
 using FptBook.Data;
 using FptBook.Models;
@@ -6,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FptBook.Areas.Admin.Controllers.User
+namespace FptBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/User")]
@@ -103,6 +102,11 @@ namespace FptBook.Areas.Admin.Controllers.User
             {
                 RedirectToAction(nameof(Index));
             }
+            
+            if (await _userManager.IsInRoleAsync(fptBookUser,RoleNames.Administrator))
+            {
+                return NotFound();
+            }
 
             if (!await _userManager.GetLockoutEnabledAsync(fptBookUser))
             {
@@ -121,10 +125,15 @@ namespace FptBook.Areas.Admin.Controllers.User
         public async Task<IActionResult> Activate(string id)
         {
             var fptBookUser = await _userManager.FindByIdAsync(id);
-            Console.WriteLine(fptBookUser.Id);
+            // Console.WriteLine(fptBookUser.Id);
             if (fptBookUser == null)
             {
                 return RedirectToAction(nameof(Index));
+            }
+
+            if (await _userManager.IsInRoleAsync(fptBookUser,RoleNames.Administrator))
+            {
+                return NotFound();
             }
 
             if (!await _userManager.GetLockoutEnabledAsync(fptBookUser))
@@ -132,6 +141,7 @@ namespace FptBook.Areas.Admin.Controllers.User
                 return RedirectToAction(nameof(Index));
             }
             await _userManager.SetLockoutEnabledAsync(fptBookUser, false);
+            await _userManager.SetLockoutEndDateAsync(fptBookUser,null);
             
             Console.WriteLine("Activate Successful");
 

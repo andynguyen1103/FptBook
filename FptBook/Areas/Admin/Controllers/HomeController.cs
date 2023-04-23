@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FptBook._Areas_Admin_Controller_Home
+namespace FptBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("/Admin")]

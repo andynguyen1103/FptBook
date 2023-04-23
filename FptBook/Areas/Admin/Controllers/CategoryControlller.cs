@@ -4,7 +4,7 @@ using FptBook.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FptBook.Areas.Admin.Controllers.CategoryControl
+namespace FptBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/Category")]
