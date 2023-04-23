@@ -37,6 +37,12 @@ li {
     list-style: none;
 }
 
+
+
+
+
+
+
 /* SIDEBAR */
 #sidebar {
     position: fixed;
@@ -185,18 +191,6 @@ li {
 #sidebar .ads .wrapper p span {
     font-weight: 700;
 }
-
-.footer {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    font-size: 14px;
-    color: var(--dark-grey);
-    text-align: center;
-    z-index: 200;
-    margin-top: -30px;
-}
 /* SIDEBAR */
 
 
@@ -262,7 +256,6 @@ nav .form-group .icon {
 }
 nav .nav-link {
     position: relative;
-    right: -60rem;
 }
 nav .nav-link .icon {
     font-size: 18px;
@@ -306,9 +299,6 @@ nav .divider {
 }
 nav .profile {
     position: relative;
-    margin-left: -26px;
-    right: -60rem;
-    
 }
 nav .profile img {
     width: 36px;
@@ -347,6 +337,18 @@ nav .profile .profile-link a {
 nav .profile .profile-link a:hover {
     background: var(--grey);
 }
+
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--dark-grey);
+    text-align: center;
+    z-index: 200;
+    margin-top: -30px;
+}
 /* NAVBAR */
 
 
@@ -358,7 +360,6 @@ nav .profile .profile-link a:hover {
 main {
     width: 100%;
     padding: 24px 20px 20px 20px;
-    height: 100%;
 }
 main .title {
     font-size: 28px;
@@ -608,12 +609,6 @@ main .btn-send:hover {
 }
 /* MAIN */
 /* CONTENT */
-
-
-
-
-
-
 
 
 

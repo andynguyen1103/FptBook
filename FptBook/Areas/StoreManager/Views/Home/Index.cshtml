@@ -1,1 +1,154 @@
-﻿
+﻿@* @model TModel *@
+
+	<h1 class="title">Dashboard</h1>
+	<div class="info-data">
+		<div class="card">
+			<div class="head">
+				<div>
+					<h2>1500</h2>
+					<p>Visits to Bookstore</p>
+				</div>
+				<i class='bx bx-trending-up icon' ></i>
+			</div>
+			<span class="progress" data-value="40%"></span>
+			<span class="label">40%</span>
+		</div>
+		<div class="card">
+			<div class="head">
+				<div>
+					<h2>234</h2>
+					<p>Book Sales</p>
+				</div>
+				<i class='bx bx-trending-down icon down' ></i>
+			</div>
+			<span class="progress" data-value="60%"></span>
+			<span class="label">60%</span>
+		</div>
+		<div class="card">
+			<div class="head">
+				<div>
+					<h2>465</h2>
+					<p>Foot Traffic</p>
+				</div>
+				<i class='bx bx-trending-up icon' ></i>
+			</div>
+			<span class="progress" data-value="30%"></span>
+			<span class="label">30%</span>
+		</div>
+		<div class="card">
+			<div class="head">
+				<div>
+					<h2>235</h2>
+					<p>Customer Engagement</p>
+				</div>
+				<i class='bx bx-trending-up icon' ></i>
+			</div>
+			<span class="progress" data-value="80%"></span>
+			<span class="label">80%</span>
+		</div>
+	</div>
+	<div class="data">
+		<div class="content-data">
+			<div class="head">
+				<h3>Book Sales Report</h3>
+				<div class="menu">
+					<i class='bx bx-dots-horizontal-rounded icon'></i>
+					<ul class="menu-link">
+						<li><a href="#">Edit</a></li>
+						<li><a href="#">Save</a></li>
+						<li><a href="#">Remove</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="chart">
+				<div id="chart"></div>
+			</div>
+		</div>
+		<div class="content-data">
+			<div class="head">
+				<h3>Chat Box</h3>
+				<div class="menu">
+					<i class='bx bx-dots-horizontal-rounded icon'></i>
+					<ul class="menu-link">
+						<li><a href="#">Edit</a></li>
+						<li><a href="#">Save</a></li>
+						<li><a href="#">Remove</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="chat-box">
+				<p class="day"><span>Today</span></p>
+				
+				<div class="msg">
+					<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+					<div class="chat">
+						<div class="profile">
+							<span class="username">Alan (Store Owner 1)</span>
+							<span class="time">18:30</span>
+						</div>
+						<p>Hello, can I add some categories for my store? I'd like to add categories like thriller and romance for my book section.</p>
+					</div>
+				</div>
+				
+				<div class="msg me">
+					<div class="chat">
+						<div class="profile">
+							<span class="time">18:40</span>
+						</div>
+						<p>Hello! Of course, we can definitely add those categories for you. Do you have any specific subcategories in mind?</p>
+					</div>
+				</div>
+				
+				<div class="msg">
+	                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+	                <div class="chat">
+                		<div class="profile">
+                			<span class="username">Alan (Store Owner 1)</span>
+                			<span class="time">18:45</span>
+                		</div>
+		                <p>Yes, for the thriller category, I was thinking of adding subcategories like crime, mystery, and suspense. 
+			                And for the romance category, subcategories like historical, contemporary, and paranormal.</p>
+	                </div>
+	            </div>
+				
+				<div class="msg me">
+					<div class="chat">
+						<div class="profile">
+							<span class="time">18:55</span>
+						</div>
+						<p>Great! Those are some great subcategories. We can definitely add those to your store's book section. 
+							Is there anything else you would like to add or modify in your store's categories?</p>
+					</div>
+				</div>
+				
+				<div class="msg">
+					<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+					<div class="chat">
+						<div class="profile">
+							<span class="username">Alan (Store Owner 1)</span>
+							<span class="time">19:05</span>
+						</div>
+						<p>No, that's all for now. Thank you so much for your help!</p>
+					</div>
+				</div>
+				
+				
+				<div class="msg me">
+					<div class="chat">
+						<div class="profile">
+							<span class="time">19:10</span>
+						</div>
+						<p>You're welcome! We'll make sure to add those categories and subcategories to your store's book section as soon as possible. 
+							If you have any other questions or concerns, feel free to reach out to us anytime.</p>
+					</div>
+				</div>
+				
+			</div>
+			<form action="#">
+				<div class="form-group">
+					<input type="text" placeholder="Type...">
+					<button type="submit" class="btn-send"><i class='bx bxs-send' ></i></button>
+				</div>
+			</form>
+		</div>
+	</div>

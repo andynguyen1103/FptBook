@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Store Manager Site</title>
+    
+    <!-- Icon -->
+    <link href="@Url.Content("~/image/book-shop.png")" rel="icon" type="image/x-icon">
+
+    <!-- Boostrap file CSS Link -->
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    
+    <!-- Custom file CSS Link -->
+    <link href="@Url.Content("~/css/storemanager-layout.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("CSS", required: false)
+
+    <!-- Box icon Link -->
+   	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+<body>
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a asp-controller="Home" asp-action="Index" class="brand"><i class='bx bxs-smile icon'></i> Store Manager</a>
+		<ul class="side-menu">
+			<li><a asp-controller="Home" asp-action="Index" class="active"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
+			<li class="divider" data-text="Admin Option"></li>
+			<li>
+				<a href="#"><i class='bx bxs-inbox icon'></i> Option <i class='bx bx-chevron-right icon-right'></i></a>
+				<ul class="side-dropdown">
+					
+					@* OPTION FOR STORE MANAGER *@
+					<li><a asp-controller="" asp-action="">Option 1</a></li>
+					<li><a asp-controller="" asp-action="">Option 2</a></li>
+					@* OPTION FOR STORE MANAGER *@
+
+				</ul>
+			</li>
+		</ul>
+		<div class="ads">
+			<div class="wrapper">
+				<a href="#" class="btn-upgrade">Control Panel</a>
+				<p>Access the <span>Control Panel</span> to manage your site's settings and content.</p>
+			</div>
+
+		</div>
+		<div class="footer">
+        	<p>&copy; 2023 FPT BookStore, Inc. All rights reserved.</p>
+        </div>
+	</section>
+	<!-- SIDEBAR -->
+
+	<!-- NAVBAR -->
+<section id="content">
+	<!-- NAVBAR -->
+	<nav>
+		<i class='bx bx-menu toggle-sidebar' ></i>
+		<form action="#">
+			<div class="form-group">
+				<input type="text" placeholder="Search...">
+				<i class='bx bx-search icon' ></i>
+			</div>
+		</form>
+		
+		<a href="#" class="nav-link">
+			@*<span class="hello-user">Hello, User</span>*@
+			<i class='bx bxs-bell icon' ></i>
+			<span class="badge">5</span>
+		</a>
+		<a href="#" class="nav-link">
+			<i class='bx bxs-message-square-dots icon' ></i>
+			<span class="badge">8</span>
+		</a>
+		<span class="divider"></span>
+		<div class="profile">
+			<img src="https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="">
+			<ul class="profile-link">
+				<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
+				<li><a href="#"><i class='bx bxs-cog' ></i> Settings</a></li>
+				<li><a href="#"><i class='bx bxs-log-out-circle' ></i> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<!-- NAVBAR -->
+
+	<!-- MAIN -->
+	<main>
+		@RenderBody()
+	</main>
+</section>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+	<script src="~/js/storemanager.js"></script>
+@RenderSection("Scripts", required: false)
+</body>
+</html>
