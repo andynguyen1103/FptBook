@@ -1,0 +1,8 @@
+﻿@model FptBook.Areas.StoreManager.Models.CustomerListViewModel
+<form asp-area="StoreManager" asp-controller="Customer" asp-action="Index">
+	<div class="form-group">
+		<input type="text" asp-for="SearchString" placeholder="Search..." value="@Model.SearchString">
+		<button type="submit">Submit</button>
+	</div>
+</form>
+
