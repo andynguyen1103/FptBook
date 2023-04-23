@@ -1,10 +1,86 @@
-﻿@using Microsoft.IdentityModel.Tokens
+﻿@* @using Microsoft.IdentityModel.Tokens *@
+@* @model FptBook.Areas.StoreManager.Models.CustomerDetailsViewModel *@
+@* *@
+@* @{ *@
+@* } *@
+@* *@
+@* <h1>Information Details</h1> *@
+@* *@
+@* <div class="table-container"> *@
+@*     <table> *@
+@*         <thead> *@
+@*         <tr> *@
+@*             <th class="header-cell">@Html.DisplayNameFor(model => model.Customer.FirstName)</th> *@
+@*             <td class="data-cell">@Html.DisplayFor(model => model.Customer.FirstName)</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <th class="header-cell">@Html.DisplayNameFor(model => model.Customer.LastName)</th> *@
+@*             <td class="data-cell">@Html.DisplayFor(model => model.Customer.LastName)</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <th class="header-cell">@Html.DisplayNameFor(model => model.Customer.HomeAddress)</th> *@
+@*             <td class="data-cell">@Html.DisplayFor(model => model.Customer.HomeAddress)</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <th class="header-cell">@Html.DisplayNameFor(model => model.Customer.Email)</th> *@
+@*             <td class="data-cell">@Html.DisplayFor(model => model.Customer.Email)</td> *@
+@*         </tr> *@
+@*         <tr> *@
+@*             <th class="header-cell">@Html.DisplayNameFor(model => model.Customer.PhoneNumber)</th> *@
+@*             <td class="data-cell">@Html.DisplayFor(model => model.Customer.PhoneNumber)</td> *@
+@*         </tr> *@
+@*         </thead> *@
+@*     </table> *@
+@* </div> *@
+@* @{ *@
+@*     if (Model.CustomerOrders.IsNullOrEmpty()) *@
+@*     { *@
+@*         <p>The customer has not ordered</p> *@
+@*     } *@
+@* *@
+@*     else *@
+@*     { *@
+@*         <div class="table-container"> *@
+@*             <table> *@
+@*                 <thead> *@
+@*                 <tr> *@
+@*                     <th class="header-cell">Order ID</th> *@
+@*                     <th class="header-cell">Order date</th> *@
+@*                     <th class="header-cell">Total price</th> *@
+@*                     <th class="header-cell">Is Completed</th> *@
+@*                     <th class="header-cell"></th> *@
+@*                 </tr> *@
+@*                 @{ *@
+@*                     foreach (var order in Model.CustomerOrders) *@
+@*                     { *@
+@*                         <td class="data-cell">@order.OrderId</td> *@
+@*                         <td class="data-cell">@order.CreatedAt</td> *@
+@*                         <td class="data-cell">@order.TotalPrice</td> *@
+@*                         <td class="data-cell">@order.IsCompleted</td> *@
+@*                         <td class="data-cell"> *@
+@*                             <a href="#">Details</a> *@
+@*                         </td> *@
+@*                     } *@
+@*                 } *@
+@*                 </thead> *@
+@*             </table> *@
+@*         </div> *@
+@*     } *@
+@* } *@
+@* *@
+@* *@
+@* <div class="button-container"> *@
+@*     <a asp-action="Index">Back to List</a> *@
+@* </div> *@
+
+
+@using Microsoft.IdentityModel.Tokens
 @model FptBook.Areas.StoreManager.Models.CustomerDetailsViewModel
 
 @{
 }
 
-<h1>Information Details</h1>
+<h1>Customer Information Details</h1>
 
 <div class="table-container">
     <table>
@@ -35,7 +111,7 @@
 @{
     if (Model.CustomerOrders.IsNullOrEmpty())
     {
-        <p>The customer has not ordered</p>
+        <p style="color: #664d03; background-color: #fff3cd; border-color: #ffecb5; padding: 10px 10px; text-align: justify">The customer has not ordered!!</p>
     }
 
     else
@@ -48,18 +124,20 @@
                     <th class="header-cell">Order date</th>
                     <th class="header-cell">Total price</th>
                     <th class="header-cell">Is Completed</th>
-                    <th class="header-cell"></th>
+                    <th class="header-cell">Action</th>
                 </tr>
                 @{
                     foreach (var order in Model.CustomerOrders)
                     {
-                        <td class="data-cell">@order.OrderId</td>
-                        <td class="data-cell">@order.CreatedAt</td>
-                        <td class="data-cell">@order.TotalPrice</td>
-                        <td class="data-cell">@order.IsCompleted</td>
-                        <td class="data-cell">
-                            <a href="#">Details</a>
-                        </td>
+                        <tr>
+                            <td class="data-cell">@order.OrderId</td>
+                            <td class="data-cell">@order.CreatedAt</td>
+                            <td class="data-cell">@order.TotalPrice</td>
+                            <td class="data-cell">@order.IsCompleted</td>
+                            <td class="data-cell">
+                                <a href="#">Details</a>
+                            </td>
+                        </tr>
                     }
                 }
                 </thead>
@@ -70,5 +148,11 @@
 
 
 <div class="button-container">
-    <a asp-action="Index">Back to List</a>
+    <a class="back-to-list" asp-action="Index">Back to List</a>
 </div>
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/store_manager-customer-detail.css")" rel="stylesheet" type="text/css" />
+}
