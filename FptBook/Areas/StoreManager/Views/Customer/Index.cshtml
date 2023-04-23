@@ -3,6 +3,13 @@
 
 @{
 }
+@section SearchBar
+{
+    @{
+        @(await Html.PartialAsync("_StoreOwnerSearchBarPartial", Model))
+    }
+}
+
 @{
     if (Model.Customers.IsNullOrEmpty())
     {
