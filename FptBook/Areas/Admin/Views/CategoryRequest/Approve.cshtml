@@ -4,33 +4,68 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Approve</h1>
+<h1>Approve Category Request</h1>
 
-<h4>CategoryRequest</h4>
-<hr />
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <form asp-action="Approve"> *@
+@*             <div asp-validation-summary="ModelOnly" class="text-danger"></div> *@
+@*             <input type="hidden" asp-for="RequestId" /> *@
+@*             <input type="hidden" asp-for="UserID"/> *@
+@*             <input type="hidden" asp-for="IsApproved"/> *@
+@*             <input type="hidden" asp-for="CreatedAt"/> *@
+@*             <input type="hidden" asp-for="Name"/> *@
+@*             <div class="form-group"> *@
+@*                 @Model.Name *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 @Model.User.Email *@
+@*             </div> *@
+@*             <div class="form-group"> *@
+@*                 <input type="submit" value="Approve" class="btn btn-primary" /> *@
+@*             </div> *@
+@*         </form> *@
+@*     </div> *@
+@* </div> *@
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Approve">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label asp-for="Name">Name Category</label></td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="User.Email">Store Manager Email</label></td>
+                        <td>@Model.User.Email</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="Approve" class="approve-button" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <input type="hidden" asp-for="RequestId" />
             <input type="hidden" asp-for="UserID"/>
             <input type="hidden" asp-for="IsApproved"/>
             <input type="hidden" asp-for="CreatedAt"/>
             <input type="hidden" asp-for="Name"/>
-            <div class="form-group">
-                @Model.Name
-            </div>
-            <div class="form-group">
-                @Model.User.Email
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Approve" class="btn btn-primary" />
-            </div>
         </form>
     </div>
-</div>
+</div> <br>
+
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="back-to-list" asp-action="Index">Back to List</a>
 </div>
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/admin-cate-req-approve.css")" rel="stylesheet" type="text/css" />
+}
 
