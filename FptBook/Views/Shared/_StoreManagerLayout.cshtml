@@ -25,13 +25,13 @@
 		<a asp-controller="Home" asp-action="Index" class="brand"><i class='bx bxs-smile icon'></i> Store Manager</a>
 		<ul class="side-menu">
 			<li><a asp-controller="Home" asp-action="Index" class="active"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
-			<li class="divider" data-text="Admin Option"></li>
+			<li class="divider" data-text="Store Manager Option"></li>
 			<li>
 				<a href="#"><i class='bx bxs-inbox icon'></i> Option <i class='bx bx-chevron-right icon-right'></i></a>
 				<ul class="side-dropdown">
 					
 					@* OPTION FOR STORE MANAGER *@
-					<li><a asp-controller="" asp-action="">Option 1</a></li>
+					<li><a asp-controller="CategoryRequest" asp-action="Index">Category Request</a></li>
 					<li><a asp-controller="" asp-action="">Option 2</a></li>
 					@* OPTION FOR STORE MANAGER *@
 
