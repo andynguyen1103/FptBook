@@ -4,30 +4,54 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>CategoryRequest</h4>
-<hr />
+<h1>Create Category</h1>
 <div class="row">
-    <div class="col-md-4">
+    
+    <div class="col-md-10">
+        
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
+            
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th><br><br>
+                            <label asp-for="Name" class="control-label">Category Name</label>
+                        </th>
+                        <td>
+                            <input asp-for="Name" class="form-control"/><br><br>
+                            <span asp-validation-for="Name" class="text-danger"></span><br><br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <div class="form-group">
                 <input asp-for="UserID" class="form-control" type="hidden" value="@ViewData["UserID"]"/>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            @* <div class="form-group"> *@
+            @*     <input type="submit" value="Create" class="save-button"/> *@
+            @* </div> *@
+            <div >
+                <a class="back-to-list" asp-action="Index">Back to List</a>
+                <button type="submit" class="save-button">Create</button>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@* <div> *@
+@*     <a class="back-to-list" asp-action="Index">Back to List</a> *@
+@* </div> *@
+
+
+
+
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/store_manager-catereq-create.css")" rel="stylesheet" type="text/css" />
+}
+
+
 

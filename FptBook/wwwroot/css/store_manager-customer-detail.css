@@ -8,7 +8,7 @@
 }
 
 .table-container {
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 table {
@@ -22,7 +22,6 @@ th, td {
     border: 1px solid #ddd;
 }
 
-
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -31,23 +30,28 @@ tr:nth-child(odd) {
     background-color: #fff;
 }
 
+.header-cell {
+    font-weight: bold;
+}
+
+.data-cell {
+    word-break: break-all;
+}
+
 .button-container {
     margin-top: 20px;
-    text-align: right;
 }
 
-.button-container a {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
+.back-to-list{
     display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #27ae60;
+    border: none;
+    color: #fff;
+    text-decoration: none;
 }
 
-.button-container a:hover {
-    background-color: #3e8e41;
+.back-to-list:hover {
+    background-color: #219150;
 }

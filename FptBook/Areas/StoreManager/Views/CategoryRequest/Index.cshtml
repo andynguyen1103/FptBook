@@ -4,31 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Manage Category</h1>
+<a class="add-category" asp-action="Create">Create New</a>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsApproved)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -40,17 +37,21 @@
                 @Html.DisplayFor(modelItem => item.IsApproved)
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.RequestId">Details</a> |
+                <a class="detail-button" asp-action="Details" asp-route-id="@item.RequestId">Details</a> 
                 @{
-                if (!(bool) item.IsApproved)
+                    if (!(bool) item.IsApproved)
                     {
-                        <a asp-action="Edit" asp-route-id="@item.RequestId">Edit</a>
-                        <span>|</span>
-                        <a asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
+                        @* <a class="edit-button" asp-action="Edit" asp-route-id="@item.RequestId">Edit</a> *@
+                        <a class="delete-button" asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
                     }
                 }
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/store_manager-categoryrequest.css")" rel="stylesheet" type="text/css" />
+}
