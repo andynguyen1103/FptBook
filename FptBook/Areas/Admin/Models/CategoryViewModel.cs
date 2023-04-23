@@ -1,6 +1,7 @@
 ﻿
 
 using System.ComponentModel.DataAnnotations;
+using FptBook.Models;
 
 namespace FptBook.Areas.Admin.Models;
 
