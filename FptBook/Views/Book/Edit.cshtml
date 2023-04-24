@@ -1,62 +1,50 @@
-@model FptBook.Models.Book
+@model BookViewModel
 
-@{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+<h2>Edit book</h2>
 
-<h1>Edit</h1>
-
-<h4>Book</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="BookId" />
-            <div class="form-group">
-                <label asp-for="Tittle" class="control-label"></label>
-                <input asp-for="Tittle" class="form-control" />
-                <span asp-validation-for="Tittle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageLink" class="control-label"></label>
-                <input asp-for="ImageLink" class="form-control" />
-                <span asp-validation-for="ImageLink" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdateDate" class="control-label"></label>
-                <input asp-for="UpdateDate" class="form-control" />
-                <span asp-validation-for="UpdateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sumary" class="control-label"></label>
-                <input asp-for="Sumary" class="form-control" />
-                <span asp-validation-for="Sumary" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryID" class="control-label"></label>
-                <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
-                <span asp-validation-for="CategoryID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<form asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="BookId" />
+    <div class="form-group">
+        <label asp-for="Tittle" class="control-label"></label>
+        <input asp-for="Tittle" class="form-control" />
+        <span asp-validation-for="Tittle" class="text-danger"></span>
     </div>
-</div>
+    <div class="form-group">
+        <label asp-for="Amount" class="control-label"></label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Sumary" class="control-label"></label>
+        <textarea asp-for="Sumary" class="form-control"></textarea>
+        <span asp-validation-for="Sumary" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryID" class="control-label"></label>
+        <select asp-for="CategoryID" class="form-control" asp-items="@ViewBag.CategoryID"></select>
+        <span asp-validation-for="CategoryID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AuthorName" class="control-label"></label>
+        <input asp-for="AuthorName" class="form-control" />
+        <span asp-validation-for="AuthorName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageFile" class="control-label"></label>
+        <input asp-for="ImageFile" class="form-control-file" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

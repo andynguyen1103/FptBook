@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,86 +23,107 @@ namespace FptBook.Controllers
         // GET: Book
         public async Task<IActionResult> Index()
         {
-            var fptBookIdentityDbContext = _context.Books.Include(b => b.Category);
-            return View(await fptBookIdentityDbContext.ToListAsync());
+            var books = await _context.Books.Include(b => b.Author).Include(b => b.Category).ToListAsync();
+            return View(books);
         }
 
         // GET: Book/Details/5
         public async Task<IActionResult> Details(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var book = await _context.Books
                 .Include(b => b.Category)
+                .Include(b => b.Author)
                 .FirstOrDefaultAsync(m => m.BookId == id);
-
             if (book == null)
             {
                 return NotFound();
             }
 
-            return View(book);
+            return View();
         }
 
         // GET: Book/Create
-        public IActionResult Create()
+        [HttpGet]
+        public async Task<IActionResult> Create()
         {
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryID", "Name");
-            ViewData["AuthorID"] = new SelectList(_context.Authors, "AuthorID", "Name");
-            return View();
+            var categories = await _context.Categories.ToListAsync();
+            foreach (var item in categories)
+            {
+                Console.WriteLine("Cat item:"+ item.Name);
+            }
+
+            var viewModel = new BookViewModel()
+            {
+                CategoryID = new SelectList(categories, "CategoryID", "Name")
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind("Tittle,ImageLink,UpdateDate,Amount,Sumary,Price,CategoryID,AuthorID")] Book book)
+        public async Task<IActionResult> Create(BookViewModel bookViewModel)
         {
             if (ModelState.IsValid)
             {
-                var category = await _context.Categories.FirstOrDefaultAsync(c => c.Name == book.Category.Name);
-                if (category == null)
-                {
-                    category = new Category { Name = book.Category.Name };
-                    _context.Categories.Add(category);
-                }
-                book.Category = category;
-                var author = await _context.Authors.FirstOrDefaultAsync(a => a.Name == book.Author.Name);
+                // Kiểm tra xem tác giả có trong database chưa
+                var author = _context.Authors.FirstOrDefault(a => a.Name == bookViewModel.AuthorName);
                 if (author == null)
                 {
-                    author = new Author { Name = book.Author.Name };
+                    author = new Author { Name = bookViewModel.AuthorName };
                     _context.Authors.Add(author);
+                    await _context.SaveChangesAsync();
                 }
-                book.Author = author;
 
-                _context.Add(book);
+                // Thêm sách vào database
+                var book = new Book
+                {
+                    Tittle = bookViewModel.Tittle,
+                    Amount = bookViewModel.Amount,
+                    Sumary = bookViewModel.Sumary,
+                    Price = bookViewModel.Price,
+                    CategoryID = bookViewModel.CategoryID.SelectedValue.ToString(),
+                    AuthorID = author.Name
+                };
+
+                if (bookViewModel.ImageFile != null)
+                {
+                    var extension = Path.GetExtension(bookViewModel.ImageFile.FileName);
+                    var fileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", $"{book.Tittle}{extension}");
+                    using (var fileStream = new FileStream(fileName, FileMode.Create))
+                    {
+                        await bookViewModel.ImageFile.CopyToAsync(fileStream);
+                    }
+                    book.ImageLink = $"/images/{book.Tittle}{extension}";
+                }
+
+                _context.Books.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryID", "Name", book.CategoryID);
-            ViewData["AuthorID"] = new SelectList(_context.Authors, "AuthorID", "Name", book.AuthorID);
-            return View(book);
+            ViewBag.CategoryName = new SelectList(_context.Categories.ToList(), "Id", "Name", bookViewModel.CategoryID);
+            return View();
         }
+
 
         // GET: Book/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             var book = await _context.Books.FindAsync(id);
             if (book == null)
             {
                 return NotFound();
             }
-
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryID", "Name", book.CategoryID);
-            return View(book);
+            var bookViewModel = new BookViewModel
+            {
+                Tittle = book.Tittle,
+                Amount = book.Amount,
+                Sumary = book.Sumary,
+                Price = book.Price,
+                CategoryID = book.Category.Name,
+                AuthorName = book.Author.Name
+            };
+            ViewBag.CategoryID = new SelectList(_context.Categories.ToList(), "Id", "Name", bookViewModel.CategoryID);
+            return View();
         }
 
         // POST: Book/Edit/5
@@ -110,57 +131,62 @@ namespace FptBook.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id,
-            [Bind("BookId,Tittle,ImageLink,UpdateDate,Amount,Sumary,Price,CategoryID,AuthorID")] Book book)
+        public async Task<IActionResult> Edit(string id, BookViewModel bookViewModel)
         {
-            if (id != book.BookId)
+            if (id != bookViewModel.BookId)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                try
+                // Kiểm tra xem tác giả có trong database chưa
+                var author = _context.Authors.FirstOrDefault(a => a.Name == bookViewModel.AuthorName);
+                if (author == null)
                 {
-                    _context.Update(book);
+                    author = new Author { Name = bookViewModel.AuthorName };
+                    _context.Authors.Add(author);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+
+                // Sửa thông tin sách trong database
+                var book = await _context.Books.FindAsync(id);
+                book.Tittle = bookViewModel.Tittle;
+                book.Amount = bookViewModel.Amount;
+                book.Sumary = bookViewModel.Sumary;
+                book.Price = bookViewModel.Price;
+                book.CategoryID = bookViewModel.CategoryID;
+                book.AuthorID = author.Name;
+
+                if (bookViewModel.ImageFile != null)
                 {
-                    if (!BookExists(book.BookId))
+                    var extension = Path.GetExtension(bookViewModel.ImageFile.FileName);
+                    var fileName = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", $"{book.Tittle}{extension}");
+                    using (var fileStream = new FileStream(fileName, FileMode.Create))
                     {
-                        return NotFound();
+                        await bookViewModel.ImageFile.CopyToAsync(fileStream);
                     }
-                    else
-                    {
-                        throw;
-                    }
+                    book.ImageLink = $"/images/{book.Tittle}{extension}";
                 }
 
+                _context.Update(book);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryID", "Name", book.CategoryID);
-            return View(book);
+            ViewBag.CategoryID = new SelectList(_context.Categories.ToList(), "Id", "Name", bookViewModel.CategoryID);
+            return View();
         }
 
         // GET: Book/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var book = await _context.Books
-                .Include(b => b.Category)
-                .FirstOrDefaultAsync(m => m.BookId == id);
+            var book = await _context.Books.Include(b => b.Author).Include(b => b.Category).FirstOrDefaultAsync(b => b.BookId == id);
             if (book == null)
             {
                 return NotFound();
             }
 
-            return View(book);
+            return View();
         }
 
         // POST: Book/Delete/5
@@ -172,6 +198,22 @@ namespace FptBook.Controllers
             _context.Books.Remove(book);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+        
+        // Lấy danh sách CategoryName để hiển thị lên selectlist
+        private async Task<SelectList> GetCategoryListAsync()
+        {
+            var categories = await _context.Categories.ToListAsync();
+            var categoryList = new SelectList(categories, "Id", "Name");
+            return categoryList;
+        }
+        
+        // Lấy danh sách AuthorName để kiểm tra
+        private async Task<SelectList> GetAuthorListAsync()
+        {
+            var authors = await _context.Authors.ToListAsync();
+            var authorList = new SelectList(authors, "Name");
+            return authorList;
         }
         
         // GET: Books/AddToCart/5
