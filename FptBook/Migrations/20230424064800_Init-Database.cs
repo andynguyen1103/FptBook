@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FptBook.Migrations
 {
     /// <inheritdoc />
-    public partial class initalldatabase : Migration
+    public partial class InitDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -283,6 +283,7 @@ namespace FptBook.Migrations
                     OrderID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     BookID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<float>(type: "real", nullable: true),
                     ProductID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

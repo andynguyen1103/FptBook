@@ -14,16 +14,24 @@
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
+      <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.16" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.16">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
       <PackageReference Include="MimeKit" Version="3.6.1" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
       <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
         
     </ItemGroup>
@@ -51,6 +59,11 @@
       <_ContentIncludedByDefault Remove="Views\CategoryControlller\Details.cshtml" />
       <_ContentIncludedByDefault Remove="Views\CategoryControlller\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\CategoryControlller\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Author\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Author\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Author\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Author\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Author\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -58,6 +71,7 @@
       <Folder Include="Areas\Customer\Data" />
       <Folder Include="Areas\Customer\Models" />
       <Folder Include="Areas\StoreManager\Data" />
+      <Folder Include="wwwroot\Upload" />
     </ItemGroup>
 
 </Project>

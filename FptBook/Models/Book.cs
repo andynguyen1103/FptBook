@@ -11,37 +11,41 @@ public class Book
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string BookId { get; set; }
     
-    [StringLength(50)]
     [Required]
     [Display(Name = "Book")]
-    public string Tittle { get; set; }
+    public string Title { get; set; }
     
     [Required]
     [Display(Name = "Image")]
-    public string ImageLink { get; set; }
+    public string? ImageLink { get; set; }
     
     [DataType (DataType.Date)]
     [Required]
     [Display(Name = "Date")]
     public DateTime UpdateDate { get; set; }
     
-    [Range(1, 1000)]
+    [Range(0, 10000)]
     [Required]
     public int Amount { get; set; }
     
-    [StringLength(50)]
     [Required]
-    public string Sumary { get; set; }
+    public string Summary { get; set; }
     
     [Column(TypeName = "Money")]
     [Required]
     public decimal Price { get; set; }
     
     [Required]
-    public string CategoryID { get; set; }
+    public string CategoryId { get; set; }
     
-    [ForeignKey("CategoryID")]
+    [Required]
+    public string AuthorId { get; set; }
+    
+    [ForeignKey("CategoryId")]
     public virtual Category? Category { get; set; }
+    
+    [ForeignKey("AuthorId")]
+    public virtual Author? Author { get; set; }
 
     public Book()
     {

@@ -1,0 +1,57 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@model BookViewModel
+
+<h2>Create new book</h2>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount" class="control-label"></label>
+        <input asp-for="Amount" class="form-control" />
+        <span asp-validation-for="Amount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Summary" class="control-label"></label>
+        <textarea asp-for="Summary" class="form-control"></textarea>
+        <span asp-validation-for="Summary" class="text-danger"></span>
+    </div>
+    @{
+        if (ViewBag.Categories != null)
+        {
+            <div class="form-group">
+                <label asp-for="CategoryID" class="control-label"></label>
+                <select asp-for="CategoryID"  class="form-control" asp-items='ViewData["Categories"] as SelectList'>
+                    <option disabled selected>--- SELECT ---</option>
+                </select>
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+        }
+    }
+    <div class="form-group">
+        <label asp-for="AuthorName" class="control-label"></label>
+        <input asp-for="AuthorName" class="form-control" />
+        <span asp-validation-for="AuthorName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageFile" class="control-label"></label>
+        <input asp-for="ImageFile" class="form-control-file" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

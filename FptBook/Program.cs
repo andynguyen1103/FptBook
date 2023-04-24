@@ -76,7 +76,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages();
 
-
+builder.Services.AddDistributedMemoryCache();           // Đăng ký dịch vụ lưu cache trong bộ nhớ (Session sẽ sử dụng nó)
+builder.Services.AddSession(cfg => {                    // Đăng ký dịch vụ Session
+    cfg.Cookie.Name = "FptBook";             // Đặt tên Session - tên này sử dụng ở Browser (Cookie)
+    cfg.IdleTimeout = new TimeSpan(0,30, 0);    // Thời gian tồn tại của Session
+});
 
 var app = builder.Build();
 
@@ -91,6 +95,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 // app.UseSession();   
 

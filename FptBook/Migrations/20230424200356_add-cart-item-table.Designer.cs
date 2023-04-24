@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FptBook.Migrations
 {
     [DbContext(typeof(FptBookIdentityDbContext))]
-    [Migration("20230422084959_init-all-database")]
-    partial class initalldatabase
+    [Migration("20230424200356_add-cart-item-table")]
+    partial class addcartitemtable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,11 @@ namespace FptBook.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<string>("CategoryID")
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -61,47 +65,50 @@ namespace FptBook.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
 
-                    b.Property<string>("Sumary")
+                    b.Property<string>("Summary")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tittle")
+                    b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("FptBook.Models.BookAuthor", b =>
+            modelBuilder.Entity("FptBook.Models.CartItem", b =>
                 {
-                    b.Property<string>("BookAuthorId")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AuthorId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BookId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("BookAuthorId");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AuthorId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookAuthors");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CartItem");
                 });
 
             modelBuilder.Entity("FptBook.Models.Category", b =>
@@ -271,6 +278,9 @@ namespace FptBook.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<float?>("Total")
+                        .HasColumnType("real");
+
                     b.HasKey("ID");
 
                     b.HasIndex("OrderID");
@@ -419,32 +429,40 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.Book", b =>
                 {
-                    b.HasOne("FptBook.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("FptBook.Models.BookAuthor", b =>
-                {
                     b.HasOne("FptBook.Models.Author", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FptBook.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("FptBook.Models.CartItem", b =>
+                {
                     b.HasOne("FptBook.Models.Book", "Book")
                         .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Author");
+                    b.HasOne("FptBook.Models.FptBookUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Book");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FptBook.Models.CategoryRequest", b =>

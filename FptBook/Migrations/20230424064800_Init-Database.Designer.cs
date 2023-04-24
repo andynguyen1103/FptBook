@@ -4,6 +4,7 @@ using FptBook.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FptBook.Migrations
 {
     [DbContext(typeof(FptBookIdentityDbContext))]
-    partial class FptBookIdentityDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230424064800_Init-Database")]
+    partial class InitDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,11 +50,7 @@ namespace FptBook.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<string>("AuthorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CategoryId")
+                    b.Property<string>("CategoryID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -62,50 +61,47 @@ namespace FptBook.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
 
-                    b.Property<string>("Summary")
+                    b.Property<string>("Sumary")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Tittle")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("FptBook.Models.CartItem", b =>
+            modelBuilder.Entity("FptBook.Models.BookAuthor", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("BookAuthorId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BookId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                    b.HasKey("BookAuthorId");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CartItem");
+                    b.ToTable("BookAuthors");
                 });
 
             modelBuilder.Entity("FptBook.Models.Category", b =>
@@ -426,40 +422,32 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.Book", b =>
                 {
+                    b.HasOne("FptBook.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("FptBook.Models.BookAuthor", b =>
+                {
                     b.HasOne("FptBook.Models.Author", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FptBook.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
+                    b.HasOne("FptBook.Models.Book", "Book")
+                        .WithMany("BookAuthor")
+                        .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Author");
 
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("FptBook.Models.CartItem", b =>
-                {
-                    b.HasOne("FptBook.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FptBook.Models.FptBookUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Book");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FptBook.Models.CategoryRequest", b =>
@@ -550,6 +538,11 @@ namespace FptBook.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FptBook.Models.Book", b =>
+                {
+                    b.Navigation("BookAuthor");
                 });
 
             modelBuilder.Entity("FptBook.Models.Order", b =>
