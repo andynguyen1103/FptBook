@@ -23,7 +23,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.User)
                 </th>
-                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,18 @@
                         @Html.DisplayFor(modelItem => item.CreatedAt)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IsApproved)
+                        @*@Html.DisplayFor(modelItem => item.IsApproved)*@
+                        @{
+                            if (item.IsApproved.Value)
+                            {
+                                <p>Yes</p>
+                            }
+        
+                            else
+                            {
+                                <p>No</p>
+                            }
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ApprovedAt)

@@ -7,11 +7,11 @@
 <h1>Edit Category Request</h1>
  
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Approve">
+@*<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <table>
+            <table class="table table-bordered table-striped">
                 <tbody>
                     <tr>
                         <td><label asp-for="Name"></label></td>
@@ -32,11 +32,47 @@
             <input type="hidden" asp-for="CreatedAt"/>
         </form>
     </div>
-</div> <br>
-
-
-<div>
+</div> <br>*@
+@*<div>
     <a class="back-to-list" asp-action="Index">Back to List</a>
+</div>*@
+
+
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th> <br> <br>
+                            <label asp-for="Name" class="control-label" style="font-size: 20px;"></label>
+                        </th>
+                        <td>
+                            <input asp-for="Name" class="form-control" /> <br><br>
+                            <span asp-validation-for="Name" class="text-danger"></span> <br><br>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div >
+                <a class="back-to-list" asp-action="Index">Back to List</a>
+                <button type="submit" class="save-button">Save</button>
+            </div>
+            <input type="hidden" asp-for="RequestId" />
+            <input type="hidden" asp-for="UserID"/>
+            <input type="hidden" asp-for="IsApproved"/>
+            <input type="hidden" asp-for="CreatedAt"/>
+        </form>
+    </div>
 </div>
 
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/store_manager-catereq-edit.css")" rel="stylesheet" type="text/css" />
+}
 
