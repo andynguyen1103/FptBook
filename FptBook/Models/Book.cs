@@ -25,7 +25,7 @@ public class Book
     [Display(Name = "Date")]
     public DateTime UpdateDate { get; set; }
     
-    [Range(1, 1000)]
+    [Range(0, 1000)]
     [Required]
     public int Amount { get; set; }
     
@@ -40,8 +40,14 @@ public class Book
     [Required]
     public string CategoryID { get; set; }
     
+    [Required]
+    public string AuthorID { get; set; }
+    
     [ForeignKey("CategoryID")]
     public virtual Category? Category { get; set; }
+    
+    [ForeignKey("AuthorID")]
+    public virtual Author? Author { get; set; }
 
     public Book()
     {

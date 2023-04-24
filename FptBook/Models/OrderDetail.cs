@@ -19,6 +19,8 @@ public class OrderDetail
 
     [Required]
     public int Quantity { get; set; }
+    
+    public float? Total { get; set; }
 
     [ForeignKey("OrderID")]
     public virtual Order Order { get; set; }

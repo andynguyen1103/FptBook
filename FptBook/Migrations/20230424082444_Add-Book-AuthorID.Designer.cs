@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FptBook.Migrations
 {
     [DbContext(typeof(FptBookIdentityDbContext))]
-    [Migration("20230422084959_init-all-database")]
-    partial class initalldatabase
+    [Migration("20230424082444_Add-Book-AuthorID")]
+    partial class AddBookAuthorID
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,10 @@ namespace FptBook.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<string>("AuthorID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("CategoryID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -76,32 +80,11 @@ namespace FptBook.Migrations
 
                     b.HasKey("BookId");
 
+                    b.HasIndex("AuthorID");
+
                     b.HasIndex("CategoryID");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("FptBook.Models.BookAuthor", b =>
-                {
-                    b.Property<string>("BookAuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AuthorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BookId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("BookAuthorId");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("BookAuthors");
                 });
 
             modelBuilder.Entity("FptBook.Models.Category", b =>
@@ -271,6 +254,9 @@ namespace FptBook.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<float?>("Total")
+                        .HasColumnType("real");
+
                     b.HasKey("ID");
 
                     b.HasIndex("OrderID");
@@ -419,32 +405,21 @@ namespace FptBook.Migrations
 
             modelBuilder.Entity("FptBook.Models.Book", b =>
                 {
+                    b.HasOne("FptBook.Models.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FptBook.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("FptBook.Models.BookAuthor", b =>
-                {
-                    b.HasOne("FptBook.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FptBook.Models.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Author");
 
-                    b.Navigation("Book");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("FptBook.Models.CategoryRequest", b =>

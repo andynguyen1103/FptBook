@@ -7,18 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FptBook.Data;
 using FptBook.Models;
+using Newtonsoft.Json;
 
 namespace FptBook.Controllers
 {
     public class BookController : Controller
     {
         private readonly FptBookIdentityDbContext _context;
-        private readonly CartService _cartService;
 
-        public BookController(FptBookIdentityDbContext context, CartService cartService)
+        public BookController(FptBookIdentityDbContext context)
         {
             _context = context;
-            _cartService = cartService;
         }
 
         // GET: Book
@@ -52,25 +51,39 @@ namespace FptBook.Controllers
         public IActionResult Create()
         {
             ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryID", "Name");
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "AuthorID", "Name");
             return View();
         }
 
-        // POST: Book/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Tittle,ImageLink,UpdateDate,Amount,Sumary,Price,CategoryID")] Book book)
+            [Bind("Tittle,ImageLink,UpdateDate,Amount,Sumary,Price,CategoryID,AuthorID")] Book book)
         {
             if (ModelState.IsValid)
             {
+                var category = await _context.Categories.FirstOrDefaultAsync(c => c.Name == book.Category.Name);
+                if (category == null)
+                {
+                    category = new Category { Name = book.Category.Name };
+                    _context.Categories.Add(category);
+                }
+                book.Category = category;
+                var author = await _context.Authors.FirstOrDefaultAsync(a => a.Name == book.Author.Name);
+                if (author == null)
+                {
+                    author = new Author { Name = book.Author.Name };
+                    _context.Authors.Add(author);
+                }
+                book.Author = author;
+
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
             ViewData["CategoryID"] = new SelectList(_context.Categories, "CategoryID", "Name", book.CategoryID);
+            ViewData["AuthorID"] = new SelectList(_context.Authors, "AuthorID", "Name", book.AuthorID);
             return View(book);
         }
 
@@ -98,7 +111,7 @@ namespace FptBook.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id,
-            [Bind("BookId,Tittle,ImageLink,UpdateDate,Amount,Sumary,Price,CategoryID")] Book book)
+            [Bind("BookId,Tittle,ImageLink,UpdateDate,Amount,Sumary,Price,CategoryID,AuthorID")] Book book)
         {
             if (id != book.BookId)
             {
@@ -170,7 +183,7 @@ namespace FptBook.Controllers
             if (book == null)
                 return NotFound ("Not found");
 
-            var cart = _cartService.GetCartItems();
+            var cart = GetCartItems();
             var cartitem = cart.Find(p => p.Book.BookId == bookid);
             if (cartitem != null) {
                 cartitem.Quantity++;
@@ -181,42 +194,68 @@ namespace FptBook.Controllers
             return RedirectToAction (nameof (Cart));
         }
         
+        public const string CARTKEY = "cart";
+
+        // Lấy cart từ Session (danh sách CartItem)
+        List<CartItem> GetCartItems () {
+
+            var session = HttpContext.Session;
+            string jsoncart = session.GetString (CARTKEY);
+            if (jsoncart != null) {
+                return JsonConvert.DeserializeObject<List<CartItem>> (jsoncart);
+            }
+            return new List<CartItem> ();
+        }
+
+        // Xóa cart khỏi session
+        void ClearCart () {
+            var session = HttpContext.Session;
+            session.Remove (CARTKEY);
+        }
+
+        // Lưu Cart (Danh sách CartItem) vào session
+        void SaveCartSession (List<CartItem> ls) {
+            var session = HttpContext.Session;
+            string jsoncart = JsonConvert.SerializeObject (ls);
+            session.SetString (CARTKEY, jsoncart);
+        }
+        
         [Route ("/cart", Name = "cart")]
         public IActionResult Cart () 
         {
-            return View (_cartService.GetCartItems());
+            return View(GetCartItems());
         }
         
         [Route ("/removecart/{bookid:int}", Name = "removecart")]
         public IActionResult RemoveCart ([FromRoute] string bookid) {
-            var cart = _cartService.GetCartItems ();
+            var cart = GetCartItems ();
             var cartitem = cart.Find (p => p.Book.BookId == bookid);
             if (cartitem != null) {
                 cart.Remove(cartitem);
             }
 
-            _cartService.SaveCartSession (cart);
+            SaveCartSession (cart);
             return RedirectToAction (nameof (Cart));
         }
         
         [Route ("/updatecart", Name = "updatecart")]
         [HttpPost]
         public IActionResult UpdateCart ([FromForm] string bookid, [FromForm] int quantity) {
-            var cart = _cartService.GetCartItems ();
+            var cart = GetCartItems ();
             var cartitem = cart.Find (p => p.Book.BookId == bookid);
             if (cartitem != null) {
                 cartitem.Quantity = quantity;
             }
-            _cartService.SaveCartSession (cart);
+            SaveCartSession (cart);
             return Ok();
         }
         
         [Route ("/checkout")]
         public IActionResult Checkout()
         {
-            var cart = _cartService.GetCartItems ();
+            var cart = GetCartItems ();
 
-            _cartService.ClearCart();
+            ClearCart();
             return Content("Succesfull");
 
         }
