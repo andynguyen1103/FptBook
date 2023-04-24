@@ -30,4 +30,5 @@ public class FptBookIdentityDbContext : IdentityDbContext<FptBookUser>
     public DbSet<CategoryRequest> CategoryRequests { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
 }

@@ -71,6 +71,7 @@
       <Folder Include="Areas\Customer\Data" />
       <Folder Include="Areas\Customer\Models" />
       <Folder Include="Areas\StoreManager\Data" />
+      <Folder Include="wwwroot\Upload" />
     </ItemGroup>
 
 </Project>

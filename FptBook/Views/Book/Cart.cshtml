@@ -1,4 +1,5 @@
-﻿@model System.Collections.Generic.List<FptBook.Models.CartItem>
+﻿@using System.Globalization
+@model System.Collections.Generic.List<FptBook.Models.CartItem>
 
 @{
     ViewBag.Title = "title";
@@ -19,16 +20,21 @@
     <tbody>
     @foreach (var item in Model)
     {
+        var num = item.Quantity * item.Book.Price;
         <tr>
-            <td>@item.Book.Tittle</td>
-            <td>@item.Book.Price.ToString("C")</td>
-            <td>@Html.TextBoxFor(modelItem => item.Quantity, new { @class = "form-control" })</td>
-            <td>@(item.Quantity * item.Book.Price).ToString("C")</td>
-             <td>
-                <form asp-action="RemoveCart" asp-route-id="@item.Book.BookId">
-                    <button class="btn btn-danger btn-sm">Remove</button>
-                </form>
-            </td>
+            <form asp-action="UpdateCart" asp-route-id="@item.Id">
+                <td>@item.Book.Title</td>
+                <td>@item.Book.Price.ToString("C")</td>
+                <td><input name="CartInput" id="CartInput" value="@item.Quantity"/></td>
+                <td>@num</td>
+                <td>
+                    <button type="submit" class="btn btn-success updatecartitem"
+                            data-productid="@item.Book.BookId">Update</button>
+                    <a asp-action="DeleteCart" asp-route-id="@item.Id"
+                       class="btn btn-danger">Remove</a>
+                </td>
+            </form>
+            
         </tr>
     }
     </tbody>
@@ -37,10 +43,48 @@
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
         <a href="@Url.Action("Index", "Home")" class="btn btn-default">Continue Shopping</a>
-        <button type="submit" class="btn btn-primary">Update Cart</button>
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-default">Checkout</a>
     </div>
 </div>
 
 <div class="total">
-    <h3>Total: @Model.Sum(item => item.Quantity * item.Book.Price).ToString("C")</h3>
+    <h3>
+        Total:
+        @{
+            var sum = (decimal)0.0;
+            foreach (var item in Model)
+            {
+                sum = sum + item.Quantity * item.Book.Price;
+            }
+
+            <p>@sum</p>
+        }
+
+    </h3>
 </div>
+
+@* @section Scripts { *@
+@*     <script> *@
+@*           $(document).ready(function () { *@
+@*               $(".updatecartitem").click(function (event) { *@
+@*                   event.preventDefault(); *@
+@*                   var productid = $(this).attr("data-productid"); *@
+@*                   var quantity = $("#quantity-" + productid).val(); *@
+@*                   $.ajax({ *@
+@*                       type: "POST", *@
+@*                       url:"@Url.RouteUrl("updatecart")", *@
+@*                       contentType: "application/json", *@
+@*                       data: { *@
+@*                           bookid: productid, *@
+@*                           quantity:quantity *@
+@*                       }, *@
+@*                       success: function (result) { *@
+@*                           window.location.href = "@Url.RouteUrl("cart")"; *@
+@*                       } *@
+@*                   }); *@
+@*               }); *@
+@*           }); *@
+@*         </script> *@
+}
