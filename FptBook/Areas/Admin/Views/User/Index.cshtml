@@ -8,6 +8,7 @@
 }
 
 @inject UserManager<FptBookUser> UserManager;
+@inject RoleManager<IdentityRole> RoleManager;
 
 <h2>Manage Users</h2>
 <a class="add-manager" asp-area="Admin" asp-controller="User" asp-action="CreateManager">Add Manager</a>
@@ -37,6 +38,10 @@
         <th>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </th>
+        
+        <th>
+            Role
+        </th>
             
         <th>Action</th>
     </tr>
@@ -65,7 +70,30 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-        
+            
+            @{
+                if (await UserManager.IsInRoleAsync(item, RoleNames.Administrator))
+                {
+                    <td>
+                        Admin
+                    </td>
+                }
+                
+                if (await UserManager.IsInRoleAsync(item, RoleNames.StoreManager))
+                {
+                    <td>
+                        Manager
+                    </td>
+                }
+                
+                if (await UserManager.IsInRoleAsync(item, RoleNames.Customer))
+                {
+                    <td>
+                        Customer
+                    </td>
+                }
+            }
+
             <td>
                 @* <a asp-area="Admin" asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">Edit</a> | *@
                 <a class="detail-button" asp-area="Admin" asp-controller="User" asp-action="Details" asp-route-id="@item.Id">Details</a> 
