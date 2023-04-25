@@ -162,6 +162,60 @@ namespace FptBook.Areas.Customer.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Cart));
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> Checkout()
+        {
+            var checkoutList =
+               await _context.CartItems.Include(ci => ci.Book)
+                                        .Include(ci => ci.User)
+                                        .Where(ci => ci.User == _userManager.GetUserAsync(HttpContext.User).Result)
+                                        .ToListAsync();
+            return View(checkoutList);
+        }
+        
+        [HttpPost("")]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Checkout(decimal total)
+        {
+            if (total == 0)
+            {
+                return BadRequest();
+            }
+            var checkoutList =
+                await _context.CartItems.Include(ci => ci.Book)
+                    .Include(ci => ci.User)
+                    .Where(ci => ci.User == _userManager.GetUserAsync(HttpContext.User).Result)
+                    .ToListAsync();
+
+            var order = new Order()
+            {
+                CreatedAt = DateTime.Now,
+                TotalPrice = total,
+                User = await _userManager.GetUserAsync(HttpContext.User),
+                IsCompleted = false
+            };
+
+            var orderDetails = new List<OrderDetail>();
+            foreach (var item in checkoutList.Select(cl => new{cl.Book,cl.Quantity} ))
+            {
+                var temp = new OrderDetail()
+                {
+                    Order = order,
+                    BookID = item.Book.BookId,
+                    Quantity = item.Quantity
+                };
+                
+                orderDetails.Add(temp);
+            }
+
+            order.OrderDetails = orderDetails;
+            await _context.Orders.AddAsync(order);
+            await _context.OrderDetails.AddRangeAsync(orderDetails);
+            _context.CartItems.RemoveRange(checkoutList);
+            await _context.SaveChangesAsync();
+            return RedirectToRoute("default");
+        }
         private bool BookExists(string id)
         {
           return (_context.Books?.Any(e => e.BookId == id)).GetValueOrDefault();

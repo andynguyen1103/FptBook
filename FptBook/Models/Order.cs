@@ -28,7 +28,7 @@ public class Order
     [ForeignKey("UserID")]
     public virtual FptBookUser User { get; set; }
     
-    public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
+    public virtual IEnumerable<OrderDetail>? OrderDetails { set; get; }
 
     public Order()
     {

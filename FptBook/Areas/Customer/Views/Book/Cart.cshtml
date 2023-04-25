@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using Microsoft.IdentityModel.Tokens
 @model System.Collections.Generic.List<FptBook.Models.CartItem>
 
 @{
@@ -60,11 +61,16 @@
 
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-        <a href="@Url.Action("Index", "Home")" class="btn btn-default">Continue Shopping</a>
+        <a asp-area = "Customer" asp-controller="Book" asp-action="Index" class="btn btn-default">Continue Shopping</a>
     </div>
-    <div class="col-md-offset-2 col-md-10">
-        <a href="@Url.Action("Index", "Home")" class="btn btn-default">Checkout</a>
-    </div>
+    @{
+        if (!Model.IsNullOrEmpty())
+        {
+            <div class="col-md-offset-2 col-md-10">
+                <a asp-area = "Customer" asp-controller="Book" asp-action="Checkout" class="btn btn-default">Checkout</a>
+            </div>
+        }
+    }
 </div>
 
 @* @section Scripts { *@
