@@ -7,15 +7,21 @@
     Layout = "_Layout";
 }
 
-<h2>Cart</h2>
+<div class="wrapper">
+    <div class="title"> 
+        <h2 class="cart-title">Shopping Cart</h2> 
+    </div> <br> <br>
+</div>
+
 
 <table class="table">
     <thead>
     <tr>
-        <th>Book</th>
+        <th>Book Name</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Total</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -26,52 +32,63 @@
             <form asp-action="UpdateCart" asp-route-id="@item.Id">
                 <td>@item.Book.Title</td>
                 <td>@item.Book.Price.ToString("C")</td>
-                <td><input name="CartInput" id="CartInput" value="@item.Quantity"/></td>
+                <td><input type="number" name="CartInput" id="CartInput" value="@item.Quantity" class="quantity-input" min="1"/></td>
                 <td>@num.ToString("0.00")</td>
                 <td>
-                    <button type="submit" class="btn btn-success updatecartitem"
+                    <button type="submit" class="btn btn-success update-cart-item"
                             data-productid="@item.Book.BookId">Update</button>
                     <a asp-action="DeleteCart" asp-route-id="@item.Id"
-                       class="btn btn-danger">Remove</a>
+                       class="btn btn-danger remove-cart-item">Remove</a>
                 </td>
             </form>
             
         </tr>
     }
     </tbody>
-</table>
+</table> <br><br><br>
 
 
-
-<div class="total">
-    <h3>
-        Total:
-        @{
-            var sum = (decimal)0.0;
-            foreach (var item in Model)
-            {
-                sum = sum + item.Quantity * item.Book.Price;
-            }
-
-            <p>@sum.ToString("0.00")</p>
-        }
-
-    </h3>
-</div>
-
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <a asp-area = "Customer" asp-controller="Book" asp-action="Index" class="btn btn-default">Continue Shopping</a>
+<div class="total-wrapper">
+    <div class="total-title"> 
+        <div class="total">
+            <h3>Subtotal: </h3>
+            <h3 class="subtotal-amount">
+                @{
+                    var sum = (decimal)0.0;
+                    foreach (var item in Model)
+                    {
+                        sum = sum + item.Quantity * item.Book.Price;
+                    }
+                    <p class="total-amount">$@sum.ToString("0.00")</p>
+                }
+            </h3>
+        </div>
     </div>
-    @{
-        if (!Model.IsNullOrEmpty())
-        {
-            <div class="col-md-offset-2 col-md-10">
-                <a asp-area = "Customer" asp-controller="Cart" asp-action="Checkout" class="btn btn-default">Checkout</a>
-            </div>
-        }
-    }
 </div>
+
+
+
+<div style="display: flex">
+    <div class="col-md-offset-2 col-md-10">
+        <a asp-area = "Customer" asp-controller="Book" asp-action="Index" class="btn" style="margin-left: 10rem">Continue Shopping</a>
+    </div>
+        @{
+            if (!Model.IsNullOrEmpty())
+            {
+                <div class="col-md-offset-2 col-md-10">
+                    <a asp-area = "Customer" asp-controller="Cart" asp-action="Checkout" class="btn" style="margin-left: 50rem; margin-top: -68rem">Checkout</a>
+                </div>
+            }
+        }
+        
+    
+</div>
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/customer-cart.css")" rel="stylesheet" type="text/css" />
+}
+
 
 @* @section Scripts { *@
 @*     <script> *@
@@ -95,4 +112,3 @@
 @*               }); *@
 @*           }); *@
 @*         </script> *@
-}
