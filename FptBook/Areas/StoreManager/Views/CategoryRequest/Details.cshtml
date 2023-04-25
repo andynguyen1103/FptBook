@@ -72,7 +72,19 @@
             </tr>
             <tr>
                 <th>@Html.DisplayNameFor(model => model.IsApproved)</th>
-                <td>@Html.DisplayFor(model => model.IsApproved)</td>
+                @*<td>@Html.DisplayFor(model => model.IsApproved)</td>*@
+                <td>
+                    @{
+                        if (Model.IsApproved.Value)
+                        {
+                            <p>Yes</p>
+                        }
+                        else
+                        {
+                            <p>No</p>
+                        }
+                    }
+                </td>
             </tr>
             @{
                 if (Model.IsApproved.GetValueOrDefault())

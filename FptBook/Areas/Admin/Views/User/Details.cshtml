@@ -5,7 +5,7 @@
     Layout = "_AdminLayout";
 }
 
-<h1>Information Details</h1>
+<h1>User Information Details</h1>
 
 <div class="table-container">
     <table>
@@ -23,20 +23,48 @@
                 <td class="data-cell">@Html.DisplayFor(model => model.HomeAddress)</td>
             </tr>
              <tr>
-                <th class="header-cell">@Html.DisplayNameFor(model => model.Email)</th>
+                 @*<th class="header-cell">@Html.DisplayNameFor(model => model.Email)</th>*@
+                 <th class="header-cell">User Email</th>
                 <td class="data-cell">@Html.DisplayFor(model => model.Email)</td>
             </tr>
             <tr>
-                <th class="header-cell">@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                @*<th class="header-cell">@Html.DisplayNameFor(model => model.PhoneNumber)</th>*@
+                <th class="header-cell">Phone Number</th>
                 <td class="data-cell">@Html.DisplayFor(model => model.PhoneNumber)</td>
             </tr>
             <tr>
-                <th class="header-cell">@Html.DisplayNameFor(model => model.TwoFactorEnabled)</th>
-                <td class="data-cell">@Html.DisplayFor(model => model.TwoFactorEnabled)</td>
+                @*<th class="header-cell">@Html.DisplayNameFor(model => model.TwoFactorEnabled)</th>*@
+                <th class="header-cell">Two Factor Authentication</th>
+                @*<td class="data-cell">@Html.DisplayFor(model => model.TwoFactorEnabled)</td>*@
+                <td>
+                    @{
+                        if (Model.TwoFactorEnabled)
+                        {
+                            <p>Enabled</p>
+                        }
+                        else
+                        {
+                            <p>Disabled</p>
+                        }
+                    }
+                </td>
             </tr>
             <tr>
-                <th class="header-cell">@Html.DisplayNameFor(model => model.LockoutEnabled)</th>
-                <td class="data-cell">@Html.DisplayFor(model => model.LockoutEnabled)</td>
+                @*<th class="header-cell">@Html.DisplayNameFor(model => model.LockoutEnabled)</th>*@
+                <th class="header-cell">Account Status</th>
+                @*<td class="data-cell">@Html.DisplayFor(model => model.LockoutEnabled)</td>*@
+                <td>
+                    @{
+                        if (Model.LockoutEnabled)
+                        {
+                            <p>Banned</p>
+                        }
+                        else
+                        {
+                            <p>Unbanned</p>
+                        }
+                    }
+                </td>
             </tr>
         </thead>
     </table>

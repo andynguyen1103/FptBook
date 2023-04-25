@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Manage Category</h1>
+<h1>Manage Category Request</h1>
 <a class="add-category" asp-action="Create">Create New</a>
 
 <table class="table">
@@ -20,7 +20,7 @@
             @Html.DisplayNameFor(model => model.IsApproved)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User)
+            Action
         </th>
     </tr>
     </thead>
@@ -34,14 +34,25 @@
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsApproved)
+                @*@Html.DisplayFor(modelItem => item.IsApproved)*@
+                @{
+                    if (item.IsApproved.Value)
+                    {
+                        <p>Yes</p>
+                    }
+
+                    else
+                    {
+                        <p>No</p>
+                    }
+                }
             </td>
             <td>
                 <a class="detail-button" asp-action="Details" asp-route-id="@item.RequestId">Details</a> 
                 @{
                     if (!(bool) item.IsApproved)
                     {
-                        @* <a class="edit-button" asp-action="Edit" asp-route-id="@item.RequestId">Edit</a> *@
+                        <a class="edit-button" asp-action="Edit" asp-route-id="@item.RequestId">Edit</a> 
                         <a class="delete-button" asp-action="Delete" asp-route-id="@item.RequestId">Delete</a>
                     }
                 }

@@ -28,7 +28,7 @@ namespace FptBook.Areas.StoreManager.Controllers
         public async Task<IActionResult> Index()
         {
             var user = _userManager.GetUserAsync(HttpContext.User).Result;
-            var fptBookIdentityDbContext = _context.CategoryRequests.Where(cq=> cq.UserID == user.Id ).Include(c => c.User);
+            var fptBookIdentityDbContext = _context.CategoryRequests.Where(cq=> cq.UserID == user.Id ).OrderBy(cq=>cq.IsApproved).Include(c => c.User);
             return View(await fptBookIdentityDbContext.ToListAsync());
         }
 
@@ -101,7 +101,7 @@ namespace FptBook.Areas.StoreManager.Controllers
                 return NotFound();
             }
             
-            if (!categoryRequest.IsApproved.GetValueOrDefault())
+            if (categoryRequest.IsApproved.GetValueOrDefault())
             {
                 return NotFound();
             }

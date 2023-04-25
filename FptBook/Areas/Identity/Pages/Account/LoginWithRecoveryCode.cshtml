@@ -4,29 +4,61 @@
     ViewData["Title"] = "Recovery code verification";
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr />
-<p>
-    You have requested to log in with a recovery code. This login will not be remembered until you provide
-    an authenticator app code at log in or disable 2FA and log in again.
-</p>
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off" />
-                <label asp-for="Input.RecoveryCode" class="form-label"></label>
-                <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span>
+<div class="background-lr"> <br><br>
+    <div class="container">
+            <h1 style="text-align: center; font-size: 2.5rem; text-transform: capitalize; margin-top: 10px; margin-bottom: 20px;">Recovery code verification</h1>
+            <p style="text-align: left; font-size: 1.7rem; color: #664d03; background-color: #fff3cd; border-color: #ffecb5; padding: 10px 10px; margin-bottom: 20px;">
+                You have requested to log in with a recovery code. This login will not be remembered until you provide
+                an authenticator app code at log in or disable 2FA and log in again.
+            </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating">
+                            <label asp-for="Input.RecoveryCode" class="form-label" style="font-size: 1.8rem; font-weight: 700;"></label>
+                            <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off"  style="margin-bottom: 20px"/>
+                            <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span><br><br>
+                        </div>
+                        <div style="text-align: center">
+                            <button type="submit" class="btn" style="padding: 15px 10rem; margin-bottom: 10px; text-transform: capitalize ">log in</button>
+                        </div>
+                        
+                    </form>
+                    <p style="font-size: 1.5rem; text-align: center; margin-top: 10px">
+                        <a asp-route="no-pass-login" class="email-login">Login via Email</a>
+                    </p>
+                </div>
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-        </form>
-        <p>
-            <a asp-route="no-pass-login">Login via Email</a>
-        </p>
-    </div>
+    </div> <br><br>
+
 </div>
+
+    <style>
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .email-login{
+            color: #27ae60;
+        }
+        
+        .email-login:hover{
+            text-decoration: underline;
+        }
+
+    </style>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+}
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/login-register.css")" rel="stylesheet" type="text/css" />
 }

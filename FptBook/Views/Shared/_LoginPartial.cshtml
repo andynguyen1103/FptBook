@@ -18,8 +18,8 @@
             <div class="dropdown">
                 <div id="login-btn" class="fas fa-user dropbtn"></div>
                 <div class="dropdown-content">
-                    <a class="drop-content">Profile</a>
-                    <a class="drop-content" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" >Settings</a>
+                    <a class="drop-content" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" >Profile</a>
+                    <a class="drop-content">Order</a>
                     <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                         <a class="drop-content"><button class="logout-btn" id="logout" style="font-size: 1.5rem; cursor: pointer; background: #f9f9f9; color: var(--black)">Logout</button></a>
                     </form>
