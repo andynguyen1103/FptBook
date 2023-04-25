@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace FptBook.Models;
+namespace FptBook.Areas.StoreManager.Models;
 
 public class BookViewModel
 {

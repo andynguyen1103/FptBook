@@ -33,10 +33,7 @@
     
                 <a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-book"></i> FPTBook</a>
     
-                <form action="" class="search-form">
-                    <input type="search" name="" placeholder="Search here" id="search-box">
-                    <label for="search-box" class="fas fa-search"></label>
-                </form>
+                @RenderSection("SearchBar", required:false)
     
                 <div class="icons">
                     @* @await Html.PartialAsync("_CartPartial") *@

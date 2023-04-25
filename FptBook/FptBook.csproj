@@ -64,14 +64,27 @@
       <_ContentIncludedByDefault Remove="Views\Author\Details.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Author\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Author\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Book\Cart.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Book\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Book\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Book\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Book\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Book\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Areas\Admin\Data" />
       <Folder Include="Areas\Customer\Data" />
-      <Folder Include="Areas\Customer\Models" />
       <Folder Include="Areas\StoreManager\Data" />
       <Folder Include="wwwroot\Upload" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\StoreManager\Views\Book\Create.cshtml" />
+      <AdditionalFiles Include="Areas\StoreManager\Views\Book\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\StoreManager\Views\Book\Details.cshtml" />
+      <AdditionalFiles Include="Areas\StoreManager\Views\Book\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\StoreManager\Views\Book\Index.cshtml" />
     </ItemGroup>
 
 </Project>

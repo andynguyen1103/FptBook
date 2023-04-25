@@ -1,0 +1,59 @@
+﻿@using Microsoft.IdentityModel.Tokens
+@model IEnumerable<FptBook.Models.CartItem>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Book</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        var num = item.Quantity * item.Book.Price;
+        <tr>
+            <td>@item.Book.Title</td>
+            <td>@item.Book.Price.ToString("C")</td>
+            <td>@item.Quantity</td>
+            <td>@num.ToString("0.00")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+
+<div class="total">
+    <h3>
+        Total:
+        @{
+            var sum = (decimal)0.0;
+            foreach (var item in Model)
+            {
+                sum = sum + item.Quantity * item.Book.Price;
+            }
+
+            <p>@sum.ToString("0.00")</p>
+        }
+
+    </h3>
+</div>
+@{
+    if (!Model.IsNullOrEmpty())
+    {
+        <form asp-area="Customer" asp-controller="Cart" asp-action="Checkout">
+            <div class="form-group">
+                <input name="Total" value="@sum" type="hidden"/>
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-default">Order</button>
+                </div>
+            </div>
+        </form>
+    }
+}
+
+
+

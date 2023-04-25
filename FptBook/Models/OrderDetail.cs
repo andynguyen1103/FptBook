@@ -12,19 +12,19 @@ public class OrderDetail
     public string ID { set; get; }
     
     [Required]
-    public string OrderID { get; set; }
+    public string OrderId { get; set; }
     
     [Required]
-    public string BookID { get; set; }
+    public string BookId { get; set; }
 
     [Required]
     public int Quantity { get; set; }
     
     public float? Total { get; set; }
 
-    [ForeignKey("OrderID")]
+    [ForeignKey("OrderId")]
     public virtual Order Order { get; set; }
 
-    [ForeignKey("ProductID")]
+    [ForeignKey("BookId")]
     public virtual Book Book { get; set; }
 }
