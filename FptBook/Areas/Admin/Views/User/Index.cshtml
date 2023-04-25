@@ -31,11 +31,13 @@
         @*     @Html.DisplayNameFor(model => model.NormalizedEmail) *@
         @* </th> *@
         <th>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
+            @*@Html.DisplayNameFor(model => model.EmailConfirmed)*@
+            Email Status
         </th>
            
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @*@Html.DisplayNameFor(model => model.PhoneNumber)*@
+            Phone Number
         </th>
             
         <th>Action</th>
@@ -59,7 +61,17 @@
             </td>
          
             <td>
-                @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                @*@Html.DisplayFor(modelItem => item.EmailConfirmed)*@
+                @{
+                    if (item.EmailConfirmed)
+                    {
+                        <p>Confirmed</p>
+                    }
+                    else
+                    {
+                        <p>Unconfirmed</p>
+                    }
+                }
             </td>
          
             <td>

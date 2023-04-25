@@ -4,38 +4,67 @@
     ViewData["Title"] = "Two-factor authentication";
 }
 
-<h1>@ViewData["Title"]</h1>
-<hr />
-<p>Your login is protected with an authenticator app. Enter your authenticator code below.</p>
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
-            <input asp-for="RememberMe" type="hidden" />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" />
-                <label asp-for="Input.TwoFactorCode" class="form-label"></label>
-                <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
-            </div>
-            <div>
-                <div class="checkbox">
-                    <label asp-for="Input.RememberMachine" class="form-label">
-                        <input asp-for="Input.RememberMachine" />
-                        @Html.DisplayNameFor(m => m.Input.RememberMachine)
-                    </label>
+<div class="background-lr"> <br><br>
+    <div class="container">
+            <h1 style="text-align: center; font-size: 2.5rem; text-transform: capitalize; margin-top: 10px; margin-bottom: 20px;">Two-factor authentication</h1>
+            <p style="text-align: center; font-size: 1.7rem; color: #664d03; background-color: #fff3cd; border-color: #ffecb5; padding: 10px 10px; margin-bottom: 20px;">Your login is protected with an authenticator app. Enter your authenticator code below.</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                        <input asp-for="RememberMe" type="hidden"/>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating">
+                            <label asp-for="Input.TwoFactorCode" class="form-label" style="font-size: 1.8rem; font-weight: 700;"></label>
+                            <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" style="margin-bottom: 20px"/> 
+                            <span asp-validation-for="Input.TwoFactorCode" class="text-danger" ></span> <br><br>
+                        </div>
+                        <div>
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMachine" class="form-label" >
+                                    <input asp-for="Input.RememberMachine"/>
+                                    @Html.DisplayNameFor(m => m.Input.RememberMachine)
+                                </label>
+                            </div>
+                        </div>
+                        <div style="text-align: center">
+                            <button type="submit" class="btn" style="padding: 15px 10rem; margin-bottom: 10px; text-transform: capitalize ">log in</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div>
-                <button type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-            </div>
-        </form>
-    </div>
+            <p style="text-align: center; font-size: 1.5rem;">
+                Don't have access to your authenticator device? You can
+                <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl" class="login-recovery">log in with a recovery code</a>.
+            </p>
+    </div> <br><br>
+
 </div>
-<p>
-    Don't have access to your authenticator device? You can
-    <a id="recovery-code-login" asp-page="./LoginWithRecoveryCode" asp-route-returnUrl="@Model.ReturnUrl">log in with a recovery code</a>.
-</p>
+
+    <style>
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .login-recovery{
+            color: #27ae60;
+        }
+        
+        .login-recovery:hover{
+            text-decoration: underline;
+        }
+    </style>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+}
+
+
+@section CSS
+{
+	<link href="@Url.Content("~/css/login-register.css")" rel="stylesheet" type="text/css" />
 }
