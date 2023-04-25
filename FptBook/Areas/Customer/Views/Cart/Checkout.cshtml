@@ -44,7 +44,7 @@
 @{
     if (!Model.IsNullOrEmpty())
     {
-        <form asp-area="Customer" asp-controller="Book" asp-action="Checkout">
+        <form asp-area="Customer" asp-controller="Cart" asp-action="Checkout">
             <div class="form-group">
                 <input name="Total" value="@sum" type="hidden"/>
                 <div class="col-md-offset-2 col-md-10">
