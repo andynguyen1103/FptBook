@@ -1,0 +1,86 @@
+﻿table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 5px; /* updated padding */
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+th {
+    background-color: #f2f2f2;
+    white-space: nowrap; /* prevents text from wrapping */
+}
+
+.total-wrapper{
+    margin-top: -40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    margin-bottom: -45px;
+}
+
+.total{
+    display: flex;
+    padding: 23px;
+    font-size: 34px;
+    color: #333;
+
+}
+
+.total-title {
+    padding: 20px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    border-top : 1px solid #999;
+    width: 1219px;
+}
+
+.total-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.subtotal-amount {
+    margin-left: 54rem;
+    padding: 19px;
+}
+
+.wrapper{
+    margin-top: -40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.title{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #999;
+    width: 1219px;
+}
+
+.title .cart-title{
+    font-size: 36px;
+    color: #333;
+}
+
+.quantity-input {
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+
