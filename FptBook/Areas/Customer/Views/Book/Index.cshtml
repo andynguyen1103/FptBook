@@ -1,0 +1,71 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.IdentityModel.Tokens
+@model FptBook.Areas.Customer.Models.BookSearchViewModel
+
+@* note for huy *@
+@* cái ni t làm đại th m làm kiểu thẻ lại nghe do cái ni là search á 
+là tựa như mấy cái thẻ ngoài home ấy *@
+@section SearchBar{
+    @await Html.PartialAsync("_CustomerSearchBarPartial",Model)
+}
+<h2>Books</h2>
+
+@{
+    if (Model.Books.IsNullOrEmpty())
+    {
+        <p>There's no book available</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Amount)
+                    </th>
+                    <th>
+                        Price)
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Books)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
+                            <a asp-action="AddToCart" asp-route-id="@item.BookId">Add to cart</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
