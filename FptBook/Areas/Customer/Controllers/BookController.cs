@@ -79,6 +79,21 @@ namespace FptBook.Areas.Customer.Controllers
             return View(bookViewModel);
         }
         
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Details(string id)
+        {
+            var book = await _context.Books
+                .Include(b => b.Category)
+                .Include(b => b.Author)
+                .FirstOrDefaultAsync(m => m.BookId == id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
+        
         private bool BookExists(string id)
         {
           return (_context.Books?.Any(e => e.BookId == id)).GetValueOrDefault();

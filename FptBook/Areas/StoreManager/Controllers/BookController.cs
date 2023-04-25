@@ -1,6 +1,7 @@
 ﻿using FptBook.Areas.StoreManager.Models;
 using FptBook.Data;
 using FptBook.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ namespace FptBook.Areas.StoreManager.Controllers
 {
     [Route("StoreManager/book/[action]")]
     [Area("StoreManager")]
+    [Authorize]
     public class BookController : Controller
     {
         private readonly FptBookIdentityDbContext _context;

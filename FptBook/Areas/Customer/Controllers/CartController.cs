@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FptBook.Areas.Customer.Controllers;
 
@@ -115,17 +116,22 @@ public class CartController : Controller
     public async Task<IActionResult> Checkout(decimal total)
     {
         if (total == 0) return BadRequest();
-        var checkoutList =
-            await _context.CartItems.Include(ci => ci.Book)
+        var user = await _userManager.GetUserAsync(HttpContext.User);
+        var checkoutList = await _context.CartItems.Include(ci => ci.Book)
                 .Include(ci => ci.User)
-                .Where(ci => ci.User == _userManager.GetUserAsync(HttpContext.User).Result)
+                .Where(ci => ci.User == user)
                 .ToListAsync();
+
+        if (checkoutList.IsNullOrEmpty())
+        {
+            return NotFound();
+        }
 
         var order = new Order
         {
             CreatedAt = DateTime.Now,
             TotalPrice = total,
-            User = await _userManager.GetUserAsync(HttpContext.User),
+            User = user,
             IsCompleted = false
         };
 

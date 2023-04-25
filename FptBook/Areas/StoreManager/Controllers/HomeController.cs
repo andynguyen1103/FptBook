@@ -12,7 +12,7 @@ namespace FptBook._Areas_StoreManager_Controllers_Home
     [Authorize]
     public class HomeController : Controller
     {
-        [HttpGet("")]
+        [HttpGet("",Name = "storeManDefault")]
         public IActionResult Index()
         {
             return View();

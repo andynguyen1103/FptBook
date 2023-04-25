@@ -11,8 +11,8 @@
     {
         foreach (var order in Model)
         {
-            <p>Order Information</p>
-            <p></p>
+            <p>Order @order.OrderId Information</p>
+            <p>For user @order.User</p>
         
             <p>Order detail</p>
             <table class="table">
@@ -52,11 +52,12 @@
             // show delete when not completed
             if (!order.IsCompleted)
             {
-                <form asp-action="Delete" asp-route-id="@order.OrderId">
-                    <button type="submit">Cancel</button>
+                <form asp-area = "StoreManager" asp-controller ="Order" asp-action="Complete" asp-route-id="@order.OrderId">
+                    <button type="submit">Complete</button>
                 </form>
             }   
-            
+            <br/>
+            <br/>
         }
     }
 

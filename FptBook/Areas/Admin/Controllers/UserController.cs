@@ -1,6 +1,7 @@
 using FptBook.Areas.Admin.Models;
 using FptBook.Data;
 using FptBook.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ namespace FptBook.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Route("Admin/User")]
+    [Authorize]
     // [Route("Admin/User/[action]/{id}")]
     public class UserController : Controller
     {

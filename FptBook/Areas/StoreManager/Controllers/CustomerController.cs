@@ -2,6 +2,7 @@ using System.Drawing.Printing;
 using FptBook.Areas.StoreManager.Models;
 using FptBook.Data;
 using FptBook.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace FptBook.Areas.StoreManager.Controllers
 {
     [Area("StoreManager")]
     [Route("StoreManager/Customer")]
+    [Authorize]
     public class CustomerController : Controller
     {
         private readonly FptBookIdentityDbContext _context;
