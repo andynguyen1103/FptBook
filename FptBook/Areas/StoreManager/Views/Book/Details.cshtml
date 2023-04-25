@@ -1,56 +1,110 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model FptBook.Models.Book
 
-<h2>Details</h2>
+<h1>Details</h1>
 
-<div class="row">
-    <div class="col-md-4">
-        <img src="@Url.Content("~" + Model.ImageLink)" class="img-thumbnail" />
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <img src="@Url.Content("~" + Model.ImageLink)" class="img-thumbnail" /> *@
+@*     </div> *@
+@*     <div class="col-md-8"> *@
+@*         <dl class="dl-horizontal"> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Title) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Title) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Amount) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Amount) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Price) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Price) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Summary) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Summary) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.CategoryId) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.CategoryId) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Author.Name) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Author.Name) *@
+@*             </dd> *@
+@*         </dl> *@
+@*         <p> *@
+@*             $1$ <a asp-action="AddToCart" asp-route-id="@Model.BookId">Add to cart</a> #1# *@
+@*             <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-primary">Edit</a> *@
+@*             <a asp-action="Delete" asp-route-id="@Model.BookId" class="btn btn-danger">Delete</a> *@
+@*             <a asp-action="Index" class="btn btn-secondary">Back to List</a> *@
+@*         </p> *@
+@*     </div> *@
+@* </div> *@
+
+
+<div class="book-detail"> 
+    <div class="col-md-4"><br><br>
+        <img src="@Url.Content("~" + Model.ImageLink)" class="img-thumbnail" style="margin-left: 60px; object-fit: cover; width: 268px; height: 362px;"/>
     </div>
-    <div class="col-md-8">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Amount)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Amount)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Summary)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Summary)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CategoryId)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Author.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Author.Name)
-            </dd>
-        </dl>
-        <p>
-            @* <a asp-action="AddToCart" asp-route-id="@Model.BookId">Add to cart</a> *@
-            <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-primary">Edit</a>
-            <a asp-action="Delete" asp-route-id="@Model.BookId" class="btn btn-danger">Delete</a>
-            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-        </p>
+    <div class="table-container"> <br>
+        <table>
+            <thead>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.Title)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.Title)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.Amount)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.Amount)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.Price)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.Price)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.Summary)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.Summary)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.CategoryId)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.CategoryId)</td>
+            </tr>
+            <tr>
+                <th class="header-cell">@Html.DisplayNameFor(model => model.Author.Name)</th>
+                <td class="data-cell">@Html.DisplayFor(model => model.Author.Name)</td>
+            </tr>
+            </thead>
+        </table>
     </div>
+</div> <br><br>
+
+
+
+
+<div style="text-align: center;">
+    <a class="edit-button" asp-action="Edit" asp-route-id="@Model.BookId">Edit</a>
+    <a class="delete-button" asp-action="Delete" asp-route-id="@Model.BookId">Delete</a>
+    <a class="back-to-list" asp-action="Index">Back to List</a>
 </div>
+
+
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/store_manager-book-detail.css")" rel="stylesheet" type="text/css" />
+}

@@ -12,7 +12,7 @@ public class Book
     public string BookId { get; set; }
     
     [Required]
-    [Display(Name = "Book")]
+    [Display(Name = "Book Name")]
     public string Title { get; set; }
     
     [Required]
@@ -36,6 +36,7 @@ public class Book
     public decimal Price { get; set; }
     
     [Required]
+    [Display(Name = "Category ID")]
     public string CategoryId { get; set; }
     
     [Required]

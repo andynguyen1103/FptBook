@@ -123,7 +123,7 @@
                     <th class="header-cell">Order ID</th>
                     <th class="header-cell">Order date</th>
                     <th class="header-cell">Total price</th>
-                    <th class="header-cell">Is Completed</th>
+                    <th class="header-cell">Order Status</th>
                     <th class="header-cell">Action</th>
                 </tr>
                 @{
@@ -133,9 +133,21 @@
                             <td class="data-cell">@order.OrderId</td>
                             <td class="data-cell">@order.CreatedAt</td>
                             <td class="data-cell">@order.TotalPrice</td>
-                            <td class="data-cell">@order.IsCompleted</td>
+                            @* <td class="data-cell">@order.IsCompleted</td> *@
+                            <td>
+                                @{
+                                    if (order.IsCompleted)
+                                    {
+                                        <p>Already</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Not yet</p>
+                                    }
+                                }
+                            </td>
                             <td class="data-cell">
-                                <a href="#">Details</a>
+                                <a href="#" class="detail-button">Details</a>
                             </td>
                         </tr>
                     }

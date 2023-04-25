@@ -24,6 +24,7 @@ public class BookViewModel
     [Required]
     public decimal Price { get; set; }
     
+    [Display(Name = "Category")]
     public string CategoryID { get; set; }
     
     public string AuthorName { get; set; }

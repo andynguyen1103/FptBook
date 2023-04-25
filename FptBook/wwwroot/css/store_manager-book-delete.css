@@ -7,8 +7,18 @@
     color: #444;
 }
 
+.book-detail{
+    display: flex;
+    border: 2px solid #cccccc;
+    height: 500px;
+    width: 844px;
+    background-color: #f2f2f2;
+    margin: auto;
+}
+
 .table-container {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 60px;
 }
 
 table {
@@ -22,6 +32,7 @@ th, td {
     border: 1px solid #ddd;
 }
 
+
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -30,42 +41,35 @@ tr:nth-child(odd) {
     background-color: #fff;
 }
 
-.header-cell {
-    font-weight: bold;
-}
-
-.data-cell {
-    word-break: break-all;
-}
-
 .button-container {
     margin-top: 20px;
+    text-align: right;
 }
 
-.back-to-list{
-    display: inline-block;
-    margin-right: 10px;
-    padding: 8px 16px;
-    background-color: #27ae60;
-    border: none;
-    color: #fff;
-    text-decoration: none;
-}
-
-.back-to-list:hover {
-    background-color: #219150;
-}
-
-/* Style for the "Details" button */
-.detail-button {
+.delete-button {
     display: inline-block;
     padding: 8px 12px;
-    background-color: #2196F3;
+    background-color: #800000;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
 }
 
-.detail-button:hover {
-    background-color: #1565C0;
+.delete-button:hover {
+    background-color: #5D0000;
 }
+
+.cancel-button{
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background-color: #4CAF50 ;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.cancel-button:hover {
+    background-color: #388E3C;
+}
+   
