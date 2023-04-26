@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<FptBookUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -64,7 +67,7 @@
 		@RenderSection("SearchBar",required:false)
 		
 		<a href="#" class="nav-link">
-			@*<span class="hello-user">Hello, User</span>*@
+			<span class="hello-user">Hello, @UserManager.GetUserName(User) </span>
 			<i class='bx bxs-bell icon' ></i>
 			<span class="badge">5</span>
 		</a>
@@ -78,7 +81,11 @@
 			<ul class="profile-link">
 				<li><a href="#"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
 				<li><a href="#"><i class='bx bxs-cog' ></i> Settings</a></li>
-				<li><a href="#"><i class='bx bxs-log-out-circle' ></i> Logout</a></li>
+				<li>
+                    <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <a style="cursor: pointer" class="drop-content"><button style="cursor: pointer; background: var(--light); border: none; background: transparent;"  class="logout-btn" id="logout"><i class='bx bxs-log-out-circle' style="padding-right: 12px"></i>Logout</button></a>
+                    </form>
+                </li>
 			</ul>
 		</div>
 	</nav>
