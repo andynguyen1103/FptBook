@@ -1,19 +1,10 @@
 ﻿@model FptBook.Areas.Customer.Models.BookSearchViewModel
-<form asp-area="Customer" asp-controller="Book" asp-action="Index">
+<form asp-area="Customer" asp-controller="Book" asp-action="Index" class="search-form">
+	<input type="text" asp-for="SearchString" placeholder="Search..." value="@Model.SearchString">
+	<i class='bx bx-search icon' type="submit"></i>
+	
 	<div class="form-group">
-		<input type="text" asp-for="SearchString" placeholder="Search..." value="@Model.SearchString">
-		<i class='bx bx-search icon' type="submit"></i>
-		<div class="form-group">
-			<label asp-for="SearchBy" class="control-label"></label>
-			 @Html.DropDownListFor(model => model.SearchBy, (SelectList)ViewData["SearchBy"], "--Select--", new { @class = "form-control"})
-			<span asp-validation-for="SearchBy" class="text-danger"></span>
-		</div>
-		
-		@* <button type="submit">Submit</button> *@
-	</div>
-
-	@* <div class="form-group"> *@
- @*    	<input type="text" placeholder="Search..."> *@
-
- @*    </div> *@
+		@Html.DropDownListFor(model => model.SearchBy, (SelectList)ViewData["Select"], "--Select--", new { @class = "form-control"})
+    	<span asp-validation-for="SearchBy" class="text-danger"></span>
+    </div>
 </form>

@@ -1,4 +1,5 @@
-﻿using FptBook.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using FptBook.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FptBook.Areas.Customer.Models;
@@ -7,6 +8,7 @@ namespace FptBook.Areas.Customer.Models;
 public class BookSearchViewModel
 {
     public string SearchString { get; set; }
+    [Display(Name = "Select")]
     public string SearchBy { get; set; }
     public IEnumerable<Book> Books { get; set; }
 
