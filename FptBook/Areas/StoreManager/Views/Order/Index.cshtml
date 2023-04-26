@@ -2,7 +2,69 @@
 @model IEnumerable<FptBook.Models.Order>
 
 
+@* @{ *@
+@*     if (Model.IsNullOrEmpty()) *@
+@*     { *@
+@*         <p>No order available!</p> *@
+@*     } *@
+@*     else *@
+@*     { *@
+@*         foreach (var order in Model) *@
+@*         { *@
+@*             <p>Order @order.OrderId Information</p> *@
+@*             <p>For user @order.User</p> *@
+@*          *@
+@*             <p>Order detail</p> *@
+@*             <table class="table"> *@
+@*                 <thead> *@
+@*                 <tr> *@
+@*                     <th>Book</th> *@
+@*                     <th>Price</th> *@
+@*                     <th>Quantity</th> *@
+@*                     <th>Total</th> *@
+@*                 </tr> *@
+@*                 </thead> *@
+@*                 <tbody> *@
+@*          *@
+@*                 @{ *@
+@*                     if (order.OrderDetails.IsNullOrEmpty()) *@
+@*                     { *@
+@*                         <p>No info availabe</p> *@
+@*                     } *@
+@*                     else *@
+@*                     { *@
+@*                         foreach (var item in order.OrderDetails) *@
+@*                         { *@
+@*                             <tr> *@
+@*                                 <td>@item.Book.Title</td> *@
+@*                                 <td>@item.Book.Price.ToString("00.00")</td> *@
+@*                                 <td>@item.Quantity</td> *@
+@*                                 <td>@item.Total</td> *@
+@*                             </tr> *@
+@*                         } *@
+@*                     } *@
+@*                 } *@
+@*                 </tbody> *@
+@*             </table> *@
+@*             <p>Completed?: @order.IsCompleted</p> *@
+@*             <p>Total Price: @order.TotalPrice.ToString("00.00")</p> *@
+@*              *@
+@*             // show delete when not completed *@
+@*             if (!order.IsCompleted) *@
+@*             { *@
+@*                 <form asp-area = "StoreManager" asp-controller ="Order" asp-action="Complete" asp-route-id="@order.OrderId"> *@
+@*                     <button type="submit">Complete</button> *@
+@*                 </form> *@
+@*             }    *@
+@*             <br/> *@
+@*             <br/> *@
+@*         } *@
+@*     } *@
+@* *@
+@* } *@
+
 @{
+    <h2>Manager Order</h2>
     if (Model.IsNullOrEmpty())
     {
         <p>No order available!</p>
@@ -11,56 +73,84 @@
     {
         foreach (var order in Model)
         {
-            <p>Order @order.OrderId Information</p>
-            <p>For user @order.User</p>
-        
-            <p>Order detail</p>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Book</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-                </thead>
-                <tbody>
-        
-                @{
-                    if (order.OrderDetails.IsNullOrEmpty())
-                    {
-                        <p>No info availabe</p>
-                    }
-                    else
-                    {
-                        foreach (var item in order.OrderDetails)
+            <div class="order-container">
+                <p class="order-info">Order Information</p>
+                <p class="order-user-info">User's Order:  @order.User</p>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Book</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @{
+                        if (order.OrderDetails.IsNullOrEmpty())
                         {
-                            <tr>
-                                <td>@item.Book.Title</td>
-                                <td>@item.Book.Price.ToString("00.00")</td>
-                                <td>@item.Quantity</td>
-                                <td>@item.Total</td>
-                            </tr>
+                            <p>No info available</p>
+                        }
+                        else
+                        {
+                            foreach (var item in order.OrderDetails)
+                            {
+                                <tr>
+                                    <td>@item.Book.Title</td>
+                                    <td>@item.Book.Price.ToString("00.00")</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Total</td>
+                                </tr>
+                            }
                         }
                     }
+                    </tbody>
+                </table>
+                
+                <div style="display: flex">
+                    <div style="display: flex; font-size: 1.5rem; font-weight: bolder;">
+                        <p>Status:  </p> 
+                        <p style="padding-right: 5px">
+                            @{
+                                if (order.IsCompleted)
+                                {
+                                    <p> Confirmed</p>
+                                }
+                                else
+                                {
+                                    <p> Unconfirmed</p>
+                                }
+                            }
+                        </p>
+                        
+                    </div>
+                    <div style="display: flex; font-size: 1.5rem; font-weight: bolder; margin-left: 50rem">
+                        <p >Subtotal:</p>
+                        <p style="padding-left: 1rem">
+                            $@order.TotalPrice.ToString("00.00")
+                        </p>
+    
+                    </div>
+                                    
+                </div>
+                
+
+                @if (!order.IsCompleted)
+                {
+                    <form asp-area="StoreManager" asp-controller="Order" asp-action="Complete" asp-route-id="@order.OrderId">
+                        <button type="submit" class="complete-btn">Complete</button>
+                    </form>
                 }
-                </tbody>
-            </table>
-            <p>Completed?: @order.IsCompleted</p>
-            <p>Total Price: @order.TotalPrice.ToString("00.00")</p>
-            
-            // show delete when not completed
-            if (!order.IsCompleted)
-            {
-                <form asp-area = "StoreManager" asp-controller ="Order" asp-action="Complete" asp-route-id="@order.OrderId">
-                    <button type="submit">Complete</button>
-                </form>
-            }   
-            <br/>
-            <br/>
+            </div>
         }
     }
+}
 
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/store_manager-order.css")" rel="stylesheet" type="text/css" />
 }
 
 
