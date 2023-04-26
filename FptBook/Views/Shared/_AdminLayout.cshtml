@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<FptBookUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -55,7 +58,7 @@
 	<nav>
 		<i class='bx bx-menu toggle-sidebar' ></i>
 		<a href="#" class="nav-link">
-			@*<span class="hello-user">Hello, User</span>*@
+			<span class="hello-user">Hello, @UserManager.GetUserName(User) </span>
 			<i class='bx bxs-bell icon' ></i>
 			<span class="badge">5</span>
 		</a>
