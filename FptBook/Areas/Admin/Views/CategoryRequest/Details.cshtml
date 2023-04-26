@@ -101,6 +101,7 @@
     @{
         if (!Model.IsApproved.GetValueOrDefault())
         {
+            <a class="approve-button" asp-action="Approve" asp-route-id="@Model?.RequestId">Approve</a>
             <a class="edit-button" asp-action="Edit" asp-route-id="@Model?.RequestId">Reject</a>
         }
     }

@@ -117,5 +117,31 @@ namespace FptBook.Areas.Admin.Controllers
             // ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
             return View(categoryRequest);
         }
+        
+        [HttpGet("Reject/{id}")]
+        public async Task<IActionResult> Reject(string? id)
+        {
+            if (id == null && !await _context.CategoryRequests.AnyAsync())
+            {
+                return NotFound();
+            }
+
+            var categoryRequest = await _context.CategoryRequests
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(m => m.RequestId == id);            
+            if (categoryRequest == null)
+            {
+                return NotFound();
+            }
+            
+            if (categoryRequest.IsApproved.GetValueOrDefault())
+            {
+                return NotFound();
+            }
+            // ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
+            return View(categoryRequest);
+        }
     }
+    
+    
 }

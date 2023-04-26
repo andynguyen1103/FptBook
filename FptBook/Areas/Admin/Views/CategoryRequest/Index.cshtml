@@ -62,6 +62,7 @@
                             if (!item.IsApproved.GetValueOrDefault())
                             {
                                 <a class="approve-button" asp-action="Approve" asp-route-id="@item.RequestId">Approve</a>
+                                <a class="edit-button" asp-action="Edit" asp-route-id="@item.RequestId">Reject</a>
                             }
                         }
                     </td>
