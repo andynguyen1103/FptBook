@@ -1,14 +1,18 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.IdentityModel.Tokens
+@using FptBook.Areas.StoreManager.Models
+@using FptBook.Models
 @model FptBook.Areas.Customer.Models.BookSearchViewModel
+
 
 @* note for huy *@
 @* cái ni t làm đại th m làm kiểu thẻ lại nghe do cái ni là search á 
 là tựa như mấy cái thẻ ngoài home ấy *@
-@section SearchBar{
-    @await Html.PartialAsync("_CustomerSearchBarPartial",Model)
-}
-<h2>Books</h2>
+
+    @section SearchBar{
+        @await Html.PartialAsync("_CustomerSearchBarPartial",Model)
+    }
+
 
 @{
     if (Model.Books.IsNullOrEmpty())
@@ -17,55 +21,48 @@ là tựa như mấy cái thẻ ngoài home ấy *@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Amount)
-                    </th>
-                    <th>
-                        Price)
-                    </th>
-                    <th>
-                        Category
-                    </th>
-                    <th>
-                        Author
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Books)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Amount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Author.Name)
-                        </td>
-                        <td>
-                            <a asp-action="Details" asp-route-id="@item.BookId">Details</a> |
-                            <a asp-controller = "Cart" asp-action="AddToCart" asp-route-id="@item.BookId">Add to cart</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <!-- featured section start -->
+        <section class="featured" id="featured">
+            <div class="featured-slider">
+                <h1 class="heading"> <span>Featured Books</span> </h1>
+                
+                 
+                     <div class="wrapper">
+                        @foreach (var item in Model.Books)
+                        {
+                            <div class="slide box">
+                                <div class="icons">
+                                    <a href="" class="fas fa-search"></a>
+                                    <a href="" class="fas fa-heart"></a>
+                                    <a class="fas fa-eye" asp-action="Details" asp-route-id="@item.BookId"></a>
+                                </div>
+                                <div class="image">
+                                    <img src="@Url.Content(item.ImageLink)" class="img-thumbnail"/>
+                                </div>
+                                <div class="content">
+                                    <h3>@Html.DisplayFor(modelItem => item.Title)</h3>
+                                    <p>@Html.DisplayFor(modelItem => item.Author.Name)</p>
+                                    <p>@Html.DisplayFor(modelItem => item.Category.Name)</p>
+                                    <div class="price">$@Html.DisplayFor(modelItem => item.Price)</div>
+                                    <a class="btn" asp-controller = "Cart" asp-action="AddToCart" asp-route-id="@item.BookId">Add to cart</a> 
+                                </div>
+                            </div>
+                        }
+                         
+                     </div>
+                 
+                
+            </div>
+        </section>
+        <!-- featured section end -->
     }
 }
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/customer-book.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/home-section.css")" rel="stylesheet" type="text/css" />
+}
+
 
 

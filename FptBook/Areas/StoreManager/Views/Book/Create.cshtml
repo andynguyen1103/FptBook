@@ -2,56 +2,114 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model FptBook.Areas.StoreManager.Models.BookViewModel
 
-<h2>Create new book</h2>
+@* <h2>Create new book</h2> *@
+@* *@
+@* <form asp-action="Create" enctype="multipart/form-data"> *@
+@*     <div class="form-group"> *@
+@*         <label asp-for="Title" class="control-label"></label> *@
+@*         <input asp-for="Title" class="form-control" /> *@
+@*         <span asp-validation-for="Title" class="text-danger"></span> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label asp-for="Amount" class="control-label"></label> *@
+@*         <input asp-for="Amount" class="form-control" /> *@
+@*         <span asp-validation-for="Amount" class="text-danger"></span> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label asp-for="Price" class="control-label"></label> *@
+@*         <input asp-for="Price" class="form-control" /> *@
+@*         <span asp-validation-for="Price" class="text-danger"></span> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label asp-for="Summary" class="control-label"></label> *@
+@*         <textarea asp-for="Summary" class="form-control"></textarea> *@
+@*         <span asp-validation-for="Summary" class="text-danger"></span> *@
+@*     </div> *@
+@*     @{ *@
+@*         if (ViewBag.Categories != null) *@
+@*         { *@
+@*             <div class="form-group"> *@
+@*                 <label asp-for="CategoryID" class="control-label"></label> *@
+@*                 <select asp-for="CategoryID"  class="form-control" asp-items='ViewData["Categories"] as SelectList'> *@
+@*                     <option disabled selected>--- SELECT ---</option> *@
+@*                 </select> *@
+@*                 <span asp-validation-for="CategoryID" class="text-danger"></span> *@
+@*             </div> *@
+@*         } *@
+@*     } *@
+@*     <div class="form-group"> *@
+@*         <label asp-for="AuthorName" class="control-label"></label> *@
+@*         <input asp-for="AuthorName" class="form-control" /> *@
+@*         <span asp-validation-for="AuthorName" class="text-danger"></span> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <label asp-for="ImageFile" class="control-label"></label> *@
+@*         <input asp-for="ImageFile" class="form-control-file" /> *@
+@*         <span asp-validation-for="ImageFile" class="text-danger"></span> *@
+@*     </div> *@
+@*     <div class="form-group"> *@
+@*         <button type="submit" class="btn btn-primary">Create</button> *@
+@*         <a asp-action="Index" class="btn btn-secondary">Cancel</a> *@
+@*     </div> *@
+@* </form> *@
 
-<form asp-action="Create" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="Title" class="control-label"></label>
-        <input asp-for="Title" class="form-control" />
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Amount" class="control-label"></label>
-        <input asp-for="Amount" class="form-control" />
-        <span asp-validation-for="Amount" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Price" class="control-label"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Summary" class="control-label"></label>
-        <textarea asp-for="Summary" class="form-control"></textarea>
-        <span asp-validation-for="Summary" class="text-danger"></span>
-    </div>
-    @{
-        if (ViewBag.Categories != null)
-        {
-            <div class="form-group">
-                <label asp-for="CategoryID" class="control-label"></label>
-                <select asp-for="CategoryID"  class="form-control" asp-items='ViewData["Categories"] as SelectList'>
-                    <option disabled selected>--- SELECT ---</option>
-                </select>
-                <span asp-validation-for="CategoryID" class="text-danger"></span>
-            </div>
-        }
-    }
-    <div class="form-group">
-        <label asp-for="AuthorName" class="control-label"></label>
-        <input asp-for="AuthorName" class="form-control" />
-        <span asp-validation-for="AuthorName" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ImageFile" class="control-label"></label>
-        <input asp-for="ImageFile" class="form-control-file" />
-        <span asp-validation-for="ImageFile" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-    </div>
-</form>
+
+
+
+<div class="login-form-container">                                                                                     
+                                                                                                                           
+    <form asp-action="Create" enctype="multipart/form-data">                                                                                 
+            <h3>Create New Book</h3>                                                                                               
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>                                             
+                                                                                                                           
+            <span><label asp-for="Title" class="control-label"></label></span>
+            <input asp-for="Title" class="box"  placeholder="Enter book name" id="" aria-required="true">           
+            <span asp-validation-for="Title" class="text-danger"></span>                                             
+                                                                                                                           
+            <span><label asp-for="Amount" class="form-label"></label>  </span>                                     
+            <input asp-for="Amount" class ="box" placeholder="Enter amount" id="" aria-required="true"> <br><br>
+            <span asp-validation-for="Amount" class="text-danger"></span> 
+            
+            <span><label asp-for="Price" class="form-label"></label>  </span>                                     
+            <input asp-for="Price" class ="box" placeholder="Enter price" id="" aria-required="true">
+            <span asp-validation-for="Price" class="text-danger"></span>
+            
+            <span><label asp-for="Summary" class="form-label"></label>  </span>                                     
+            <input asp-for="Summary" class ="box" placeholder="Enter summary of book" id="" aria-required="true">
+            <span asp-validation-for="Summary" class="text-danger"></span>
+
+            @{
+                if (ViewBag.Categories != null)
+                {
+                    <span><label asp-for="CategoryID" class="control-label">Category</label></span>
+                    <select asp-for="CategoryID"  class="form-control" asp-items='ViewData["Categories"] as SelectList'>
+                        <option disabled selected>--- SELECT ---</option>
+                    </select>          
+                    <span asp-validation-for="CategoryID" class="text-danger"></span>
+                }
+            }
+            
+            <span><label asp-for="AuthorName" class="form-label">Author Name</label>  </span>                                     
+            <input asp-for="AuthorName" class ="box" placeholder="Enter author of book" id="" aria-required="true">
+            <span asp-validation-for="AuthorName" class="text-danger"></span>
+
+            <span><label asp-for="ImageFile" class="form-label"></label>  </span>                                     
+            <input asp-for="ImageFile" class ="box" placeholder="Enter author of book" id="" aria-required="true">
+            <span asp-validation-for="ImageFile" class="text-danger"></span>
+            
+            <button type="submit" class="btn">Create</button>                                            
+            
+        </form>                                                                                                            
+    </div>   
+
+
+
+
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/store_manager-book-create.css")" rel="stylesheet" type="text/css" />
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -55,3 +55,17 @@ tr:nth-child(odd) {
 .back-to-list:hover {
     background-color: #219150;
 }
+
+/* Style for the "Details" button */
+.detail-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #2196F3;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.detail-button:hover {
+    background-color: #1565C0;
+}

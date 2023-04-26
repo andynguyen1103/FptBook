@@ -1,65 +1,73 @@
-﻿@using Microsoft.IdentityModel.Tokens
+@using Microsoft.IdentityModel.Tokens
 @model IEnumerable<FptBook.Models.Order>
 
+<div class="wrapper">
+    <div class="title"> 
+        <h2 class="cart-title">Order History</h2> 
+    </div>
+</div>
 
-@{
-    if (Model.IsNullOrEmpty())
-    {
-        <p>No order available!</p>
-    }
-    else
-    {
-        foreach (var order in Model)
-        {
-            <p>Order Information</p>
-            <p></p>
-        
-            <p>Order detail</p>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Book</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-                </thead>
-                <tbody>
-        
-                @{
-                    if (order.OrderDetails.IsNullOrEmpty())
-                    {
-                        <p>No info availabe</p>
-                    }
-                    else
-                    {
-                        foreach (var item in order.OrderDetails)
-                        {
-                            <tr>
-                                <td>@item.Book.Title</td>
-                                <td>@item.Book.Price.ToString("00.00")</td>
-                                <td>@item.Quantity</td>
-                                <td>@item.Total</td>
-                            </tr>
-                        }
-                    }
-                }
-                </tbody>
-            </table>
-            <p>Completed?: @order.IsCompleted</p>
-            <p>Total Price: @order.TotalPrice.ToString("00.00")</p>
-            
-            // show delete when not completed
-            if (!order.IsCompleted)
+    @{
+            if (Model.IsNullOrEmpty())
             {
-                <form asp-action="Delete" asp-route-id="@order.OrderId">
-                    <button type="submit">Cancel</button>
-                </form>
-            }   
+                <p>No order available!</p>
+            }
+            else
+            {
+                foreach (var order in Model)
+                {
+                    <div style="border: 3px solid #ccc; width: 1219px; margin: auto; margin-bottom: 50px;"> <br>
+                        <p style="margin-left: 26rem; font-size: 2rem; font-weight: 600;">Order Information</p> <br/>
+                        @* <p>Order detail</p> *@
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Book</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
             
+                            @{
+                                if (order.OrderDetails.IsNullOrEmpty())
+                                {
+                                    <p>No info availabe</p>
+                                }
+                                else
+                                {
+                                    foreach (var item in order.OrderDetails)
+                                    {
+                                        <tr>
+                                            <td>@item.Book.Title</td>
+                                            <td>@item.Book.Price.ToString("00.00")</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Total</td>
+                                        </tr>
+                                    }
+                                }
+                            }
+            
+                            @* <p>Completed?: @order.IsCompleted</p> *@
+                            </tbody>
+                        </table> <br/>
+                        <p style="margin-left: 26rem; font-size: 2rem; font-weight: 600; margin-bottom: 5rem;">Total Price: @order.TotalPrice.ToString("00.00")</p>
+                            // show delete when not completed
+                            if (!order.IsCompleted)
+                            {
+                                <form asp-action="Delete" asp-route-id="@order.OrderId">
+                                    <button type="submit">Cancel</button>
+                                </form>
+                            }                   
+                    </div>
+                         
+                }
+            }
         }
-    }
 
+@section CSS
+{
+    <link href="@Url.Content("~/css/customer-order.css")" rel="stylesheet" type="text/css" />
 }
-
 

@@ -3,6 +3,7 @@
 @inject UserManager<FptBookUser> UserManager
 
 
+
 <body>
 <!-- home section start -->
 <section class="home" id="home">
@@ -16,7 +17,7 @@
                 accusamus.</p>
             @if (SignInManager.IsSignedIn(User))
             {
-                <a href="#" class="btn">Shop Now</a>
+                <a asp-controller="Book" asp-action="Index" class="btn">Shop Now</a>
             }
             else
             {
@@ -258,6 +259,8 @@
 </section>
 <!-- arrivals section end -->
 
+
+
 <!-- newsletter section starts -->
 <section class="newsletter">
 
@@ -281,7 +284,7 @@
         
         @if (SignInManager.IsSignedIn(User))
         {
-            <a href="#" class="btn">Shop Now</a>
+             <a asp-controller="Book" asp-action="Index" class="btn">Shop Now</a>
         }
         else
         {
@@ -296,13 +299,13 @@
 
 <!-- deal section end -->
 
-@*<!-- review section end -->
+<!-- review section end -->
 <section class="reviews" id="reviews">
     <h1 class="heading"> <span>Reviews</span> </h1>
 
-    <div class="swiper reviews-slider">
+    <div class="reviews-slider">
 
-        <div class="swiper-wrapper">
+        <div class="reviews-wrapper">
 
             <div class="swiper-slide box">
                 <img src="image/young-adult-girl.jpg" alt="">
@@ -349,6 +352,21 @@
                 </div>
             </div>
             
+            <div class="swiper-slide box">
+                <img src="image/smart-attractive-female-asian-hand-gesture-point-copy-sapce-with-happiness-joyful-hand-present-template-card-with-smile-business-ideas-concept.jpg" alt="">
+                <h3>Natalia</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores ut in quasi ipsum quia odio fugit mollitia delectus
+                    eius soluta harum, corporis modi voluptate 
+                    illum voluptas non porro atque! Quo!</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+            
         </div>
     </div>
 </section>
@@ -359,9 +377,9 @@
     <h1 class="heading"> <span>Our Blogs</span> </h1>
 
     <div class="blogs-slider">
-        <div class="swiper-wrapper">
+        <div class="blogs-wrapper">
                 
-            <div class="swiper-slide box">
+            <div class="slide box">
                 <div class="image">
                     <img src="image/girl-reading-book-drinking-coffee-bed-morning.jpg" alt="">
                 </div>
@@ -374,7 +392,7 @@
                 </div>
             </div>
                 
-            <div class="swiper-slide box">
+            <div class="slide box">
                 <div class="image">
                     <img src="image/young-beautiful-woman-using-laptop-computer-home.jpg" alt="">
                 </div>
@@ -387,9 +405,9 @@
                 </div>
             </div>
                 
-            <div class="swiper-slide box">
+            <div class="slide box">
                 <div class="image">
-                    <img src="image/beautiful-asian-young-woman-creative-freelancer-working-laptop-computer-working-from-home-concept.jpg" alt="">
+                    <img src="image/beautiful-asian-woman-long-hair-enjoy-weekend-moment-with-book-white-room-background.jpg" alt="">
                 </div>
                 <div class="content">
                     <h3>Bloger</h3>
@@ -399,12 +417,11 @@
                     <a href="#" class="btn">Read More</a>
                 </div>
             </div>
-                
-            
+
         </div>
 
     </div>
-</section>*@
+</section>
 
 
 
@@ -475,52 +492,5 @@ else
                 },
             }
         });
-        
-        /*const review_swiper = new Swiper(".reviews-slider", {
-            spaceBetween: 10,
-            loop:true,
-            centeredSlides:true,
-            autoplay: {
-                delay: 9500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                0:{
-                    slidesPerView: 1,
-                },
-                768:{
-                    slidesPerView: 2,
-                },
-                1024:{
-                    slidesPerView: 3,
-                },
-            }
-        });
-        
-        const blog_swiper = new Swiper(".blogs-slider", {
-          spaceBetween: 10,
-          loop: true,
-          centeredSlides: true,
-          autoplay: {
-            delay: 9500,
-            disableOnInteraction: false,
-          },
-          breakpoints: {
-            0: {
-              slidesPerView: 1,
-              freeMode: true,
-            },
-            768: {
-              slidesPerView: 2,
-              freeMode: true,
-            },
-            1024: {
-              slidesPerView: 3,
-              freeMode: true,
-            },
-          },
-          freeMode: true,
-        });*/
-
     </script>
 }

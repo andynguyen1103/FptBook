@@ -1,10 +1,17 @@
 ﻿@using Microsoft.IdentityModel.Tokens
 @model IEnumerable<FptBook.Models.CartItem>
 
+
+<div class="wrapper">
+    <div class="title"> 
+        <h2 class="cart-title">Order Summary</h2> 
+    </div> <br> <br>
+</div>
+
 <table class="table">
     <thead>
     <tr>
-        <th>Book</th>
+        <th>Book Name</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Total</th>
@@ -22,24 +29,26 @@
         </tr>
     }
     </tbody>
-</table>
+</table><br><br><br>
 
 
 
-<div class="total">
-    <h3>
-        Total:
-        @{
-            var sum = (decimal)0.0;
-            foreach (var item in Model)
-            {
-                sum = sum + item.Quantity * item.Book.Price;
-            }
-
-            <p>@sum.ToString("0.00")</p>
-        }
-
-    </h3>
+<div class="total-wrapper">
+    <div class="total-title"> 
+        <div class="total">
+            <h3>Subtotal: </h3>
+            <h3 class="subtotal-amount">
+                @{
+                    var sum = (decimal)0.0;
+                    foreach (var item in Model)
+                    {
+                        sum = sum + item.Quantity * item.Book.Price;
+                    }
+                    <p class="total-amount">$@sum.ToString("0.00")</p>
+                }
+            </h3>
+        </div>
+    </div>
 </div>
 @{
     if (!Model.IsNullOrEmpty())
@@ -48,12 +57,18 @@
             <div class="form-group">
                 <input name="Total" value="@sum" type="hidden"/>
                 <div class="col-md-offset-2 col-md-10">
-                    <button type="submit" class="btn btn-default">Order</button>
+                    <button type="submit" class="btn">Order</button>
                 </div>
             </div>
         </form>
     }
 }
+
+@section CSS
+{
+    <link href="@Url.Content("~/css/customer-checkout.css")" rel="stylesheet" type="text/css" />
+}
+
 
 
 
