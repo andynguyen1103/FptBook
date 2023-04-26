@@ -1,0 +1,66 @@
+﻿@using Microsoft.IdentityModel.Tokens
+@model IEnumerable<FptBook.Models.Order>
+
+
+@{
+    if (Model.IsNullOrEmpty())
+    {
+        <p>No order available!</p>
+    }
+    else
+    {
+        foreach (var order in Model)
+        {
+            <p>Order @order.OrderId Information</p>
+            <p>For user @order.User</p>
+        
+            <p>Order detail</p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+        
+                @{
+                    if (order.OrderDetails.IsNullOrEmpty())
+                    {
+                        <p>No info availabe</p>
+                    }
+                    else
+                    {
+                        foreach (var item in order.OrderDetails)
+                        {
+                            <tr>
+                                <td>@item.Book.Title</td>
+                                <td>@item.Book.Price.ToString("00.00")</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Total</td>
+                            </tr>
+                        }
+                    }
+                }
+                </tbody>
+            </table>
+            <p>Completed?: @order.IsCompleted</p>
+            <p>Total Price: @order.TotalPrice.ToString("00.00")</p>
+            
+            // show delete when not completed
+            if (!order.IsCompleted)
+            {
+                <form asp-area = "StoreManager" asp-controller ="Order" asp-action="Complete" asp-route-id="@order.OrderId">
+                    <button type="submit">Complete</button>
+                </form>
+            }   
+            <br/>
+            <br/>
+        }
+    }
+
+}
+
+

@@ -4,33 +4,31 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
-namespace FptBook.Areas.Customer.Controllers;
+namespace FptBook.Areas.StoreManager.Controllers;
 
-[Route("/order/[action]")]
-[Area("Customer")]
+[Area("StoreManager")]
+[Route("StoreManager/order/[action]")]
 [Authorize]
+
 public class OrderController : Controller
 {
     private readonly FptBookIdentityDbContext _context;
-    private readonly UserManager<FptBookUser> _userManager;
 
-    public OrderController(FptBookIdentityDbContext context, UserManager<FptBookUser> userManager)
+
+    public OrderController(FptBookIdentityDbContext context)
     {
         _context = context;
-        _userManager = userManager;
     }
     
-    [HttpGet("/order", Name = "viewOrder")]
+    [HttpGet("/StoreManager/order", Name = "viewOrderMan")]
     public async Task<IActionResult> Index()
     {
-        var user = await _userManager.GetUserAsync(HttpContext.User);
         var orders = await _context.Orders
             .Include(c => c.User)
             .Include(o => o.OrderDetails)
             .ThenInclude(od => od.Book)
-            .Where(o => o.User == user).ToListAsync();
+            .ToListAsync();
 
         // foreach (var order in orders)
         // {
@@ -40,8 +38,8 @@ public class OrderController : Controller
         return View(orders);
     }
     
-    [HttpPost("order/delete/{id}")]
-    public async Task<IActionResult> Delete(string id)
+    [HttpPost("{id}")]
+    public async Task<IActionResult> Complete(string id)
     {
         var order = await _context.Orders
             .Include(c => c.User)
@@ -56,7 +54,8 @@ public class OrderController : Controller
 
         try
         {
-            _context.Orders.Remove(order);
+            order.IsCompleted = true;
+            _context.Orders.Update(order);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

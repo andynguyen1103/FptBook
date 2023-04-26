@@ -1,4 +1,4 @@
-﻿@using Microsoft.IdentityModel.Tokens
+@using Microsoft.IdentityModel.Tokens
 @model IEnumerable<FptBook.Models.Order>
 
 <div class="wrapper">
@@ -53,16 +53,18 @@
                             </tbody>
                         </table> <br/>
                         <p style="margin-left: 26rem; font-size: 2rem; font-weight: 600; margin-bottom: 5rem;">Total Price: @order.TotalPrice.ToString("00.00")</p>
+                            // show delete when not completed
+                            if (!order.IsCompleted)
+                            {
+                                <form asp-action="Delete" asp-route-id="@order.OrderId">
+                                    <button type="submit">Cancel</button>
+                                </form>
+                            }                   
                     </div>
                          
                 }
             }
         }
-
-
-
-
-
 
 @section CSS
 {
