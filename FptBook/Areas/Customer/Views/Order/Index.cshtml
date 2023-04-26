@@ -3,33 +3,33 @@
 
 <div class="wrapper">
     <div class="title"> 
-        <h2 class="cart-title">Order History</h2> 
+        <h2 class="cart-title">Order Status</h2> 
     </div>
 </div>
 
     @{
-            if (Model.IsNullOrEmpty())
+        if (Model.IsNullOrEmpty())
+        {
+            <p>No order available!</p>
+        }
+        else
+        {
+            foreach (var order in Model)
             {
-                <p>No order available!</p>
-            }
-            else
-            {
-                foreach (var order in Model)
-                {
-                    <div style="border: 3px solid #ccc; width: 1219px; margin: auto; margin-bottom: 50px;"> <br>
-                        <p style="margin-left: 26rem; font-size: 2rem; font-weight: 600;">Order Information</p> <br/>
-                        @* <p>Order detail</p> *@
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Book</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-            
+                <div style="border: 3px solid #ccc; width: 1219px; margin: auto; margin-bottom: 50px;"> <br>
+                    <p style="margin-left: 26rem; font-size: 2rem; font-weight: 600;">Order Information</p> <br/>
+                    @* <p>Order detail</p> *@
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Book</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+        
                             @{
                                 if (order.OrderDetails.IsNullOrEmpty())
                                 {
@@ -48,23 +48,41 @@
                                     }
                                 }
                             }
-            
-                            @* <p>Completed?: @order.IsCompleted</p> *@
-                            </tbody>
-                        </table> <br/>
-                        <p style="margin-left: 26rem; font-size: 2rem; font-weight: 600; margin-bottom: 5rem;">Total Price: @order.TotalPrice.ToString("00.00")</p>
-                            // show delete when not completed
-                            if (!order.IsCompleted)
-                            {
+                            <div style="display: flex; font-size: 1.5rem; font-weight: bolder;">
+                                <p style="margin-left: 200px;">Status:  </p> 
+                                <p style="padding-right: 5px">
+                                    @{
+                                        if (order.IsCompleted)
+                                        {
+                                            <p> Already </p>
+                                        }
+                                        else
+                                        {
+                                            <p> Not Yet </p>
+                                        }
+                                    }
+                                </p>
+                            </div> <br>
+                        </tbody>
+                    </table> <br/>
+                    <p style="margin-left: 26rem; font-size: 2rem; font-weight: 600; margin-bottom: 1rem;">Total Price: $@order.TotalPrice.ToString("00.00")</p>
+                    @{
+                        // show delete when not completed
+                        if (!order.IsCompleted)
+                        {
+                            <div style="text-align: center; margin-left: 70rem;">
                                 <form asp-action="Delete" asp-route-id="@order.OrderId">
-                                    <button type="submit">Cancel</button>
+                                    <button type="submit" class="btn" style="margin-top: 10px;">Cancel</button>
                                 </form>
-                            }                   
-                    </div>
-                         
-                }
+                            </div> <br/>
+
+                        }   
+                    }
+                </div>
+                
             }
         }
+    }
 
 @section CSS
 {
