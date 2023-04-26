@@ -38,6 +38,24 @@ public class OrderController : Controller
         return View(orders);
     }
     
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Index(string id)
+    {
+        var orders = await _context.Orders
+            .Include(c => c.User)
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Book)
+            .Where(o=>o.OrderId==id)
+            .ToListAsync();
+
+        // foreach (var order in orders)
+        // {
+        //     Console.WriteLine("Orderisnull: " + order.OrderDetails.IsNullOrEmpty());
+        // }
+        
+        return View(orders);
+    }
+    
     [HttpPost("{id}")]
     public async Task<IActionResult> Complete(string id)
     {
