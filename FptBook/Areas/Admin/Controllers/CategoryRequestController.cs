@@ -45,9 +45,15 @@ namespace FptBook.Areas.Admin.Controllers
             return View(categoryRequest);
         }
         
-        [HttpGet("Approve/{id}")]
-        public async Task<IActionResult> Approve(string? id)
+        // POST: CategoryRequest/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost("Approve/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Approve(string id)
         {
+            // Console.WriteLine("queryID:"+id);
+            // Console.WriteLine("requestID"+categoryRequest.RequestId);
             if (id == null && !await _context.CategoryRequests.AnyAsync())
             {
                 return NotFound();
@@ -63,62 +69,42 @@ namespace FptBook.Areas.Admin.Controllers
             
             if (categoryRequest.IsApproved.GetValueOrDefault())
             {
+                // Console.WriteLine(!categoryRequest.IsApproved.GetValueOrDefault());
                 return NotFound();
             }
-            // ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
-            return View(categoryRequest);
-        }
-
-        // POST: CategoryRequest/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost("Approve/{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Approve(string id, [Bind("RequestId,Name,CreatedAt,IsApproved,ApprovedAt,UserID")] CategoryRequest categoryRequest)
-        {
-            // Console.WriteLine("queryID:"+id);
-            // Console.WriteLine("requestID"+categoryRequest.RequestId);
-            if (id != categoryRequest.RequestId)
+            
+            try
             {
-                return NotFound();
-            }
+                
+                //change status of category request
+                categoryRequest.IsApproved = true;
+                categoryRequest.ApprovedAt = DateTime.Now;
+                _context.Update(categoryRequest);
+                
+                //add category to database
 
-            if (ModelState.IsValid)
-            {
-                if (categoryRequest.IsApproved.GetValueOrDefault())
+                var category = new Category()
                 {
-                    // Console.WriteLine(!categoryRequest.IsApproved.GetValueOrDefault());
+                    Name = categoryRequest.Name
+                };
+                _context.Update(category);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.CategoryRequests.AnyAsync().Result)
+                {
                     return NotFound();
                 }
-                try
-                {
-                    categoryRequest.IsApproved = true;
-                    categoryRequest.ApprovedAt = DateTime.Now;
-                    _context.Update(categoryRequest);
-                    
-                    //add category to database
-
-                    var category = new Category()
-                    {
-                        Name = categoryRequest.Name
-                    };
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!_context.CategoryRequests.AnyAsync().Result)
-                    {
-                        return NotFound();
-                    }
-                }
-                return RedirectToAction(nameof(Index));
             }
+            return RedirectToAction(nameof(Index));
+            
             // ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
-            return View(categoryRequest);
+           
         }
         
-        [HttpGet("Reject/{id}")]
+        [HttpPost("Reject/{id}")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Reject(string? id)
         {
             if (id == null && !await _context.CategoryRequests.AnyAsync())
@@ -138,8 +124,19 @@ namespace FptBook.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            // ViewData["UserID"] = new SelectList(_context.Users, "Id", "Id", categoryRequest.UserID);
-            return View(categoryRequest);
+            try
+            {
+                _context.CategoryRequests.Remove(categoryRequest);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.CategoryRequests.AnyAsync().Result)
+                {
+                    return NotFound();
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
     

@@ -58,51 +58,54 @@
 <h1>Category Request Details</h1>
 
 <div>
-    <form class="form-control">
-        <table class="table table-bordered">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <td>@Html.DisplayFor(model => model.Name)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
-                <td>@Html.DisplayFor(model => model.CreatedAt)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.IsApproved)</th>
-                <td>
-                    @{
-                        if (Model.IsApproved.Value)
-                        {
-                            <p>Yes</p>
-                        }
-    
-                        else
-                        {
-                            <p>No</p>
-                        }
+    <table class="table table-bordered">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+            <td>@Html.DisplayFor(model => model.CreatedAt)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.IsApproved)</th>
+            <td>
+                @{
+                    if (Model.IsApproved.Value)
+                    {
+                        <p>Yes</p>
                     }
-                </td>
-            </tr>
-            @{
-                if (Model.IsApproved.GetValueOrDefault())
-                {
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.ApprovedAt)</th>
-                        <td>@Html.DisplayFor(model => model.ApprovedAt)</td>
-                    </tr>
+    
+                    else
+                    {
+                        <p>No</p>
+                    }
                 }
+            </td>
+        </tr>
+        @{
+            if (Model.IsApproved.GetValueOrDefault())
+            {
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.ApprovedAt)</th>
+                    <td>@Html.DisplayFor(model => model.ApprovedAt)</td>
+                </tr>
             }
-        </table>
-    </form>
+        }
+    </table>
 </div>
 
 <div>
     @{
         if (!Model.IsApproved.GetValueOrDefault())
         {
-            <a class="approve-button" asp-action="Approve" asp-route-id="@Model?.RequestId">Approve</a>
-            <a class="edit-button" asp-action="Edit" asp-route-id="@Model?.RequestId">Reject</a>
+            <form asp-action="Approve" asp-route-id="@Model.RequestId">
+                <button class="approve-button" type="submit">Approve</button>
+            </form>
+            
+            <form asp-action="Reject" asp-route-id="@Model.RequestId">
+                <button class="edit-button" type="submit">Reject</button>
+            </form>
         }
     }
      <a class="back-to-list" asp-action="Index">Back to List</a>
