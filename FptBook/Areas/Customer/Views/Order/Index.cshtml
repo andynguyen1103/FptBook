@@ -9,8 +9,48 @@
 
     @{
         if (Model.IsNullOrEmpty())
-        {
-            <p>No order available!</p>
+        { 
+            <div class="container">
+                <h1 class="no-book-available">No order available!</h1>
+                <p>We're sorry, there are currently no orders available.</p> <br><br>
+                <a asp-action="Index" class="go-back">Go back to homepage</a>
+            </div>
+            <style>
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 50px;
+                text-align: center;
+                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+                background-color: #fff;
+            }
+            
+            .no-book-available {
+                margin-top: -5px;
+                color: #27ae60;
+                font-size: 2.7rem;
+                margin-bottom: 30px;
+            }
+            
+            p {
+                font-size: 2rem;
+                color: #707070;
+            }
+            
+            .go-back {
+                color: #fff;
+                background-color: #27ae60;
+                padding: 18px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 1.5rem;
+                transition: background-color 0.2s;
+            }
+            
+            .go-back:hover {
+                background-color: #219150;
+            }
+	    </style>
         }
         else
         {
@@ -33,7 +73,7 @@
                             @{
                                 if (order.OrderDetails.IsNullOrEmpty())
                                 {
-                                    <p>No info availabe</p>
+                                    <p style="margin-left: 200px; font-size: 1.5rem; font-weight: bolder;">No info available</p>
                                 }
                                 else
                                 {

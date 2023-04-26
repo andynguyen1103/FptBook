@@ -99,13 +99,16 @@
     @{
         if (!Model.IsApproved.GetValueOrDefault())
         {
-            <form asp-action="Approve" asp-route-id="@Model.RequestId">
-                <button class="approve-button" type="submit">Approve</button>
-            </form>
-            
-            <form asp-action="Reject" asp-route-id="@Model.RequestId">
-                <button class="edit-button" type="submit">Reject</button>
-            </form>
+            <div style="display: flex">
+                <form asp-action="Approve" asp-route-id="@Model.RequestId">
+                    <button class="reset-button" type="submit">Approve</button>
+                </form>
+                
+                <form asp-action="Reject" asp-route-id="@Model.RequestId">
+                    <button class="edit-button" type="submit">Reject</button>
+                </form>
+            </div>
+
         }
     }
      <a class="back-to-list" asp-action="Index">Back to List</a>

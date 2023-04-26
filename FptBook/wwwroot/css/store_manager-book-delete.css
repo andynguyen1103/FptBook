@@ -53,6 +53,7 @@ tr:nth-child(odd) {
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .delete-button:hover {

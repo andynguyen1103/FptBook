@@ -47,10 +47,26 @@ tr:nth-child(even) {
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .edit-button:hover {
     background-color: #AD1457;
+}
+
+.reset-button {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #6D7173;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.reset-button:hover {
+    background-color: #494E52;
 }
 
 .back-to-list {
