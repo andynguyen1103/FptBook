@@ -4,7 +4,7 @@
 	<i class='bx bx-search icon' type="submit"></i>
 	
 	<div class="form-group">
-		@Html.DropDownListFor(model => model.SearchBy, (SelectList)ViewData["Select"], "--Select--", new { @class = "form-control"})
+		@Html.DropDownListFor(model => model.SearchBy, (SelectList)ViewData["Select"],  new { @class = "form-control"})
     	<span asp-validation-for="SearchBy" class="text-danger"></span>
     </div>
 </form>

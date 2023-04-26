@@ -11,7 +11,7 @@
     <div class="row">
 
         <div class="content">
-            <h3>Up to 75% off</h3>
+            <h3>Up to 50% off</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum mollitia distinctio debitis cumque aperiam eos,
                 libero voluptates reiciendis ratione quod impedit eveniet, natus veniam eum autem asperiores itaque commodi
                 accusamus.</p>
@@ -425,11 +425,34 @@
 
 
 
+
+
+
+
 @if (SignInManager.IsSignedIn(User))
 {
     <!-- loader start-->
     <div class="un-loader-container"></div>
     <!-- loader end -->
+    <div class="un-popup hide__popup">
+        <div class="popup__content">
+            <div class="popup__left">
+                <div class="popup-img__container">
+                    <img class="popup__img" src="image/popup.jpg" alt="popup">
+                </div>
+            </div>
+            <div class="popup__right">
+                <div class="right__content">
+                    <h1>Welcome To <span>FPTBook Store</span></h1>
+                    <p style="text-align: justify">After signing up for our newsletter, please take a moment to confirm your profile settings 
+                        to ensure that you receive the latest updates and promotions from us. As a welcome offer, enjoy a 50% discount 
+                        on your next purchase. We promise not to send you any spam and respect your privacy. 
+                        If you have any questions or concerns about our newsletter, feel free to reach out to us anytime.</p>
+                    <a class="btn-close" href="#" style="font-size: 1.7rem;">I understand</a>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 else
 {
@@ -438,6 +461,25 @@ else
         <img src="image/loader-img.gif" alt="">
     </div>
     <!-- loader end -->
+    <div class="popup hide__popup">
+        <div class="popup__content">
+            <div class="popup__left">
+                <div class="popup-img__container">
+                    <img class="popup__img" src="image/popup.jpg" alt="popup">
+                </div>
+            </div>
+            <div class="popup__right">
+                <div class="right__content">
+                    <h1>Welcome To <span>FPTBook Store</span></h1>
+                    <p style="text-align: justify">We hope you enjoy in our application. After signing up for our newsletter, please take a moment to confirm your profile settings 
+                        to ensure that you receive the latest updates and promotions from us. As a welcome offer, enjoy a 50% discount 
+                        on your next purchase. We promise not to send you any spam and respect your privacy. 
+                        If you have any questions or concerns about our newsletter, feel free to reach out to us anytime.</p>
+                    <a class="btn-close" href="#" style="font-size: 1.7rem;">I understand</a>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 </body>
@@ -445,12 +487,28 @@ else
 
 @section CSS
 {
-        <link href="@Url.Content("~/css/home-section.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/home-section.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/css/popup.css")" rel="stylesheet" type="text/css" />
 }
 
 @section Scripts
 {
     <script >
+        const popup = document.querySelector(".popup");
+        const closePopup = document.querySelector(".btn-close");
+        
+        if (popup) {
+            closePopup.addEventListener("click", () => {
+                popup.classList.add("hide__popup");
+            });
+        
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    popup.classList.remove("hide__popup");
+                }, 1000);
+            });
+        }
+        
         searchForm = document.querySelector('.search-form');
         
         document.querySelector('#search-btn').onclick = () =>{
@@ -470,8 +528,9 @@ else
         }
         
         function fadeOut(){
-            setTimeout(loader, 4000);
+            setTimeout(loader, 5000);
         }
+        
         const arrival_swiper = new Swiper(".arrivals-slider", {
             spaceBetween: 10,
             loop:true,

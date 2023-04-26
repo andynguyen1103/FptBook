@@ -35,8 +35,8 @@ namespace FptBook.Areas.Customer.Controllers
             };
             ViewData["SearchBy"] = new SelectList(new List<SelectListItem>
             {
-                new SelectListItem { Selected = true, Text = "By Title", Value = "ByTitle"},
-                new SelectListItem { Selected = false, Text = "By Category", Value = "ByCategory"},
+                new SelectListItem { Selected = true, Text = "Search by title", Value = "Title"},
+                new SelectListItem { Selected = false, Text = "Search by category", Value = "Category"},
             },"Value","Text");
             return View(bookViewModel);
         }
@@ -72,8 +72,8 @@ namespace FptBook.Areas.Customer.Controllers
             };
             ViewData["SearchBy"] = new SelectList(new List<SelectListItem>
             {
-                new SelectListItem { Selected = false, Text = "By Title", Value = "ByTitle"},
-                new SelectListItem { Selected = false, Text = "By Category", Value = "ByCategory"},
+                new SelectListItem { Selected = false, Text = "Search  by title", Value = "ByTitle"},
+                new SelectListItem { Selected = false, Text = "Search  by category", Value = "ByCategory"},
             },"Value","Text");
             
             return View(bookViewModel);
