@@ -1,55 +1,139 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model FptBook.Models.Book
 
-<h2>Details</h2>
+@* <h2>Details</h2> *@
+@* *@
+@* <div class="row"> *@
+@*     <div class="col-md-4"> *@
+@*         <img src="@Url.Content("~" + Model.ImageLink)" class="img-thumbnail" /> *@
+@*     </div> *@
+@*     <div class="col-md-8"> *@
+@*         <dl class="dl-horizontal"> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Title) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Title) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Amount) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Amount) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Price) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Price) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Summary) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Summary) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.CategoryId) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.CategoryId) *@
+@*             </dd> *@
+@*             <dt> *@
+@*                 @Html.DisplayNameFor(model => model.Author.Name) *@
+@*             </dt> *@
+@*             <dd> *@
+@*                 @Html.DisplayFor(model => model.Author.Name) *@
+@*             </dd> *@
+@*         </dl> *@
+@*         <p> *@
+@*             $1$ <a asp-action="AddToCart" asp-route-id="@Model.BookId">Add to cart</a> #1# *@
+@*             <a asp-action="Index" class="btn btn-secondary">Back to List</a> *@
+@*         </p> *@
+@*     </div> *@
+@* </div> *@
 
-<div class="row">
-    <div class="col-md-4">
-        <img src="@Url.Content("~" + Model.ImageLink)" class="img-thumbnail" />
+
+
+
+    <div class = "card-wrapper">
+        <div class = "card">
+          <!-- card left -->
+          <div class = "product-imgs">
+  
+            <div class = "img-display">
+              <div class = "img-product">
+                <img src="@Url.Content("~" + Model.ImageLink)" class="img-thumbnail" />
+              </div>
+            </div>
+  
+           
+            
+          </div>
+          <!-- card right -->
+          <div class = "product-content">
+            <h2 class = "product-title">@Html.DisplayFor(model => model.Title)</h2>
+            <a href = "#" class = "product-link">visit fpt bookstore</a>
+            <div class = "product-rating">
+              <i class = "fas fa-star"></i>
+              <i class = "fas fa-star"></i>
+              <i class = "fas fa-star"></i>
+              <i class = "fas fa-star"></i>
+              <i class = "fas fa-star-half-alt"></i>
+              <span>4.7(21)</span>
+            </div>
+  
+            <div class = "product-price">
+                <p class = "new-price">Price: <span>$@Html.DisplayFor(model => model.Price)</span></p>
+            </div>
+  
+            <div class = "product-detail">
+              <h2>Description: </h2>
+              <p>@Html.DisplayFor(model => model.Summary)</p>
+              <h2>Genre: </h2>
+              <p>@Html.DisplayFor(model => model.Category.Name)</p>
+              <h2>Author:</h2>
+              <p>@Html.DisplayFor(model => model.Author.Name)</p>
+              <h2>Amount:</h2>
+              <p>@Html.DisplayFor(model => model.Amount)</p>
+            </div>
+  
+            <div class="purchase-info">
+              
+              <a class="btn" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.BookId">
+                Add to cart <i class="fas fa-shopping-cart"></i>
+              </a>
+              <a asp-action="Index" class="btn">
+                Back to List <i class="fa-solid fa-backward-step"></i>
+              </a>
+            </div>
+  
+            <div class = "social-links">
+              <p>Share At: </p>
+              <a href = "#">
+                <i class = "fab fa-facebook-f"></i>
+              </a>
+              <a href = "#">
+                <i class = "fab fa-twitter"></i>
+              </a>
+              <a href = "#">
+                <i class = "fab fa-instagram"></i>
+              </a>
+              <a href = "#">
+                <i class = "fab fa-whatsapp"></i>
+              </a>
+              <a href = "#">
+                <i class = "fab fa-pinterest"></i>
+              </a>
+            </div>
+  
+          </div>
+  
+        </div>
+        
     </div>
-    <div class="col-md-8">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Title)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Amount)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Amount)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Summary)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Summary)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.CategoryId)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Author.Name)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Author.Name)
-            </dd>
-        </dl>
-        <p>
-            @* <a asp-action="AddToCart" asp-route-id="@Model.BookId">Add to cart</a> *@
-            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-            <a class="btn" asp-controller = "Cart" asp-action="AddToCart" asp-route-id="@Model.BookId">Add to cart</a> 
-        </p>
-    </div>
-</div>
+
+@section CSS
+{
+  <link href="@Url.Content("~/css/customer-book-details.css")" rel="stylesheet" type="text/css" />
+}

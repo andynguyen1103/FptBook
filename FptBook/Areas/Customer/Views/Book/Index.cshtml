@@ -17,7 +17,53 @@ là tựa như mấy cái thẻ ngoài home ấy *@
 @{
     if (Model.Books.IsNullOrEmpty())
     {
-        <p>There's no book available</p>
+        
+        <section class="featured" id="featured">
+            <div class="featured-slider">
+                <h1 class="heading"> <span>Featured Books</span> </h1>
+                <div class="container">
+                   <h1 class="no-book-available">There is no book available</h1>
+                   <p>We're sorry, but we couldn't find any books or categories matching your search criteria. Please try again later.</p> <br><br>
+                   <a asp-action="Index" class="go-back">Go back to homepage</a>
+               </div>
+            </div>
+        </section>
+        <style>
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 50px;
+                text-align: center;
+                box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+                background-color: #fff;
+            }
+            
+            .no-book-available {
+                margin-top: -5px;
+                color: #27ae60;
+                font-size: 2.7rem;
+                margin-bottom: 30px;
+            }
+            
+            p {
+                font-size: 2rem;
+                color: #707070;
+            }
+            
+            .go-back {
+                color: #fff;
+                background-color: #27ae60;
+                padding: 18px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-size: 1.5rem;
+                transition: background-color 0.2s;
+            }
+            
+            .go-back:hover {
+                background-color: #219150;
+            }
+	    </style>
     }
     else
     {
@@ -32,8 +78,6 @@ là tựa như mấy cái thẻ ngoài home ấy *@
                         {
                             <div class="slide box">
                                 <div class="icons">
-                                    <a href="" class="fas fa-search"></a>
-                                    <a href="" class="fas fa-heart"></a>
                                     <a class="fas fa-eye" asp-action="Details" asp-route-id="@item.BookId"></a>
                                 </div>
                                 <div class="image">
@@ -55,8 +99,10 @@ là tựa như mấy cái thẻ ngoài home ấy *@
             </div>
         </section>
         <!-- featured section end -->
+
     }
 }
+
 
 @section CSS
 {
